@@ -2,6 +2,7 @@
 """Generate animated GitHub profile assets — Cosmic 3D theme."""
 
 import base64
+import html
 import json
 import subprocess
 import urllib.parse
@@ -85,10 +86,8 @@ PROFILE = {
         "filename": "engineer.ts",
         "lines": [
             "const engineer = {",
-            "  frontend: 'React',",
-            "  backend: 'Node.js',",
-            "  ai: 'LangGraph',",
-            "  learning: 'MCP',",
+            "  frontend: 'React', backend: 'Node.js',",
+            "  ai: 'LangGraph', learning: 'MCP',",
             "  goal: 'AI Native Engineer'",
             "};",
         ],
@@ -110,7 +109,7 @@ PROFILE = {
         "email": "mailto:your.email@example.com",
         "medium": "https://medium.com/@your-profile",
     },
-    "cache_v": "17",
+    "cache_v": "18",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -321,17 +320,24 @@ def banner_svg(light=False):
     cycle_total = len(roles) * role_dur
 
     display_name = PROFILE["full_name"]
-    name_font = 46 if len(display_name) <= 16 else 38 if len(display_name) <= 22 else 32
+    name_parts = display_name.rsplit(" ", 1)
+    name_line1 = name_parts[0] if len(name_parts) == 2 else display_name
+    name_line2 = name_parts[1] if len(name_parts) == 2 else ""
+    name_font = 36 if name_line2 else 42
 
-    # ── Name letters pop-in ──
-    name_letters = ""
-    for i, ch in enumerate(display_name):
-        name_letters += f'''
+    def _name_tspans(text: str, base_delay: float) -> str:
+        out = ""
+        for i, ch in enumerate(text):
+            out += f'''
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="{0.6 + i * 0.05}s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="{0.6 + i * 0.05}s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="{base_delay + i * 0.04}s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="{base_delay + i * 0.04}s" dur="0.4s" fill="freeze"/>
         {xml_escape(ch)}
       </tspan>'''
+        return out
+
+    name_line1_svg = _name_tspans(name_line1, 0.6)
+    name_line2_svg = _name_tspans(name_line2, 0.6 + len(name_line1) * 0.04 + 0.15) if name_line2 else ""
 
     # ── Roles — one visible at a time (no overlap) ──
     role_anims = ""
@@ -342,24 +348,30 @@ def banner_svg(light=False):
         t_out = (i + 1) / n - 0.015
         t_end = (i + 1) / n
         role_anims += f'''
-      <text x="52" y="196" fill="{cyan}" font-family="'SF Mono',monospace" font-size="14" opacity="0">
+      <text x="52" y="210" fill="{cyan}" font-family="'SF Mono',monospace" font-size="13" opacity="0">
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;{t0:.3f};{t_in:.3f};{t_out:.3f};{t_end:.3f};1" dur="{cycle_total}s" repeatCount="indefinite"/>
         &gt; {xml_escape(role)}<tspan fill="{violet}"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>▌</tspan>
       </text>'''
 
-    # ── About lines (first 4 in banner) ──
+    # ── About highlights in banner (3 lines, emoji — no bullets) ──
+    about_banner = [
+        ("🚀", PROFILE["about"][0]),
+        ("🤖", PROFILE["about"][1]),
+        ("🧠", PROFILE["about"][2]),
+    ]
     about_lines = ""
-    for i, line in enumerate(PROFILE["about"][:4]):
+    for i, (icon, line) in enumerate(about_banner):
+        short = line if len(line) <= 46 else line[:43] + "..."
         about_lines += f'''
-      <text x="44" y="{302 + i * 22}" fill="{text_dim}" font-family="system-ui,sans-serif" font-size="11.5" opacity="0">
-        <animate attributeName="opacity" from="0" to="1" begin="{1.6 + i * 0.22}s" dur="0.4s" fill="freeze"/>
-        {xml_escape("• " + line)}
+      <text x="44" y="{292 + i * 20}" fill="{text_dim}" font-family="system-ui,sans-serif" font-size="11" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="{1.6 + i * 0.2}s" dur="0.4s" fill="freeze"/>
+        <tspan fill="{cyan}">{icon}</tspan> {xml_escape(short)}
       </text>'''
 
     # ── Tech pills (2 rows, fixed grid) ──
-    stats_y = 396
-    tech_label_y = 446
-    tech_pill_start = 458
+    stats_y = 358
+    tech_label_y = 408
+    tech_pill_start = 420
     skills_pills = ""
     for i, sk in enumerate(PROFILE["skills_banner"][:8]):
         col = i % 4
@@ -374,14 +386,16 @@ def banner_svg(light=False):
         <text x="{x + 11}" y="{y + 16}" fill="{text}" font-family="system-ui,sans-serif" font-size="11">{xml_escape(sk)}</text>
       </g>'''
 
-    # ── Code card — absolute coords only (GitHub SVG sanitizer strips transform) ──
-    code_y = 536
+    # ── Code card — full panel width, clipped ──
+    code_y = 488
+    code_w = 604
+    code_h = 88
     code_card = PROFILE["code_card"]
     code_svg = ""
     for i, line in enumerate(code_card["lines"]):
         code_svg += f'''
-    <text x="50" y="{code_y + 50 + i * 15}" fill="{code_text}" font-family="monospace" font-size="9.5" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="{3.2 + i * 0.28}s" dur="0.3s" fill="freeze"/>
+    <text x="48" y="{code_y + 46 + i * 14}" fill="{code_text}" font-family="monospace" font-size="9" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="{3.0 + i * 0.22}s" dur="0.3s" fill="freeze"/>
       {xml_escape(line)}
     </text>'''
 
@@ -426,7 +440,8 @@ def banner_svg(light=False):
       <feGaussianBlur stdDeviation="4" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <clipPath id="roleClip"><rect x="44" y="176" width="580" height="28"/></clipPath>
+    <clipPath id="roleClip"><rect x="44" y="190" width="580" height="28"/></clipPath>
+    <clipPath id="codeClip"><rect x="36" y="{code_y + 24}" width="{code_w}" height="{code_h - 24}" rx="4"/></clipPath>
     <clipPath id="photoClip"><rect x="700" y="72" width="520" height="596" rx="14"/></clipPath>
     <clipPath id="photoReveal"><rect x="700" y="668" width="520" height="0">
       <animate attributeName="y" from="668" to="72" dur="1.6s" begin="0.4s" fill="freeze"/>
@@ -454,26 +469,27 @@ def banner_svg(light=False):
     user@dev:~$ cat README.md<tspan fill="{gold}"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>█</tspan>
   </text>
 
-  <!-- Greeting + Name -->
+  <!-- Greeting + Name (two lines) -->
   <text x="44" y="98" fill="{text_dim}" font-family="system-ui,sans-serif" font-size="14" opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="0.4s" dur="0.5s" fill="freeze"/>
     Hi, I'm 👋
   </text>
-  <text x="44" y="148" font-family="Georgia,'Times New Roman',serif" font-size="{name_font}" font-weight="bold">{name_letters}</text>
+  <text x="44" y="132" font-family="Georgia,'Times New Roman',serif" font-size="{name_font}" font-weight="bold">{name_line1_svg}</text>
+  <text x="44" y="164" font-family="Georgia,'Times New Roman',serif" font-size="{name_font}" font-weight="bold">{name_line2_svg}</text>
 
   <!-- Role (cycling, clipped) -->
-  <rect x="36" y="168" width="604" height="36" rx="8" fill="{glass}" stroke="{violet}" stroke-width="0.6" opacity="0.85"/>
+  <rect x="36" y="182" width="604" height="34" rx="8" fill="{glass}" stroke="{violet}" stroke-width="0.6" opacity="0.85"/>
   <g clip-path="url(#roleClip)">{role_anims}</g>
 
   <!-- Tagline -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="1.2s" dur="0.5s" fill="freeze"/>
-    <rect x="36" y="216" width="520" height="38" rx="8" fill="{glass2}" stroke="{pink}" stroke-width="0.6"/>
-    <text x="50" y="240" fill="{text}" font-family="system-ui,sans-serif" font-size="13" font-style="italic">"{xml_escape(PROFILE['tagline'])}"</text>
+    <rect x="36" y="228" width="560" height="34" rx="8" fill="{glass2}" stroke="{pink}" stroke-width="0.6"/>
+    <text x="50" y="250" fill="{text}" font-family="system-ui,sans-serif" font-size="12" font-style="italic">"{xml_escape(PROFILE['tagline'])}"</text>
   </g>
 
   <!-- About Me -->
-  <text x="44" y="282" fill="{gold}" font-family="system-ui,sans-serif" font-size="13" font-weight="bold" opacity="0">
+  <text x="44" y="278" fill="{gold}" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="1.4s" dur="0.4s" fill="freeze"/>
     ✦ About Me
   </text>
@@ -495,21 +511,21 @@ def banner_svg(light=False):
   </text>
   {skills_pills}
 
-  <!-- Code editor (3D inset) — absolute positions, no transform -->
+  <!-- Code editor — full width, clipped -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.8s" dur="0.5s" fill="freeze"/>
-    <rect x="36" y="{code_y}" width="290" height="118" rx="10" fill="{code_bg}" stroke="{cyan}" stroke-width="0.8"/>
-    <rect x="36" y="{code_y}" width="290" height="24" rx="10" fill="{panel_hi}"/>
-    <rect x="36" y="{code_y + 16}" width="290" height="8" fill="{panel_hi}"/>
-    <circle cx="50" cy="{code_y + 12}" r="4" fill="#ff5f57"/><circle cx="64" cy="{code_y + 12}" r="4" fill="#febc2e"/><circle cx="78" cy="{code_y + 12}" r="4" fill="#28c840"/>
-    <text x="92" y="{code_y + 16}" fill="{text_dim}" font-family="monospace" font-size="9">{xml_escape(code_card['filename'])}</text>
-    {code_svg}
+    <rect x="36" y="{code_y}" width="{code_w}" height="{code_h}" rx="10" fill="{code_bg}" stroke="{cyan}" stroke-width="0.8"/>
+    <rect x="36" y="{code_y}" width="{code_w}" height="22" rx="10" fill="{panel_hi}"/>
+    <rect x="36" y="{code_y + 14}" width="{code_w}" height="8" fill="{panel_hi}"/>
+    <circle cx="50" cy="{code_y + 11}" r="4" fill="#ff5f57"/><circle cx="64" cy="{code_y + 11}" r="4" fill="#febc2e"/><circle cx="78" cy="{code_y + 11}" r="4" fill="#28c840"/>
+    <text x="92" y="{code_y + 15}" fill="{text_dim}" font-family="monospace" font-size="9">{xml_escape(code_card['filename'])}</text>
+    <g clip-path="url(#codeClip)">{code_svg}</g>
   </g>
 
   <!-- Neon sign -->
   <g filter="url(#glow3d)" opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="3.8s" dur="0.4s" fill="freeze"/>
-    <text x="360" y="690" fill="{cyan}" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">
+    <text x="338" y="598" fill="{cyan}" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">
       <animate attributeName="opacity" values="1;0.55;1;0.75;1" dur="2.5s" repeatCount="indefinite"/>
       {xml_escape(PROFILE['footer'])}
     </text>
@@ -822,6 +838,18 @@ def get_git_sha() -> str:
         return PROFILE["cache_v"]
 
 
+def _readme_html_list(items: list[str]) -> str:
+    rows = "\n".join(f"  <li>{html.escape(item)}</li>" for item in items)
+    return f"<ul align=\"left\">\n{rows}\n</ul>"
+
+
+def _readme_chip_list(items: list[str]) -> str:
+    return " ".join(
+        f"![{item}](https://img.shields.io/badge/{urllib.parse.quote(item.replace(' ', '_'))}-1c1c4a?style=for-the-badge&color=00e5ff)"
+        for item in items
+    )
+
+
 def _readme_tech_stack() -> str:
     blocks = []
     icons = {"Frontend": "🎨", "Backend": "⚙️", "AI": "🤖", "Tools": "🛠", "Cloud": "☁️"}
@@ -859,10 +887,10 @@ def readme_md(sha: Optional[str] = None):
         for name, tech, stars in PROFILE["projects"]
     )
 
-    about_md = _readme_list(PROFILE["about"], "•")
-    learning_md = "\n".join(f"🧠 {x}" for x in PROFILE["currently_learning"])
-    focus_md = _readme_list(PROFILE["current_focus"], "✓")
-    goals_md = _readme_list(PROFILE["goals_2026"], "□")
+    about_md = _readme_html_list(PROFILE["about"])
+    learning_md = _readme_chip_list(PROFILE["currently_learning"])
+    focus_md = _readme_html_list([f"✓ {x}" for x in PROFILE["current_focus"]])
+    goals_md = _readme_html_list([f"□ {x}" for x in PROFILE["goals_2026"]])
     interests_md = " · ".join(f"`{i}`" for i in PROFILE["interests"])
     tech_md = _readme_tech_stack()
     st = PROFILE["stats"]
@@ -892,7 +920,7 @@ def readme_md(sha: Optional[str] = None):
 ### ✨ My Projects
 
 | Project | Tech | Stars |
-|---------|------|-------|
+|:--------|:------|-----:|
 {proj_rows}
 
 *"Building AI that works, not just demos. 🚀"*

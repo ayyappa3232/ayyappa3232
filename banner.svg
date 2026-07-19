@@ -37,7 +37,8 @@
       <feGaussianBlur stdDeviation="4" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <clipPath id="roleClip"><rect x="44" y="176" width="580" height="28"/></clipPath>
+    <clipPath id="roleClip"><rect x="44" y="190" width="580" height="28"/></clipPath>
+    <clipPath id="codeClip"><rect x="36" y="512" width="604" height="64" rx="4"/></clipPath>
     <clipPath id="photoClip"><rect x="700" y="72" width="520" height="596" rx="14"/></clipPath>
     <clipPath id="photoReveal"><rect x="700" y="668" width="520" height="0">
       <animate attributeName="y" from="668" to="72" dur="1.6s" begin="0.4s" fill="freeze"/>
@@ -65,142 +66,138 @@
     user@dev:~$ cat README.md<tspan fill="#fbbf24"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>█</tspan>
   </text>
 
-  <!-- Greeting + Name -->
+  <!-- Greeting + Name (two lines) -->
   <text x="44" y="98" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14" opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="0.4s" dur="0.5s" fill="freeze"/>
     Hi, I'm 👋
   </text>
-  <text x="44" y="148" font-family="Georgia,'Times New Roman',serif" font-size="38" font-weight="bold">
+  <text x="44" y="132" font-family="Georgia,'Times New Roman',serif" font-size="36" font-weight="bold">
       <tspan opacity="0" fill="url(#nameGrad)">
         <animate attributeName="opacity" from="0" to="1" begin="0.6s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="0.6s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.6s" dur="0.4s" fill="freeze"/>
         A
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="0.65s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="0.65s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="0.64s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.64s" dur="0.4s" fill="freeze"/>
         y
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="0.7s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="0.7s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="0.6799999999999999s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.6799999999999999s" dur="0.4s" fill="freeze"/>
         y
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="0.75s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="0.75s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="0.72s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.72s" dur="0.4s" fill="freeze"/>
         a
+      </tspan>
+      <tspan opacity="0" fill="url(#nameGrad)">
+        <animate attributeName="opacity" from="0" to="1" begin="0.76s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.76s" dur="0.4s" fill="freeze"/>
+        p
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
         <animate attributeName="opacity" from="0" to="1" begin="0.8s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="0.8s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.8s" dur="0.4s" fill="freeze"/>
         p
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="0.85s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="0.85s" dur="0.4s" fill="freeze"/>
-        p
-      </tspan>
-      <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="0.9s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="0.9s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="0.84s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.84s" dur="0.4s" fill="freeze"/>
         a
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="0.95s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="0.95s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="0.88s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.88s" dur="0.4s" fill="freeze"/>
          
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.0s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.0s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="0.9199999999999999s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.9199999999999999s" dur="0.4s" fill="freeze"/>
         K
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.05s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.05s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="0.96s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="0.96s" dur="0.4s" fill="freeze"/>
         u
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.1s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.1s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="1.0s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.0s" dur="0.4s" fill="freeze"/>
         m
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.15s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.15s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="1.04s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.04s" dur="0.4s" fill="freeze"/>
         a
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.2000000000000002s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.2000000000000002s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="1.08s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.08s" dur="0.4s" fill="freeze"/>
         r
-      </tspan>
+      </tspan></text>
+  <text x="44" y="164" font-family="Georgia,'Times New Roman',serif" font-size="36" font-weight="bold">
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.25s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.25s" dur="0.4s" fill="freeze"/>
-         
-      </tspan>
-      <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.3s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.3s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="1.27s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.27s" dur="0.4s" fill="freeze"/>
         P
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
+        <animate attributeName="opacity" from="0" to="1" begin="1.31s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.31s" dur="0.4s" fill="freeze"/>
+        e
+      </tspan>
+      <tspan opacity="0" fill="url(#nameGrad)">
         <animate attributeName="opacity" from="0" to="1" begin="1.35s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.35s" dur="0.4s" fill="freeze"/>
-        e
-      </tspan>
-      <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.4s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.4s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.35s" dur="0.4s" fill="freeze"/>
         n
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.4500000000000002s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.4500000000000002s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="1.3900000000000001s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.3900000000000001s" dur="0.4s" fill="freeze"/>
         n
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.5s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="1.43s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.43s" dur="0.4s" fill="freeze"/>
         e
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.55s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.55s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="1.47s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.47s" dur="0.4s" fill="freeze"/>
         t
       </tspan>
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="1.6s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="1.6s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="1.51s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-12" to="0" begin="1.51s" dur="0.4s" fill="freeze"/>
         i
       </tspan></text>
 
   <!-- Role (cycling, clipped) -->
-  <rect x="36" y="168" width="604" height="36" rx="8" fill="#141432" stroke="#a855f7" stroke-width="0.6" opacity="0.85"/>
+  <rect x="36" y="182" width="604" height="34" rx="8" fill="#141432" stroke="#a855f7" stroke-width="0.6" opacity="0.85"/>
   <g clip-path="url(#roleClip)">
-      <text x="52" y="196" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="14" opacity="0">
+      <text x="52" y="210" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="13" opacity="0">
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.000;0.015;0.152;0.167;1" dur="21.0s" repeatCount="indefinite"/>
         &gt; Senior React JS Developer<tspan fill="#a855f7"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>▌</tspan>
       </text>
-      <text x="52" y="196" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="14" opacity="0">
+      <text x="52" y="210" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="13" opacity="0">
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.167;0.182;0.318;0.333;1" dur="21.0s" repeatCount="indefinite"/>
         &gt; AI Native Engineer<tspan fill="#a855f7"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>▌</tspan>
       </text>
-      <text x="52" y="196" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="14" opacity="0">
+      <text x="52" y="210" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="13" opacity="0">
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.333;0.348;0.485;0.500;1" dur="21.0s" repeatCount="indefinite"/>
         &gt; Agentic AI Learner<tspan fill="#a855f7"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>▌</tspan>
       </text>
-      <text x="52" y="196" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="14" opacity="0">
+      <text x="52" y="210" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="13" opacity="0">
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.500;0.515;0.652;0.667;1" dur="21.0s" repeatCount="indefinite"/>
         &gt; LangGraph Explorer<tspan fill="#a855f7"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>▌</tspan>
       </text>
-      <text x="52" y="196" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="14" opacity="0">
+      <text x="52" y="210" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="13" opacity="0">
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.667;0.682;0.818;0.833;1" dur="21.0s" repeatCount="indefinite"/>
         &gt; MCP Enthusiast<tspan fill="#a855f7"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>▌</tspan>
       </text>
-      <text x="52" y="196" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="14" opacity="0">
+      <text x="52" y="210" fill="#00e5ff" font-family="'SF Mono',monospace" font-size="13" opacity="0">
         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.833;0.848;0.985;1.000;1" dur="21.0s" repeatCount="indefinite"/>
         &gt; System Design Learner<tspan fill="#a855f7"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>▌</tspan>
       </text></g>
@@ -208,132 +205,120 @@
   <!-- Tagline -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="1.2s" dur="0.5s" fill="freeze"/>
-    <rect x="36" y="216" width="520" height="38" rx="8" fill="#1a1a42" stroke="#ec4899" stroke-width="0.6"/>
-    <text x="50" y="240" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="13" font-style="italic">"From React to Agentic AI — one project at a time."</text>
+    <rect x="36" y="228" width="560" height="34" rx="8" fill="#1a1a42" stroke="#ec4899" stroke-width="0.6"/>
+    <text x="50" y="250" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="12" font-style="italic">"From React to Agentic AI — one project at a time."</text>
   </g>
 
   <!-- About Me -->
-  <text x="44" y="282" fill="#fbbf24" font-family="system-ui,sans-serif" font-size="13" font-weight="bold" opacity="0">
+  <text x="44" y="278" fill="#fbbf24" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="1.4s" dur="0.4s" fill="freeze"/>
     ✦ About Me
   </text>
   
-      <text x="44" y="302" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="11.5" opacity="0">
+      <text x="44" y="292" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="11" opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="1.6s" dur="0.4s" fill="freeze"/>
-        • 7+ years building React applications
+        <tspan fill="#00e5ff">🚀</tspan> 7+ years building React applications
       </text>
-      <text x="44" y="324" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="11.5" opacity="0">
-        <animate attributeName="opacity" from="0" to="1" begin="1.82s" dur="0.4s" fill="freeze"/>
-        • Exploring AI Native Engineering &amp; Agentic AI
+      <text x="44" y="312" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="11" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="1.8s" dur="0.4s" fill="freeze"/>
+        <tspan fill="#00e5ff">🤖</tspan> Exploring AI Native Engineering &amp; Agentic AI
       </text>
-      <text x="44" y="346" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="11.5" opacity="0">
-        <animate attributeName="opacity" from="0" to="1" begin="2.04s" dur="0.4s" fill="freeze"/>
-        • Learning LangGraph, MCP and LLM Architecture
-      </text>
-      <text x="44" y="368" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="11.5" opacity="0">
-        <animate attributeName="opacity" from="0" to="1" begin="2.2600000000000002s" dur="0.4s" fill="freeze"/>
-        • Passionate about clean architecture &amp; developer experience
+      <text x="44" y="332" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="11" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="2.0s" dur="0.4s" fill="freeze"/>
+        <tspan fill="#00e5ff">🧠</tspan> Learning LangGraph, MCP and LLM Architecture
       </text>
 
   <!-- Stats bar -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.0s" dur="0.5s" fill="freeze"/>
-    <rect x="36" y="396" width="604" height="32" rx="8" fill="#141432" stroke="#00e5ff" stroke-width="0.5"/>
-    <text x="50" y="417" fill="#94a3b8" font-family="monospace" font-size="10.5">
-      💻 33 commits   ·   📚 6 repos   ·   ⭐ 0 stars   ·   👥 0 followers
+    <rect x="36" y="358" width="604" height="32" rx="8" fill="#141432" stroke="#00e5ff" stroke-width="0.5"/>
+    <text x="50" y="379" fill="#94a3b8" font-family="monospace" font-size="10.5">
+      💻 34 commits   ·   📚 6 repos   ·   ⭐ 0 stars   ·   👥 0 followers
     </text>
   </g>
 
   <!-- Tech stack label + pills -->
-  <text x="44" y="446" fill="#a855f7" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" opacity="0">
+  <text x="44" y="408" fill="#a855f7" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.1s" dur="0.4s" fill="freeze"/>
     ⚡ Tech Stack
   </text>
   
       <g opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="2.2s" dur="0.4s" fill="freeze"/>
-        <rect x="44" y="458" width="72" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
-        <text x="55" y="474" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">React</text>
+        <rect x="44" y="420" width="72" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
+        <text x="55" y="436" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">React</text>
       </g>
       <g opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="2.3000000000000003s" dur="0.4s" fill="freeze"/>
-        <rect x="192" y="458" width="102" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
-        <text x="203" y="474" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">TypeScript</text>
+        <rect x="192" y="420" width="102" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
+        <text x="203" y="436" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">TypeScript</text>
       </g>
       <g opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="2.4000000000000004s" dur="0.4s" fill="freeze"/>
-        <rect x="340" y="458" width="78" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
-        <text x="351" y="474" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">Node.js</text>
+        <rect x="340" y="420" width="78" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
+        <text x="351" y="436" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">Node.js</text>
       </g>
       <g opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="2.5s" dur="0.4s" fill="freeze"/>
-        <rect x="488" y="458" width="94" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
-        <text x="499" y="474" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">LangGraph</text>
+        <rect x="488" y="420" width="94" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
+        <text x="499" y="436" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">LangGraph</text>
       </g>
       <g opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="2.6s" dur="0.4s" fill="freeze"/>
-        <rect x="44" y="492" width="72" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
-        <text x="55" y="508" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">MCP</text>
+        <rect x="44" y="454" width="72" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
+        <text x="55" y="470" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">MCP</text>
       </g>
       <g opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="2.7s" dur="0.4s" fill="freeze"/>
-        <rect x="192" y="492" width="78" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
-        <text x="203" y="508" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">Next.js</text>
+        <rect x="192" y="454" width="78" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
+        <text x="203" y="470" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">Next.js</text>
       </g>
       <g opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="2.8000000000000003s" dur="0.4s" fill="freeze"/>
-        <rect x="340" y="492" width="72" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
-        <text x="351" y="508" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">OpenAI</text>
+        <rect x="340" y="454" width="72" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
+        <text x="351" y="470" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">OpenAI</text>
       </g>
       <g opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="2.9000000000000004s" dur="0.4s" fill="freeze"/>
-        <rect x="488" y="492" width="72" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
-        <text x="499" y="508" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">AWS</text>
+        <rect x="488" y="454" width="72" height="24" rx="12" fill="url(#pillGrad)" stroke="#00e5ff" stroke-width="0.8" opacity="0.9"/>
+        <text x="499" y="470" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11">AWS</text>
       </g>
 
-  <!-- Code editor (3D inset) — absolute positions, no transform -->
+  <!-- Code editor — full width, clipped -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.8s" dur="0.5s" fill="freeze"/>
-    <rect x="36" y="536" width="290" height="118" rx="10" fill="#060a14" stroke="#00e5ff" stroke-width="0.8"/>
-    <rect x="36" y="536" width="290" height="24" rx="10" fill="#1c1c4a"/>
-    <rect x="36" y="552" width="290" height="8" fill="#1c1c4a"/>
-    <circle cx="50" cy="548" r="4" fill="#ff5f57"/><circle cx="64" cy="548" r="4" fill="#febc2e"/><circle cx="78" cy="548" r="4" fill="#28c840"/>
-    <text x="92" y="552" fill="#94a3b8" font-family="monospace" font-size="9">engineer.ts</text>
-    
-    <text x="50" y="586" fill="#7dd3fc" font-family="monospace" font-size="9.5" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="3.2s" dur="0.3s" fill="freeze"/>
+    <rect x="36" y="488" width="604" height="88" rx="10" fill="#060a14" stroke="#00e5ff" stroke-width="0.8"/>
+    <rect x="36" y="488" width="604" height="22" rx="10" fill="#1c1c4a"/>
+    <rect x="36" y="502" width="604" height="8" fill="#1c1c4a"/>
+    <circle cx="50" cy="499" r="4" fill="#ff5f57"/><circle cx="64" cy="499" r="4" fill="#febc2e"/><circle cx="78" cy="499" r="4" fill="#28c840"/>
+    <text x="92" y="503" fill="#94a3b8" font-family="monospace" font-size="9">engineer.ts</text>
+    <g clip-path="url(#codeClip)">
+    <text x="48" y="534" fill="#7dd3fc" font-family="monospace" font-size="9" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="3.0s" dur="0.3s" fill="freeze"/>
       const engineer = {
     </text>
-    <text x="50" y="601" fill="#7dd3fc" font-family="monospace" font-size="9.5" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="3.4800000000000004s" dur="0.3s" fill="freeze"/>
-        frontend: 'React',
+    <text x="48" y="548" fill="#7dd3fc" font-family="monospace" font-size="9" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="3.22s" dur="0.3s" fill="freeze"/>
+        frontend: 'React', backend: 'Node.js',
     </text>
-    <text x="50" y="616" fill="#7dd3fc" font-family="monospace" font-size="9.5" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="3.7600000000000002s" dur="0.3s" fill="freeze"/>
-        backend: 'Node.js',
+    <text x="48" y="562" fill="#7dd3fc" font-family="monospace" font-size="9" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="3.44s" dur="0.3s" fill="freeze"/>
+        ai: 'LangGraph', learning: 'MCP',
     </text>
-    <text x="50" y="631" fill="#7dd3fc" font-family="monospace" font-size="9.5" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="4.04s" dur="0.3s" fill="freeze"/>
-        ai: 'LangGraph',
-    </text>
-    <text x="50" y="646" fill="#7dd3fc" font-family="monospace" font-size="9.5" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="4.32s" dur="0.3s" fill="freeze"/>
-        learning: 'MCP',
-    </text>
-    <text x="50" y="661" fill="#7dd3fc" font-family="monospace" font-size="9.5" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="4.6000000000000005s" dur="0.3s" fill="freeze"/>
+    <text x="48" y="576" fill="#7dd3fc" font-family="monospace" font-size="9" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="3.66s" dur="0.3s" fill="freeze"/>
         goal: 'AI Native Engineer'
     </text>
-    <text x="50" y="676" fill="#7dd3fc" font-family="monospace" font-size="9.5" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="4.880000000000001s" dur="0.3s" fill="freeze"/>
+    <text x="48" y="590" fill="#7dd3fc" font-family="monospace" font-size="9" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="3.88s" dur="0.3s" fill="freeze"/>
       };
-    </text>
+    </text></g>
   </g>
 
   <!-- Neon sign -->
   <g filter="url(#glow3d)" opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="3.8s" dur="0.4s" fill="freeze"/>
-    <text x="360" y="690" fill="#00e5ff" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">
+    <text x="338" y="598" fill="#00e5ff" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">
       <animate attributeName="opacity" values="1;0.55;1;0.75;1" dur="2.5s" repeatCount="indefinite"/>
       BUILD • LEARN • SHIP • REPEAT 🚀
     </text>
