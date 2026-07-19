@@ -21,7 +21,7 @@ jobs:
         with:
           github_user_name: ayyappa3232
           outputs: |
-            dist/snake.gif?color_snake=00e5ff&color_dots=#30363d,#0e7490,#0891b2,#00e5ff,#a855f7&color_background=070b1a
+            dist/snake.gif?color_snake=00e5ff&color_dots=#3d4460,#0e4429,#006d32,#26a641,#39d353&color_background=12103a
 
       - name: Push snake.gif to output branch
         uses: crazy-max/ghaction-github-pages@v4

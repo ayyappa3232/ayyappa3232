@@ -42,7 +42,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "15",
+    "cache_v": "16",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -727,7 +727,13 @@ def readme_md(sha: Optional[str] = None):
     pin = sha or get_git_sha()
     # Pin to exact commit — new SHA = entirely new URL (beats GitHub profile cache)
     cdn = f"https://cdn.jsdelivr.net/gh/{u}/{u}@{pin}"
-    snake = f"https://raw.githubusercontent.com/{u}/{u}/output/snake.gif"
+    snake = f"https://cdn.jsdelivr.net/gh/{u}/{u}@output/snake.gif?v={v}"
+    streak = (
+        f"https://streak-stats.demolab.com/?user={u}"
+        f"&theme=dark&background=070B1A&border=6366F1&stroke=00E5FF"
+        f"&ring=00E5FF&fire=A855F7&currStreakNum=00E5FF&sideNums=00E5FF"
+        f"&currStreakLabel=EC4899&sideLabels=E2E8F0&dates=94A3B8"
+    )
 
     proj_rows = "\n".join(
         f"| [{name}](https://github.com/{u}/{name}) | {tech} | ⭐ {stars} |"
@@ -783,14 +789,26 @@ def readme_md(sha: Optional[str] = None):
 
 <br/><br/>
 
-<!-- Contribution Snake — GIF animates on GitHub (SVG animations are stripped) -->
+<!-- Streak + Snake -->
+<img alt="GitHub streak stats" src="{streak}" width="100%"/>
+
+<br/><br/>
+
 <div align="center">
 
 ### 🐍 Contribution Snake
 
-<img alt="Snake eating my GitHub contributions" src="{snake}" width="100%"/>
+<table>
+<tr>
+<td align="center" bgcolor="#12103a">
 
-<sub>✨ Cyan snake · cosmic grid · updates daily via GitHub Actions</sub>
+<img alt="Snake eating my GitHub contributions" src="{snake}" width="820"/>
+
+</td>
+</tr>
+</table>
+
+<sub>✨ Classic green grid · cyan snake · updates daily</sub>
 
 </div>
 
@@ -842,7 +860,7 @@ jobs:
         with:
           github_user_name: {u}
           outputs: |
-            dist/snake.gif?color_snake=00e5ff&color_dots=#30363d,#0e7490,#0891b2,#00e5ff,#a855f7&color_background=070b1a
+            dist/snake.gif?color_snake=00e5ff&color_dots=#3d4460,#0e4429,#006d32,#26a641,#39d353&color_background=12103a
 
       - name: Push snake.gif to output branch
         uses: crazy-max/ghaction-github-pages@v4
