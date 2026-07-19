@@ -11,23 +11,90 @@ from typing import Optional
 ROOT = Path(__file__).parent
 AVATAR_B64 = (ROOT / "avatar.b64.txt").read_text().strip()
 
-# ── Dummy profile data (replace later — see CUSTOMIZATION.md) ──
+# ── Profile data — Ayyappa Kumar Penneti ──
 PROFILE = {
-    "name": "Ayyappa",
-    "full_name": "Ayyappa Kumar",
-    "role": "AI Native Engineer",
-    "roles_cycle": ["AI Native Engineer", "Full Stack Developer", "React Native Dev"],
+    "name": "Ayyappa Kumar",
+    "full_name": "Ayyappa Kumar Penneti",
+    "role": "Senior React JS Developer",
+    "roles_cycle": [
+        "Senior React JS Developer",
+        "AI Native Engineer",
+        "Agentic AI Learner",
+        "LangGraph Explorer",
+        "MCP Enthusiast",
+        "System Design Learner",
+    ],
     "username": "ayyappa3232",
     "email": "your.email@example.com",
     "location": "India",
-    "tagline": "Always learning, always building ✨",
+    "experience": "7+ years",
+    "tagline": "From React to Agentic AI — one project at a time.",
     "about": [
-        "Building intelligent apps with AI and modern web tech",
-        "Passionate about clean code and great UX",
-        "Open to collaborate on exciting projects",
+        "7+ years building React applications",
+        "Exploring AI Native Engineering & Agentic AI",
+        "Learning LangGraph, MCP and LLM Architecture",
+        "Passionate about clean architecture & developer experience",
+        "Interested in System Design, AI Agents and Full Stack AI",
+        "Building practical AI applications with Cursor AI",
+        "Always open to learning and collaborating",
     ],
-    "skills": ["React", "TypeScript", "Node.js", "Python", "AI/LLMs", "React Native", "SQL", "Three.js"],
-    "stats": {"stars": "0", "commits": "25", "repos": "6", "prs": "0", "grade": "C"},
+    "skills_banner": [
+        "React", "TypeScript", "Node.js", "LangGraph",
+        "MCP", "Next.js", "OpenAI", "AWS",
+    ],
+    "tech_stack": {
+        "Frontend": ["React", "React Native", "TypeScript", "JavaScript", "Redux", "Next.js", "HTML5", "CSS3", "Tailwind"],
+        "Backend": ["Node.js", "Express", "REST APIs", "SQL"],
+        "AI": ["OpenAI", "LLMs", "LangChain", "LangGraph", "MCP", "Prompt Engineering", "Vector Databases", "RAG"],
+        "Tools": ["Cursor", "GitHub", "GitHub Copilot", "VS Code", "Docker", "Postman", "Git"],
+        "Cloud": ["AWS", "Azure"],
+    },
+    "currently_learning": [
+        "Agentic AI", "LangGraph", "MCP", "React 19", "AI Engineering", "System Design",
+    ],
+    "current_focus": [
+        "Building AI Agents",
+        "Mastering LangGraph",
+        "Learning MCP",
+        "Building Full Stack AI Apps",
+        "Preparing for Senior Frontend Interviews",
+    ],
+    "goals_2026": [
+        "Become AI Native Engineer",
+        "Build production AI applications",
+        "Master React ecosystem",
+        "Master System Design",
+        "Contribute to Open Source",
+        "Publish AI Learning Projects",
+    ],
+    "learning_journey": [
+        ("React", 100),
+        ("TypeScript", 90),
+        ("Node.js", 80),
+        ("LangGraph", 70),
+        ("MCP", 60),
+        ("AI Agents", 60),
+    ],
+    "interests": [
+        "React", "AI", "Agentic AI", "LLMs", "LangGraph",
+        "System Design", "Prompt Engineering", "Developer Productivity", "Open Source",
+    ],
+    "fun_fact": "I enjoy turning complex AI concepts into simple explanations. Currently obsessed with AI Agents 🤖",
+    "footer": "BUILD • LEARN • SHIP • REPEAT 🚀",
+    "code_card": {
+        "filename": "engineer.ts",
+        "lines": [
+            "const engineer = {",
+            "  frontend: 'React',",
+            "  backend: 'Node.js',",
+            "  ai: 'LangGraph',",
+            "  learning: 'MCP',",
+            "  goal: 'AI Native Engineer'",
+            "};",
+        ],
+    },
+    "stats": {"stars": "0", "commits": "25", "repos": "6", "prs": "0", "followers": "0", "grade": "C"},
+    "highlights": {"ai_projects": "3+", "open_source": "6"},
     "langs": [("JavaScript", 80), ("CSS", 6), ("C#", 5), ("TypeScript", 5)],
     "trophies": [("B+", "Commits"), ("D", "Stars"), ("C", "Repos"), ("D", "PRs"), ("D", "Issues"), ("D", "Followers")],
     "projects": [
@@ -41,8 +108,9 @@ PROFILE = {
         "linkedin": "https://linkedin.com/in/your-profile",
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
+        "medium": "https://medium.com/@your-profile",
     },
-    "cache_v": "16",
+    "cache_v": "17",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -169,6 +237,7 @@ def fetch_github_stats(username: str) -> dict:
             "commits": str(total_commits),
             "repos": str(metrics["Repos"]),
             "prs": str(prs),
+            "followers": str(metrics["Followers"]),
             "grade": overall_grade(list(grades.values())),
         },
         "trophies": [(grades[label], label) for label in metrics],
@@ -248,16 +317,19 @@ def banner_svg(light=False):
         glow = C["cyan"]
 
     roles = PROFILE["roles_cycle"]
-    role_dur = 4
+    role_dur = 3.5
     cycle_total = len(roles) * role_dur
+
+    display_name = PROFILE["full_name"]
+    name_font = 46 if len(display_name) <= 16 else 38 if len(display_name) <= 22 else 32
 
     # ── Name letters pop-in ──
     name_letters = ""
-    for i, ch in enumerate(PROFILE["name"]):
+    for i, ch in enumerate(display_name):
         name_letters += f'''
       <tspan opacity="0" fill="url(#nameGrad)">
-        <animate attributeName="opacity" from="0" to="1" begin="{0.6 + i * 0.07}s" dur="0.35s" fill="freeze"/>
-        <animate attributeName="dy" from="-16" to="0" begin="{0.6 + i * 0.07}s" dur="0.4s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="{0.6 + i * 0.05}s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-16" to="0" begin="{0.6 + i * 0.05}s" dur="0.4s" fill="freeze"/>
         {xml_escape(ch)}
       </tspan>'''
 
@@ -275,22 +347,21 @@ def banner_svg(light=False):
         &gt; {xml_escape(role)}<tspan fill="{violet}"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>▌</tspan>
       </text>'''
 
-    # ── About lines ──
+    # ── About lines (first 4 in banner) ──
     about_lines = ""
-    for i, line in enumerate(PROFILE["about"]):
+    for i, line in enumerate(PROFILE["about"][:4]):
         about_lines += f'''
-      <text x="44" y="{302 + i * 24}" fill="{text_dim}" font-family="system-ui,sans-serif" font-size="12.5" opacity="0">
-        <animate attributeName="opacity" from="0" to="1" begin="{1.6 + i * 0.25}s" dur="0.4s" fill="freeze"/>
+      <text x="44" y="{302 + i * 22}" fill="{text_dim}" font-family="system-ui,sans-serif" font-size="11.5" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="{1.6 + i * 0.22}s" dur="0.4s" fill="freeze"/>
         {xml_escape("• " + line)}
       </text>'''
 
     # ── Tech pills (2 rows, fixed grid) ──
-    stats_y = 362
-    tech_label_y = 412
-    tech_pill_start = 424
+    stats_y = 396
+    tech_label_y = 446
+    tech_pill_start = 458
     skills_pills = ""
-    pill_w = [88, 98, 88, 88]
-    for i, sk in enumerate(PROFILE["skills"][:8]):
+    for i, sk in enumerate(PROFILE["skills_banner"][:8]):
         col = i % 4
         row = i // 4
         x = 44 + col * 148
@@ -304,18 +375,13 @@ def banner_svg(light=False):
       </g>'''
 
     # ── Code card — absolute coords only (GitHub SVG sanitizer strips transform) ──
-    code_y = 502  # below 2nd row of pills (424 + 34 + 24 = 482) + 20px gap
-    code_lines = [
-        "const buildDreams = () => {",
-        "  return ['React','AI','Node']",
-        "    .map(idea => ship(idea));",
-        "};",
-    ]
+    code_y = 536
+    code_card = PROFILE["code_card"]
     code_svg = ""
-    for i, line in enumerate(code_lines):
+    for i, line in enumerate(code_card["lines"]):
         code_svg += f'''
-    <text x="50" y="{code_y + 50 + i * 17}" fill="{code_text}" font-family="monospace" font-size="10.5" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="{3.2 + i * 0.35}s" dur="0.3s" fill="freeze"/>
+    <text x="50" y="{code_y + 50 + i * 15}" fill="{code_text}" font-family="monospace" font-size="9.5" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="{3.2 + i * 0.28}s" dur="0.3s" fill="freeze"/>
       {xml_escape(line)}
     </text>'''
 
@@ -393,7 +459,7 @@ def banner_svg(light=False):
     <animate attributeName="opacity" from="0" to="1" begin="0.4s" dur="0.5s" fill="freeze"/>
     Hi, I'm 👋
   </text>
-  <text x="44" y="148" font-family="Georgia,'Times New Roman',serif" font-size="46" font-weight="bold">{name_letters}</text>
+  <text x="44" y="148" font-family="Georgia,'Times New Roman',serif" font-size="{name_font}" font-weight="bold">{name_letters}</text>
 
   <!-- Role (cycling, clipped) -->
   <rect x="36" y="168" width="604" height="36" rx="8" fill="{glass}" stroke="{violet}" stroke-width="0.6" opacity="0.85"/>
@@ -417,8 +483,8 @@ def banner_svg(light=False):
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.0s" dur="0.5s" fill="freeze"/>
     <rect x="36" y="{stats_y}" width="604" height="32" rx="8" fill="{glass}" stroke="{cyan}" stroke-width="0.5"/>
-    <text x="50" y="{stats_y + 21}" fill="{text_dim}" font-family="monospace" font-size="11">
-      ⭐ {stats['stars']} stars   ·   📝 {stats['commits']} commits   ·   📦 {stats['repos']} repos   ·   🔀 {stats['prs']} PRs
+    <text x="50" y="{stats_y + 21}" fill="{text_dim}" font-family="monospace" font-size="10.5">
+      💻 {stats.get('commits', '0')} commits   ·   📚 {stats.get('repos', '0')} repos   ·   ⭐ {stats.get('stars', '0')} stars   ·   👥 {stats.get('followers', '0')} followers
     </text>
   </g>
 
@@ -432,11 +498,11 @@ def banner_svg(light=False):
   <!-- Code editor (3D inset) — absolute positions, no transform -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.8s" dur="0.5s" fill="freeze"/>
-    <rect x="36" y="{code_y}" width="290" height="108" rx="10" fill="{code_bg}" stroke="{cyan}" stroke-width="0.8"/>
+    <rect x="36" y="{code_y}" width="290" height="118" rx="10" fill="{code_bg}" stroke="{cyan}" stroke-width="0.8"/>
     <rect x="36" y="{code_y}" width="290" height="24" rx="10" fill="{panel_hi}"/>
     <rect x="36" y="{code_y + 16}" width="290" height="8" fill="{panel_hi}"/>
     <circle cx="50" cy="{code_y + 12}" r="4" fill="#ff5f57"/><circle cx="64" cy="{code_y + 12}" r="4" fill="#febc2e"/><circle cx="78" cy="{code_y + 12}" r="4" fill="#28c840"/>
-    <text x="92" y="{code_y + 16}" fill="{text_dim}" font-family="monospace" font-size="9">dreams.jsx</text>
+    <text x="92" y="{code_y + 16}" fill="{text_dim}" font-family="monospace" font-size="9">{xml_escape(code_card['filename'])}</text>
     {code_svg}
   </g>
 
@@ -445,7 +511,7 @@ def banner_svg(light=False):
     <animate attributeName="opacity" from="0" to="1" begin="3.8s" dur="0.4s" fill="freeze"/>
     <text x="360" y="690" fill="{cyan}" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">
       <animate attributeName="opacity" values="1;0.55;1;0.75;1" dur="2.5s" repeatCount="indefinite"/>
-      KEEP CODING  ·  KEEP GROWING
+      {xml_escape(PROFILE['footer'])}
     </text>
   </g>
 
@@ -540,10 +606,11 @@ def lanyard_svg():
     </g>
 
     <!-- Text + barcode -->
-    <text x="160" y="378" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold" text-anchor="middle">{PROFILE['name']}</text>
-    <text x="160" y="396" fill="{C['cyan']}" font-family="system-ui" font-size="11" text-anchor="middle">{PROFILE['role']}</text>
-    <text x="160" y="412" fill="{C['text_dim']}" font-family="monospace" font-size="10" text-anchor="middle">@{PROFILE['username']}</text>
-    <g transform="translate(90, 424)">
+    <text x="160" y="378" fill="{C['text']}" font-family="system-ui" font-size="14" font-weight="bold" text-anchor="middle">{PROFILE['name']}</text>
+    <text x="160" y="394" fill="{C['cyan']}" font-family="system-ui" font-size="10" text-anchor="middle">{PROFILE['role']}</text>
+    <text x="160" y="408" fill="{C['violet']}" font-family="system-ui" font-size="9" text-anchor="middle">AI Native Engineer</text>
+    <text x="160" y="422" fill="{C['text_dim']}" font-family="monospace" font-size="10" text-anchor="middle">@{PROFILE['username']}</text>
+    <g transform="translate(90, 434)">
       {"".join(f'<rect x="{i*4}" y="0" width="{2 if i%3 else 3}" height="24" fill="{C["violet"]}"/>' for i in range(22))}
     </g>
     <text x="160" y="468" fill="{C['text_dim']}" font-family="monospace" font-size="8" text-anchor="middle">DEV ID • 2026</text>
@@ -565,24 +632,27 @@ def lanyard_svg():
 
 def stats_svg():
     s = PROFILE["stats"]
+    h = PROFILE["highlights"]
     rows = [
-        ("Total Stars Earned", s["stars"]),
-        ("Total Commits", s["commits"]),
-        ("Public Repos", s["repos"]),
-        ("Pull Requests", s["prs"]),
+        ("💻 Contributions", s.get("commits", "0")),
+        ("📚 Repositories", s.get("repos", "0")),
+        ("⭐ Total Stars", s.get("stars", "0")),
+        ("🔀 Pull Requests", s.get("prs", "0")),
+        ("👥 Followers", s.get("followers", "0")),
+        ("🏆 AI Projects", h.get("ai_projects", "—")),
     ]
     rows_svg = ""
     for i, (label, val) in enumerate(rows):
         rows_svg += f'''
   <g opacity="0">
-    <animate attributeName="opacity" from="0" to="1" begin="{0.3 + i*0.2}s" dur="0.4s" fill="freeze"/>
-    <animateTransform attributeName="transform" type="translate" from="-30 0" to="0 0" begin="{0.3 + i*0.2}s" dur="0.4s" fill="freeze"/>
-    <text x="24" y="{100 + i*36}" fill="{C['text_dim']}" font-family="system-ui" font-size="13">{label}</text>
-    <text x="360" y="{100 + i*36}" fill="{C['cyan']}" font-family="monospace" font-size="14" font-weight="bold" text-anchor="end">{val}</text>
-    <line x1="24" y1="{108 + i*36}" x2="360" y2="{108 + i*36}" stroke="{C['border']}" stroke-width="1" opacity="0.4"/>
+    <animate attributeName="opacity" from="0" to="1" begin="{0.3 + i*0.15}s" dur="0.4s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" from="-30 0" to="0 0" begin="{0.3 + i*0.15}s" dur="0.4s" fill="freeze"/>
+    <text x="24" y="{88 + i*30}" fill="{C['text_dim']}" font-family="system-ui" font-size="12">{label}</text>
+    <text x="360" y="{88 + i*30}" fill="{C['cyan']}" font-family="monospace" font-size="13" font-weight="bold" text-anchor="end">{val}</text>
+    <line x1="24" y1="{96 + i*30}" x2="360" y2="{96 + i*30}" stroke="{C['border']}" stroke-width="1" opacity="0.35"/>
   </g>'''
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" width="400" height="280">
   <defs>
     <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="{C['panel_hi']}"/>
@@ -590,7 +660,7 @@ def stats_svg():
     </linearGradient>
     <filter id="s3d"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.4"/></filter>
   </defs>
-  <rect width="400" height="220" rx="12" fill="url(#cardGrad)" stroke="{C['cyan']}" stroke-width="1.5" filter="url(#s3d)"/>
+  <rect width="400" height="280" rx="12" fill="url(#cardGrad)" stroke="{C['cyan']}" stroke-width="1.5" filter="url(#s3d)"/>
   <text x="24" y="36" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold">{PROFILE['name']}'s GitHub Stats</text>
   <circle cx="360" cy="36" r="22" fill="none" stroke="{C['violet']}" stroke-width="3" stroke-dasharray="100" stroke-dashoffset="100">
     <animate attributeName="stroke-dashoffset" from="100" to="25" dur="1.5s" fill="freeze"/>
@@ -625,6 +695,38 @@ def langs_svg():
   </defs>
   <rect width="400" height="220" rx="12" fill="url(#cardGrad)" stroke="{C['violet']}" stroke-width="1.5"/>
   <text x="20" y="32" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold">Top Languages</text>
+  {bars}
+</svg>'''
+
+
+def learning_journey_svg():
+    bars = ""
+    items = PROFILE["learning_journey"]
+    for i, (skill, pct) in enumerate(items):
+        y = 50 + i * 38
+        filled = int(pct * 3.2)
+        bars += f'''
+  <text x="20" y="{y}" fill="{C['text']}" font-family="system-ui" font-size="13">{skill}</text>
+  <text x="380" y="{y}" fill="{C['pink']}" font-family="monospace" font-size="11" text-anchor="end">{pct}%</text>
+  <rect x="20" y="{y+6}" width="320" height="10" rx="5" fill="{C['glass']}"/>
+  <rect x="20" y="{y+6}" width="0" height="10" rx="5" fill="url(#journeyGrad)">
+    <animate attributeName="width" from="0" to="{filled}" dur="1.4s" begin="{0.15 + i*0.12}s" fill="freeze"/>
+  </rect>'''
+
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" width="400" height="280">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{C['panel_hi']}"/>
+      <stop offset="100%" stop-color="{C['panel_lo']}"/>
+    </linearGradient>
+    <linearGradient id="journeyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="{C['cyan']}"/>
+      <stop offset="50%" stop-color="{C['violet']}"/>
+      <stop offset="100%" stop-color="{C['pink']}"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" rx="12" fill="url(#cardGrad)" stroke="{C['pink']}" stroke-width="1.5"/>
+  <text x="20" y="32" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold">📊 Learning Journey</text>
   {bars}
 </svg>'''
 
@@ -720,6 +822,23 @@ def get_git_sha() -> str:
         return PROFILE["cache_v"]
 
 
+def _readme_tech_stack() -> str:
+    blocks = []
+    icons = {"Frontend": "🎨", "Backend": "⚙️", "AI": "🤖", "Tools": "🛠", "Cloud": "☁️"}
+    for category, items in PROFILE["tech_stack"].items():
+        pills = " ".join(
+            f"![{item}](https://img.shields.io/badge/"
+            f"{urllib.parse.quote(item.replace(' ', '_'))}-12103a?style=flat-square&color=00e5ff)"
+            for item in items
+        )
+        blocks.append(f"**{icons.get(category, '•')} {category}**  \n{pills}")
+    return "\n\n".join(blocks)
+
+
+def _readme_list(items: list[str], prefix: str) -> str:
+    return "\n".join(f"{prefix} {item}" for item in items)
+
+
 def readme_md(sha: Optional[str] = None):
     v = PROFILE["cache_v"]
     u = PROFILE["username"]
@@ -740,20 +859,35 @@ def readme_md(sha: Optional[str] = None):
         for name, tech, stars in PROFILE["projects"]
     )
 
+    about_md = _readme_list(PROFILE["about"], "•")
+    learning_md = "\n".join(f"🧠 {x}" for x in PROFILE["currently_learning"])
+    focus_md = _readme_list(PROFILE["current_focus"], "✓")
+    goals_md = _readme_list(PROFILE["goals_2026"], "□")
+    interests_md = " · ".join(f"`{i}`" for i in PROFILE["interests"])
+    tech_md = _readme_tech_stack()
+    st = PROFILE["stats"]
+    hl = PROFILE["highlights"]
+
     return f'''<div align="center">
 
-<!-- Pinned to commit {pin[:12]} — changes every push, bypasses GitHub image cache -->
+<!-- Pinned to commit {pin[:12]} — changes every push, bypasses GitHub profile cache -->
 <img alt="Animated profile banner" src="{cdn}/banner.svg" width="100%"/>
 
 <br/><br/>
 
-<!-- ID Badge + Projects -->
+<!-- ID Badge + About -->
 <table>
 <tr>
 <td width="320" valign="top" align="center">
   <img alt="Swinging ID badge" src="{cdn}/lanyard.svg" width="280"/>
 </td>
-<td valign="top">
+<td valign="top" align="left">
+
+### 👋 About Me
+
+{about_md}
+
+<br/>
 
 ### ✨ My Projects
 
@@ -761,7 +895,7 @@ def readme_md(sha: Optional[str] = None):
 |---------|------|-------|
 {proj_rows}
 
-*"I don't just write code — I craft experiences."*
+*"Building AI that works, not just demos. 🚀"*
 
 </td>
 </tr>
@@ -769,11 +903,61 @@ def readme_md(sha: Optional[str] = None):
 
 <br/>
 
-<!-- Stats row -->
+<!-- Tech Stack -->
+### 🛠 Tech Stack
+
+{tech_md}
+
+<br/>
+
+<!-- Learning + Focus -->
+<table>
+<tr>
+<td width="50%" valign="top" align="left">
+
+### 📚 Currently Learning
+
+{learning_md}
+
+</td>
+<td width="50%" valign="top" align="left">
+
+### 🚀 Current Focus
+
+{focus_md}
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+### 🎯 Goals 2026
+
+{goals_md}
+
+<br/>
+
+<!-- Stats + Journey -->
 <table>
 <tr>
 <td><img alt="GitHub Stats" src="{cdn}/stats.svg" width="400"/></td>
+<td><img alt="Learning Journey" src="{cdn}/learning.svg" width="400"/></td>
+</tr>
+<tr>
 <td><img alt="Top Languages" src="{cdn}/langs.svg" width="400"/></td>
+<td align="center" valign="middle">
+
+**📈 Highlights**
+
+🏆 AI Projects · **{hl.get('ai_projects', '—')}**  
+📦 Open Source · **{hl.get('open_source', '—')}**  
+🔥 Streak · see below  
+💻 Contributions · **{st.get('commits', '0')}**  
+📚 Repos · **{st.get('repos', '0')}**  
+👥 Followers · **{st.get('followers', '0')}**
+
+</td>
 </tr>
 </table>
 
@@ -814,13 +998,36 @@ def readme_md(sha: Optional[str] = None):
 
 <br/>
 
-<!-- Connect -->
-### 🤝 Let's Connect
+<!-- Interests + Fun Fact -->
+<table>
+<tr>
+<td width="50%" valign="top" align="left">
 
-[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/{u})
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)]({soc['linkedin']})
+### 🏅 Interests
+
+{interests_md}
+
+</td>
+<td width="50%" valign="top" align="left">
+
+### 🧠 Fun Fact
+
+{PROFILE['fun_fact']}
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+<!-- Connect -->
+### 🌐 Let's Connect
+
 [![Portfolio](https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white)]({soc['portfolio']})
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)]({soc['linkedin']})
+[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/{u})
 [![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)]({soc['email']})
+[![Medium](https://img.shields.io/badge/Medium-Blog-fbbf24?style=for-the-badge&logo=medium&logoColor=white)]({soc.get('medium', '#')})
 
 <br/>
 
@@ -829,7 +1036,7 @@ def readme_md(sha: Optional[str] = None):
 
 <br/><br/>
 
-**Always learning, always building. ✨**
+**{PROFILE['footer']}**
 
 </div>
 '''
@@ -1003,6 +1210,7 @@ def main():
     (ROOT / "lanyard.svg").write_text(lanyard_svg())
     (ROOT / "stats.svg").write_text(stats_svg())
     (ROOT / "langs.svg").write_text(langs_svg())
+    (ROOT / "learning.svg").write_text(learning_journey_svg())
     (ROOT / "trophies.svg").write_text(trophies_svg())
     (ROOT / "README.md").write_text(readme_md())
     (ROOT / ".github/workflows/github-snake.yml").write_text(snake_yml())

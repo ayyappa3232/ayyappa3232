@@ -9,7 +9,7 @@ echo "==> Generating SVG assets..."
 python3 generate_profile.py
 
 echo "==> Commit 1: SVG files..."
-git add banner.svg banner-light.svg lanyard.svg stats.svg langs.svg trophies.svg generate_profile.py publish_profile.sh .github/workflows/github-snake.yml
+git add banner.svg banner-light.svg lanyard.svg stats.svg langs.svg learning.svg trophies.svg generate_profile.py publish_profile.sh .github/workflows/github-snake.yml
 git diff --staged --quiet && echo "No SVG changes to commit." || git commit -m "Update profile SVG assets"
 
 echo "==> Pushing SVG commit..."
@@ -30,7 +30,7 @@ git commit -m "Pin README images to commit ${SHA:0:12} (cache bust)"
 git push origin main
 
 echo "==> Purging jsDelivr cache..."
-for f in banner.svg banner-light.svg lanyard.svg stats.svg langs.svg trophies.svg; do
+for f in banner.svg banner-light.svg lanyard.svg stats.svg langs.svg learning.svg trophies.svg; do
   curl -s "https://purge.jsdelivr.net/gh/$REPO@main/$f" >/dev/null || true
   curl -s "https://purge.jsdelivr.net/gh/$REPO@$SHA/$f" >/dev/null || true
 done
