@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Pinned to commit 8d76717db020 — changes every push, bypasses GitHub profile cache -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@8d76717db020b4e73c79607d9b0fdb045c3e45b7/banner.svg" width="100%"/>
+<!-- Pinned to commit ac9857412ec2 — changes every push, bypasses GitHub profile cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@ac9857412ec20ba0af388ca2f9f1ce859fe5b719/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -9,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@8d76717db020b4e73c79607d9b0fdb045c3e45b7/lanyard.svg" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@ac9857412ec20ba0af388ca2f9f1ce859fe5b719/lanyard.svg" width="280"/>
 </td>
 <td valign="top" align="left">
 
@@ -53,7 +53,7 @@
 
 
 <a href="https://twc-playgrounds.vercel.app/">
-  <img alt="AI Playgrounds live demo — LangGraph learning hub" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@8d76717db020b4e73c79607d9b0fdb045c3e45b7/ai-playgrounds-demo.png" width="1024"/>
+  <img alt="AI Playgrounds live demo — LangGraph learning hub" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@ac9857412ec20ba0af388ca2f9f1ce859fe5b719/ai-playgrounds-demo.png" width="1024"/>
 </a>
 
 <br/>
@@ -151,11 +151,11 @@ Prompts · LangChain · LangGraph · RAG · MCP · Multi-Agent · LangSmith · E
 <!-- Stats + Journey -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@8d76717db020b4e73c79607d9b0fdb045c3e45b7/stats.svg" width="400"/></td>
-<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@8d76717db020b4e73c79607d9b0fdb045c3e45b7/learning.svg" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@ac9857412ec20ba0af388ca2f9f1ce859fe5b719/stats.svg" width="400"/></td>
+<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@ac9857412ec20ba0af388ca2f9f1ce859fe5b719/learning.svg" width="400"/></td>
 </tr>
 <tr>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@8d76717db020b4e73c79607d9b0fdb045c3e45b7/langs.svg" width="400"/></td>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@ac9857412ec20ba0af388ca2f9f1ce859fe5b719/langs.svg" width="400"/></td>
 <td align="center" valign="middle">
 
 **📈 Highlights**
@@ -174,7 +174,7 @@ Prompts · LangChain · LangGraph · RAG · MCP · Multi-Agent · LangSmith · E
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@8d76717db020b4e73c79607d9b0fdb045c3e45b7/trophies.svg" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@ac9857412ec20ba0af388ca2f9f1ce859fe5b719/trophies.svg" width="820"/>
 
 <br/><br/>
 
