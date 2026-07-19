@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Pinned to commit 5075bbc262d7 — changes every push, bypasses GitHub profile cache -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/banner.svg" width="100%"/>
+<!-- Pinned to commit 651e1413e8bc — changes every push, bypasses GitHub profile cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -9,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/lanyard.svg" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/lanyard.svg" width="280"/>
 </td>
 <td valign="top" align="left">
 
@@ -31,11 +31,9 @@
 
 | Project | Tech | Stars |
 |:--------|:------|-----:|
-| [Ayyappa-Full-Stack-Engineer](https://github.com/ayyappa3232/Ayyappa-Full-Stack-Engineer) | TypeScript, React, Node | ⭐ 0 |
-| [RN_ASP_Server](https://github.com/ayyappa3232/RN_ASP_Server) | C#, React Native, ASP.NET | ⭐ 0 |
-| [reactnativefirebasedemo](https://github.com/ayyappa3232/reactnativefirebasedemo) | React Native, Firebase | ⭐ 0 |
-| [LeaveManagementSystem](https://github.com/ayyappa3232/LeaveManagementSystem) | JavaScript, React Native | ⭐ 0 |
-| [LMS](https://github.com/ayyappa3232/LMS) | JavaScript, Node.js | ⭐ 0 |
+| [FamilySync](https://github.com/ayyappa3232/twc_familysync) | React Native, TypeScript, Firebase | ⭐ — |
+| [AI Playgrounds](https://github.com/ayyappa3232/twc_ai_playgrounds) | React, LangGraph, OpenAI, MCP | ⭐ — |
+| [Pro Recorder](https://github.com/ayyappa3232/twc_pro_recorder) | React Native, TypeScript | ⭐ — |
 
 *"Building AI that works, not just demos. 🚀"*
 
@@ -109,17 +107,17 @@
 <!-- Stats + Journey -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/stats.svg" width="400"/></td>
-<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/learning.svg" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/stats.svg" width="400"/></td>
+<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/learning.svg" width="400"/></td>
 </tr>
 <tr>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/langs.svg" width="400"/></td>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/langs.svg" width="400"/></td>
 <td align="center" valign="middle">
 
 **📈 Highlights**
 
-🏆 AI Projects · **3+**  
-📦 Open Source · **6**  
+🏆 AI Projects · **3**  
+📦 Open Source · **3**  
 🔥 Streak · see below  
 💻 Contributions · **25**  
 📚 Repos · **6**  
@@ -132,7 +130,7 @@
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/trophies.svg" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/trophies.svg" width="820"/>
 
 <br/><br/>
 
@@ -154,7 +152,7 @@
 <tr>
 <td align="center" bgcolor="#12103a">
 
-<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=18" width="820"/>
+<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=19" width="820"/>
 
 </td>
 </tr>
@@ -191,11 +189,10 @@ I enjoy turning complex AI concepts into simple explanations. Currently obsessed
 <!-- Connect -->
 ### 🌐 Let's Connect
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white)](https://your-portfolio.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-profile)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ayyappa-kumar-penneti-2604b2155)
 [![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayyappa3232)
-[![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@example.com)
-[![Medium](https://img.shields.io/badge/Medium-Blog-fbbf24?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@your-profile)
+[![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ayyappakumar.penneti@gmail.com)
+![Portfolio](https://img.shields.io/badge/Portfolio-Coming%20Soon-475569?style=for-the-badge&logo=google-chrome&logoColor=white)
 
 <br/>
 
