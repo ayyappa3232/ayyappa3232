@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Pinned to commit d78c2ae8262e — changes every push, bypasses GitHub profile cache -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/banner.svg" width="100%"/>
+<!-- Pinned to commit 1ce97cba366f — changes every push, bypasses GitHub profile cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@1ce97cba366f1c87c50f506bfbe97dd6572899c4/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -9,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/lanyard.svg" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@1ce97cba366f1c87c50f506bfbe97dd6572899c4/lanyard.svg" width="280"/>
 </td>
 <td valign="top" align="left">
 
@@ -21,7 +21,7 @@
   <li>Learning LangGraph, MCP and LLM Architecture</li>
   <li>Passionate about clean architecture &amp; developer experience</li>
   <li>Interested in System Design, AI Agents and Full Stack AI</li>
-  <li>Building practical AI applications with Cursor AI</li>
+  <li>Building AI Playgrounds — 131 labs across LangGraph, RAG &amp; MCP</li>
   <li>Always open to learning and collaborating</li>
 </ul>
 
@@ -31,7 +31,7 @@
 
 | Project | About | Tech | Stars |
 |:--------|:--------|:------|-----:|
-| [AI Playgrounds 🌐](https://github.com/ayyappa3232/twc_ai_playgrounds) | Full-stack AI playground — LangGraph, LLM & MCP experiments | Python, TypeScript, Docker, LangGraph | ⭐ 0 |
+| [AI Playgrounds 🌐](https://github.com/ayyappa3232/twc_ai_playgrounds) | 9 playgrounds · 131 labs — LangChain, LangGraph, RAG, MCP & multi-agent | Python, TypeScript, Next.js, LangGraph | ⭐ 0 |
 | [FamilySync](https://github.com/ayyappa3232/twc_familysync) | Private · family coordination app | React Native, TypeScript, Firebase | ⭐ — |
 | [Pro Recorder](https://github.com/ayyappa3232/twc_pro_recorder) | Private · professional recording app | React Native, TypeScript | ⭐ — |
 
@@ -40,6 +40,37 @@
 </td>
 </tr>
 </table>
+
+<br/>
+
+### 🚀 Featured Open Source
+
+<a href="https://github.com/ayyappa3232/twc_ai_playgrounds">
+  <img src="https://img.shields.io/badge/AI_Playgrounds-9_playgrounds_·_131_labs-00e5ff?style=for-the-badge&logo=github&logoColor=white" alt="AI Playgrounds"/>
+</a>
+
+<br/><br/>
+
+<table>
+<tr>
+<td align="left" valign="top">
+
+**Master the full AI stack** — 9 playgrounds · 131 hands-on labs
+
+Prompts · LangChain · LangGraph · RAG · MCP · Multi-Agent · LangSmith · Evals
+
+<br/>
+
+🌐 Free Vercel demo ($0) · `make dev` for live Python + WebSocket streaming
+
+<br/><br/>
+
+👉 **[Explore the repo](https://github.com/ayyappa3232/twc_ai_playgrounds)**
+
+</td>
+</tr>
+</table>
+
 
 <br/>
 
@@ -107,17 +138,17 @@
 <!-- Stats + Journey -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/stats.svg" width="400"/></td>
-<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/learning.svg" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@1ce97cba366f1c87c50f506bfbe97dd6572899c4/stats.svg" width="400"/></td>
+<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@1ce97cba366f1c87c50f506bfbe97dd6572899c4/learning.svg" width="400"/></td>
 </tr>
 <tr>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/langs.svg" width="400"/></td>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@1ce97cba366f1c87c50f506bfbe97dd6572899c4/langs.svg" width="400"/></td>
 <td align="center" valign="middle">
 
 **📈 Highlights**
 
-🏆 AI Projects · **3**  
-📦 Open Source · **3**  
+🏆 AI Projects · **131 labs**  
+📦 Open Source · **1 public**  
 🔥 Streak · see below  
 💻 Contributions · **25**  
 📚 Repos · **6**  
@@ -130,7 +161,7 @@
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/trophies.svg" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@1ce97cba366f1c87c50f506bfbe97dd6572899c4/trophies.svg" width="820"/>
 
 <br/><br/>
 
@@ -152,7 +183,7 @@
 <tr>
 <td align="center" bgcolor="#12103a">
 
-<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=20" width="820"/>
+<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=21" width="820"/>
 
 </td>
 </tr>
