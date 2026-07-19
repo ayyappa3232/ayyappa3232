@@ -232,7 +232,7 @@
     <animate attributeName="opacity" from="0" to="1" begin="2.0s" dur="0.5s" fill="freeze"/>
     <rect x="36" y="358" width="604" height="32" rx="8" fill="#141432" stroke="#00e5ff" stroke-width="0.5"/>
     <text x="50" y="379" fill="#94a3b8" font-family="monospace" font-size="10.5">
-      💻 77 commits   ·   📚 7 repos   ·   ⭐ 0 stars   ·   👥 0 followers
+      💻 25 commits   ·   📚 6 repos   ·   ⭐ 0 stars   ·   👥 0 followers
     </text>
   </g>
 

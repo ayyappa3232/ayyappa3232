@@ -1208,7 +1208,9 @@ def readme_md(sha: Optional[str] = None):
 <br/>
 
 <!-- Profile views -->
+<a href="https://github.com/{u}">
 <img alt="Profile views" src="https://komarev.com/ghpvc/?username={u}&label=Profile%20Views&color=00e5ff&style=for-the-badge"/>
+</a>
 
 <br/><br/>
 
