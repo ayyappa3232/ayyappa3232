@@ -38,7 +38,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "3",
+    "cache_v": "6",
 }
 
 def xml_escape(text: str) -> str:
@@ -142,7 +142,8 @@ def banner_svg(light=False):
         <text x="{x + 11}" y="{y + 16}" fill="{text}" font-family="system-ui,sans-serif" font-size="11">{xml_escape(sk)}</text>
       </g>'''
 
-    # ── Code card lines ──
+    # ── Code card — absolute coords only (GitHub SVG sanitizer strips transform) ──
+    code_y = 478
     code_lines = [
         "const buildDreams = () => {",
         "  return ['React','AI','Node']",
@@ -152,10 +153,10 @@ def banner_svg(light=False):
     code_svg = ""
     for i, line in enumerate(code_lines):
         code_svg += f'''
-        <text x="14" y="{46 + i * 17}" fill="{code_text}" font-family="monospace" font-size="10.5" opacity="0">
-          <animate attributeName="opacity" from="0" to="1" begin="{3.2 + i * 0.35}s" dur="0.3s" fill="freeze"/>
-          {xml_escape(line)}
-        </text>'''
+    <text x="50" y="{code_y + 50 + i * 17}" fill="{code_text}" font-family="monospace" font-size="10.5" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="{3.2 + i * 0.35}s" dur="0.3s" fill="freeze"/>
+      {xml_escape(line)}
+    </text>'''
 
     stats = PROFILE["stats"]
 
@@ -267,13 +268,14 @@ def banner_svg(light=False):
   </text>
   {skills_pills}
 
-  <!-- Code editor (3D inset) -->
+  <!-- Code editor (3D inset) — absolute positions, no transform -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.8s" dur="0.5s" fill="freeze"/>
-    <rect x="36" y="478" width="290" height="108" rx="10" fill="{code_bg}" stroke="{cyan}" stroke-width="0.8"/>
-    <rect x="36" y="478" width="290" height="24" rx="10" fill="{panel_hi}"/>
-    <rect x="36" y="494" width="290" height="8" fill="{panel_hi}"/>
-    <text x="52" y="494" fill="{text_dim}" font-family="monospace" font-size="9">dreams.jsx</text>
+    <rect x="36" y="{code_y}" width="290" height="108" rx="10" fill="{code_bg}" stroke="{cyan}" stroke-width="0.8"/>
+    <rect x="36" y="{code_y}" width="290" height="24" rx="10" fill="{panel_hi}"/>
+    <rect x="36" y="{code_y + 16}" width="290" height="8" fill="{panel_hi}"/>
+    <circle cx="50" cy="{code_y + 12}" r="4" fill="#ff5f57"/><circle cx="64" cy="{code_y + 12}" r="4" fill="#febc2e"/><circle cx="78" cy="{code_y + 12}" r="4" fill="#28c840"/>
+    <text x="92" y="{code_y + 16}" fill="{text_dim}" font-family="monospace" font-size="9">dreams.jsx</text>
     {code_svg}
   </g>
 
@@ -487,6 +489,7 @@ def readme_md():
     v = PROFILE["cache_v"]
     u = PROFILE["username"]
     soc = PROFILE["social"]
+    raw = f"https://raw.githubusercontent.com/{u}/{u}/main"
 
     proj_rows = "\n".join(
         f"| [{name}](https://github.com/{u}/{name}) | {tech} | ⭐ {stars} |"
@@ -495,8 +498,8 @@ def readme_md():
 
     return f'''<div align="center">
 
-<!-- Banner (dark) — GitHub renders SVG reliably via img tag -->
-<img alt="Animated profile banner" src="banner.svg?v={v}" width="100%"/>
+<!-- Use full raw URLs + ?v= cache bust — GitHub profile caches relative paths aggressively -->
+<img alt="Animated profile banner" src="{raw}/banner.svg?v={v}" width="100%"/>
 
 <br/><br/>
 
@@ -504,7 +507,7 @@ def readme_md():
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="lanyard.svg?v={v}" width="280"/>
+  <img alt="Swinging ID badge" src="{raw}/lanyard.svg?v={v}" width="280"/>
 </td>
 <td valign="top">
 
@@ -525,15 +528,15 @@ def readme_md():
 <!-- Stats row -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="stats.svg?v={v}" width="400"/></td>
-<td><img alt="Top Languages" src="langs.svg?v={v}" width="400"/></td>
+<td><img alt="GitHub Stats" src="{raw}/stats.svg?v={v}" width="400"/></td>
+<td><img alt="Top Languages" src="{raw}/langs.svg?v={v}" width="400"/></td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="trophies.svg?v={v}" width="820"/>
+<img alt="GitHub Trophies" src="{raw}/trophies.svg?v={v}" width="820"/>
 
 <br/><br/>
 
@@ -542,8 +545,8 @@ def readme_md():
 
 <br/><br/>
 
-<!-- Snake -->
-<img alt="Snake eating contributions" src="https://raw.githubusercontent.com/{u}/{u}/output/snake.svg" width="100%"/>
+<!-- Snake (run Actions workflow first) -->
+<img alt="Snake eating contributions" src="https://raw.githubusercontent.com/{u}/{u}/output/snake.svg?v={v}" width="100%"/>
 
 <p align="center"><i>🐍 Watch the snake eat my contributions!</i></p>
 
