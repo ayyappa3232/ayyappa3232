@@ -26,7 +26,7 @@ PROFILE = {
         "System Design Learner",
     ],
     "username": "ayyappa3232",
-    "email": "your.email@example.com",
+    "email": "ayyappakumar.penneti@gmail.com",
     "location": "India",
     "experience": "7+ years",
     "tagline": "From React to Agentic AI — one project at a time.",
@@ -93,23 +93,23 @@ PROFILE = {
         ],
     },
     "stats": {"stars": "0", "commits": "25", "repos": "6", "prs": "0", "followers": "0", "grade": "C"},
-    "highlights": {"ai_projects": "3+", "open_source": "6"},
+    "highlights": {"ai_projects": "3", "open_source": "3"},
     "langs": [("JavaScript", 80), ("CSS", 6), ("C#", 5), ("TypeScript", 5)],
     "trophies": [("B+", "Commits"), ("D", "Stars"), ("C", "Repos"), ("D", "PRs"), ("D", "Issues"), ("D", "Followers")],
+    # (repo_slug, display_title, tech, stars)
     "projects": [
-        ("Ayyappa-Full-Stack-Engineer", "TypeScript, React, Node", "0"),
-        ("RN_ASP_Server", "C#, React Native, ASP.NET", "0"),
-        ("reactnativefirebasedemo", "React Native, Firebase", "0"),
-        ("LeaveManagementSystem", "JavaScript, React Native", "0"),
-        ("LMS", "JavaScript, Node.js", "0"),
+        ("twc_familysync", "FamilySync", "React Native, TypeScript, Firebase", "—"),
+        ("twc_ai_playgrounds", "AI Playgrounds", "React, LangGraph, OpenAI, MCP", "—"),
+        ("twc_pro_recorder", "Pro Recorder", "React Native, TypeScript", "—"),
     ],
+    "auto_projects": False,
     "social": {
-        "linkedin": "https://linkedin.com/in/your-profile",
-        "portfolio": "https://your-portfolio.com",
-        "email": "mailto:your.email@example.com",
-        "medium": "https://medium.com/@your-profile",
+        "linkedin": "https://www.linkedin.com/in/ayyappa-kumar-penneti-2604b2155",
+        "portfolio": None,
+        "email": "mailto:ayyappakumar.penneti@gmail.com",
+        "medium": None,
     },
-    "cache_v": "18",
+    "cache_v": "19",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -242,7 +242,7 @@ def fetch_github_stats(username: str) -> dict:
         "trophies": [(grades[label], label) for label in metrics],
         "langs": top_langs or PROFILE["langs"],
         "projects": [
-            (r["name"], ", ".join(list(r.get("topics") or [])[:3]) or "—", str(r.get("stargazers_count", 0)))
+            (r["name"], r["name"], ", ".join(list(r.get("topics") or [])[:3]) or "—", str(r.get("stargazers_count", 0)))
             for r in sorted(repos, key=lambda x: x.get("stargazers_count", 0), reverse=True)[:5]
         ],
     }
@@ -258,7 +258,7 @@ def apply_github_stats(username: Optional[str] = None) -> None:
     PROFILE["stats"] = live["stats"]
     PROFILE["trophies"] = live["trophies"]
     PROFILE["langs"] = live["langs"]
-    if live["projects"]:
+    if PROFILE.get("auto_projects") and live["projects"]:
         PROFILE["projects"] = live["projects"]
     print(
         f"Live stats for @{username}: "
@@ -867,6 +867,28 @@ def _readme_list(items: list[str], prefix: str) -> str:
     return "\n".join(f"{prefix} {item}" for item in items)
 
 
+def _readme_connect_badges(soc: dict, username: str) -> str:
+    badges = [
+        f"[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)]({soc['linkedin']})",
+        f"[![GitHub](https://img.shields.io/badge/GitHub-{username}-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/{username})",
+        f"[![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)]({soc['email']})",
+    ]
+    if soc.get("portfolio"):
+        badges.insert(
+            0,
+            f"[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white)]({soc['portfolio']})",
+        )
+    else:
+        badges.append(
+            "![Portfolio](https://img.shields.io/badge/Portfolio-Coming%20Soon-475569?style=for-the-badge&logo=google-chrome&logoColor=white)"
+        )
+    if soc.get("medium"):
+        badges.append(
+            f"[![Medium](https://img.shields.io/badge/Medium-Blog-fbbf24?style=for-the-badge&logo=medium&logoColor=white)]({soc['medium']})"
+        )
+    return "\n".join(badges)
+
+
 def readme_md(sha: Optional[str] = None):
     v = PROFILE["cache_v"]
     u = PROFILE["username"]
@@ -883,8 +905,8 @@ def readme_md(sha: Optional[str] = None):
     )
 
     proj_rows = "\n".join(
-        f"| [{name}](https://github.com/{u}/{name}) | {tech} | ⭐ {stars} |"
-        for name, tech, stars in PROFILE["projects"]
+        f"| [{title}](https://github.com/{u}/{repo}) | {tech} | ⭐ {stars} |"
+        for repo, title, tech, stars in PROFILE["projects"]
     )
 
     about_md = _readme_html_list(PROFILE["about"])
@@ -895,6 +917,7 @@ def readme_md(sha: Optional[str] = None):
     tech_md = _readme_tech_stack()
     st = PROFILE["stats"]
     hl = PROFILE["highlights"]
+    connect_md = _readme_connect_badges(soc, u)
 
     return f'''<div align="center">
 
@@ -1051,11 +1074,7 @@ def readme_md(sha: Optional[str] = None):
 <!-- Connect -->
 ### 🌐 Let's Connect
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white)]({soc['portfolio']})
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)]({soc['linkedin']})
-[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/{u})
-[![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)]({soc['email']})
-[![Medium](https://img.shields.io/badge/Medium-Blog-fbbf24?style=for-the-badge&logo=medium&logoColor=white)]({soc.get('medium', '#')})
+{connect_md}
 
 <br/>
 
