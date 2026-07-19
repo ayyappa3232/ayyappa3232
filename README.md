@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Pinned to commit 651e1413e8bc — changes every push, bypasses GitHub profile cache -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/banner.svg" width="100%"/>
+<!-- Pinned to commit d78c2ae8262e — changes every push, bypasses GitHub profile cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -9,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/lanyard.svg" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/lanyard.svg" width="280"/>
 </td>
 <td valign="top" align="left">
 
@@ -29,11 +29,11 @@
 
 ### ✨ My Projects
 
-| Project | Tech | Stars |
-|:--------|:------|-----:|
-| [FamilySync](https://github.com/ayyappa3232/twc_familysync) | React Native, TypeScript, Firebase | ⭐ — |
-| [AI Playgrounds](https://github.com/ayyappa3232/twc_ai_playgrounds) | React, LangGraph, OpenAI, MCP | ⭐ — |
-| [Pro Recorder](https://github.com/ayyappa3232/twc_pro_recorder) | React Native, TypeScript | ⭐ — |
+| Project | About | Tech | Stars |
+|:--------|:--------|:------|-----:|
+| [AI Playgrounds 🌐](https://github.com/ayyappa3232/twc_ai_playgrounds) | Full-stack AI playground — LangGraph, LLM & MCP experiments | Python, TypeScript, Docker, LangGraph | ⭐ 0 |
+| [FamilySync](https://github.com/ayyappa3232/twc_familysync) | Private · family coordination app | React Native, TypeScript, Firebase | ⭐ — |
+| [Pro Recorder](https://github.com/ayyappa3232/twc_pro_recorder) | Private · professional recording app | React Native, TypeScript | ⭐ — |
 
 *"Building AI that works, not just demos. 🚀"*
 
@@ -107,11 +107,11 @@
 <!-- Stats + Journey -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/stats.svg" width="400"/></td>
-<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/learning.svg" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/stats.svg" width="400"/></td>
+<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/learning.svg" width="400"/></td>
 </tr>
 <tr>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/langs.svg" width="400"/></td>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/langs.svg" width="400"/></td>
 <td align="center" valign="middle">
 
 **📈 Highlights**
@@ -130,7 +130,7 @@
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@651e1413e8bc21ecab75abebaa733b7c80a81df7/trophies.svg" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d78c2ae8262ed8966f6117d8d57388e606a2d31c/trophies.svg" width="820"/>
 
 <br/><br/>
 
@@ -152,7 +152,7 @@
 <tr>
 <td align="center" bgcolor="#12103a">
 
-<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=19" width="820"/>
+<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=20" width="820"/>
 
 </td>
 </tr>
