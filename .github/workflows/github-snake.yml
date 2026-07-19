@@ -19,9 +19,9 @@ jobs:
           github_user_name: ayyappa3232
           outputs: |
             dist/snake.svg
-          snake_color: "22c55e"
-          snake_color2: "4ade80"
-          snake_color3: "15803d"
+          snake_color: "00e5ff"
+          snake_color2: "a855f7"
+          snake_color3: "12103a"
 
       - name: Push snake.svg to output branch
         run: |

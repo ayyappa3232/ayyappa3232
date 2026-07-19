@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate animated GitHub profile assets — grass green theme."""
+"""Generate animated GitHub profile assets — Cosmic 3D theme."""
 
 import base64
 from pathlib import Path
@@ -16,10 +16,10 @@ PROFILE = {
     "username": "ayyappa3232",
     "email": "your.email@example.com",
     "location": "India",
-    "tagline": "Always learning, always building 🌿",
+    "tagline": "Always learning, always building ✨",
     "about": [
-        "Building intelligent apps with AI & modern web tech",
-        "Passionate about clean code & great UX",
+        "Building intelligent apps with AI and modern web tech",
+        "Passionate about clean code and great UX",
         "Open to collaborate on exciting projects",
     ],
     "skills": ["React", "TypeScript", "Node.js", "Python", "AI/LLMs", "React Native", "SQL", "Three.js"],
@@ -38,7 +38,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "2",
+    "cache_v": "3",
 }
 
 def xml_escape(text: str) -> str:
@@ -49,216 +49,273 @@ def xml_escape(text: str) -> str:
         .replace('"', "&quot;")
     )
 
-# Grass green palette
-G = {
-    "primary": "#22c55e",
-    "light": "#4ade80",
-    "dark": "#16a34a",
-    "mint": "#86efac",
-    "forest": "#15803d",
-    "neon": "#39ff14",
-    "bg_dark": "#0a120a",
-    "bg_card": "#111a11",
-    "bg_card2": "#161f16",
-    "text": "#e6f5e6",
-    "text_dim": "#94a894",
-    "border": "#22c55e55",
+# Cosmic 3D palette — deep space + electric cyan + violet + gold
+C = {
+    "bg1": "#070b1a",
+    "bg2": "#12103a",
+    "panel_hi": "#1c1c4a",
+    "panel_lo": "#080812",
+    "glass": "#141432",
+    "glass2": "#1a1a42",
+    "cyan": "#00e5ff",
+    "cyan_dim": "#0891b2",
+    "violet": "#a855f7",
+    "pink": "#ec4899",
+    "gold": "#fbbf24",
+    "text": "#e2e8f0",
+    "text_dim": "#94a3b8",
+    "border": "#6366f1",
+    "shadow": "#000000",
 }
 
 
 def banner_svg(light=False):
-    bg = "#f4fff4" if light else G["bg_dark"]
-    card = "#ffffff" if light else G["bg_card"]
-    card2 = "#eef8ee" if light else G["bg_card2"]
-    text = "#0a1a0a" if light else G["text"]
-    text_dim = "#4a6a4a" if light else G["text_dim"]
-    accent = G["dark"] if light else G["primary"]
-    accent2 = G["forest"] if light else G["light"]
-    glow = G["forest"] if light else G["neon"]
-    term_bg = "#e8f5e8" if light else "#0d1a0d"
-    term_text = G["forest"] if light else G["mint"]
+    if light:
+        bg1, bg2 = "#eef2ff", "#e0e7ff"
+        panel_hi, panel_lo = "#ffffff", "#f1f5f9"
+        glass, glass2 = "#ffffff", "#f8fafc"
+        text, text_dim = "#0f172a", "#475569"
+        cyan, violet, pink, gold = "#0891b2", "#7c3aed", "#db2777", "#d97706"
+        term_bg, code_bg = "#1e293b", "#0f172a"
+        term_text, code_text = "#67e8f9", "#a5f3fc"
+        glow = "#0891b2"
+    else:
+        bg1, bg2 = C["bg1"], C["bg2"]
+        panel_hi, panel_lo = C["panel_hi"], C["panel_lo"]
+        glass, glass2 = C["glass"], C["glass2"]
+        text, text_dim = C["text"], C["text_dim"]
+        cyan, violet, pink, gold = C["cyan"], C["violet"], C["pink"], C["gold"]
+        term_bg, code_bg = "#0c1222", "#060a14"
+        term_text, code_text = C["cyan"], "#7dd3fc"
+        glow = C["cyan"]
 
     roles = PROFILE["roles_cycle"]
     role_dur = 4
-    role_total = len(roles) * role_dur
+    cycle_total = len(roles) * role_dur
 
-    skills_pills = ""
-    for i, sk in enumerate(PROFILE["skills"][:8]):
-        x = 40 + (i % 4) * 155
-        y = 520 + (i // 4) * 36
-        skills_pills += f'''
-  <g opacity="0">
-    <animate attributeName="opacity" from="0" to="1" begin="{2.5 + i * 0.15}s" dur="0.5s" fill="freeze"/>
-    <rect x="{x}" y="{y}" width="{len(sk)*9+24}" height="26" rx="13" fill="{card2}" stroke="{accent}" stroke-width="1"/>
-    <text x="{x+12}" y="{y+17}" fill="{accent2}" font-family="monospace" font-size="12">{xml_escape(sk)}</text>
-  </g>'''
+    # ── Name letters pop-in ──
+    name_letters = ""
+    for i, ch in enumerate(PROFILE["name"]):
+        name_letters += f'''
+      <tspan opacity="0" fill="url(#nameGrad)">
+        <animate attributeName="opacity" from="0" to="1" begin="{0.6 + i * 0.07}s" dur="0.35s" fill="freeze"/>
+        <animate attributeName="dy" from="-16" to="0" begin="{0.6 + i * 0.07}s" dur="0.4s" fill="freeze"/>
+        {xml_escape(ch)}
+      </tspan>'''
 
+    # ── Roles — one visible at a time (no overlap) ──
+    role_anims = ""
+    n = len(roles)
+    for i, role in enumerate(roles):
+        t0 = i / n
+        t_in = t0 + 0.015
+        t_out = (i + 1) / n - 0.015
+        t_end = (i + 1) / n
+        role_anims += f'''
+      <text x="52" y="196" fill="{cyan}" font-family="'SF Mono',monospace" font-size="14" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;{t0:.3f};{t_in:.3f};{t_out:.3f};{t_end:.3f};1" dur="{cycle_total}s" repeatCount="indefinite"/>
+        &gt; {xml_escape(role)}<tspan fill="{violet}"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>▌</tspan>
+      </text>'''
+
+    # ── About lines ──
     about_lines = ""
     for i, line in enumerate(PROFILE["about"]):
         about_lines += f'''
-    <text x="40" y="{430 + i*22}" fill="{text_dim}" font-family="system-ui,sans-serif" font-size="13" opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="{1.8 + i*0.3}s" dur="0.4s" fill="freeze"/>
-      ▸ {xml_escape(line)}
-    </text>'''
+      <text x="44" y="{302 + i * 24}" fill="{text_dim}" font-family="system-ui,sans-serif" font-size="12.5" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="{1.6 + i * 0.25}s" dur="0.4s" fill="freeze"/>
+        {xml_escape("• " + line)}
+      </text>'''
 
-    name = PROFILE["name"]
-    name_letters = ""
-    for i, ch in enumerate(name):
-        name_letters += f'''
-    <tspan opacity="0" fill="url(#nameGrad)">
-      <animate attributeName="opacity" from="0" to="1" begin="{0.8 + i*0.08}s" dur="0.3s" fill="freeze"/>
-      <animate attributeName="dy" from="-20" to="0" begin="{0.8 + i*0.08}s" dur="0.4s" fill="freeze"/>
-      {ch}
-    </tspan>'''
+    # ── Tech pills (2 rows, fixed grid) ──
+    skills_pills = ""
+    pill_w = [88, 98, 88, 88]
+    for i, sk in enumerate(PROFILE["skills"][:8]):
+        col = i % 4
+        row = i // 4
+        x = 44 + col * 148
+        y = 410 + row * 34
+        w = max(len(sk) * 8 + 22, 72)
+        skills_pills += f'''
+      <g opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="{2.2 + i * 0.1}s" dur="0.4s" fill="freeze"/>
+        <rect x="{x}" y="{y}" width="{w}" height="24" rx="12" fill="url(#pillGrad)" stroke="{cyan}" stroke-width="0.8" opacity="0.9"/>
+        <text x="{x + 11}" y="{y + 16}" fill="{text}" font-family="system-ui,sans-serif" font-size="11">{xml_escape(sk)}</text>
+      </g>'''
 
-    role_anims = ""
-    for i, role in enumerate(roles):
-        begin = i * role_dur
-        role_anims += f'''
-    <text x="40" y="175" fill="{accent2}" font-family="monospace" font-size="16" opacity="0">
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" begin="{begin}s" dur="{role_dur}s" repeatCount="indefinite"/>
-      &gt; {xml_escape(role)}<tspan fill="{accent}" opacity="1"><animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>_</tspan>
-    </text>'''
-
+    # ── Code card lines ──
     code_lines = [
         "const buildDreams = () => {",
-        "  const stack = ['React','AI','Node'];",
-        "  return stack.map(shipIt);",
+        "  return ['React','AI','Node']",
+        "    .map(idea => ship(idea));",
         "};",
     ]
     code_svg = ""
     for i, line in enumerate(code_lines):
         code_svg += f'''
-      <text x="16" y="{28 + i*18}" fill="{G['mint']}" font-family="monospace" font-size="11" opacity="0">
-        <animate attributeName="opacity" from="0" to="1" begin="{3 + i*0.4}s" dur="0.3s" fill="freeze"/>
-        {line}
-      </text>'''
+        <text x="14" y="{46 + i * 17}" fill="{code_text}" font-family="monospace" font-size="10.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="{3.2 + i * 0.35}s" dur="0.3s" fill="freeze"/>
+          {xml_escape(line)}
+        </text>'''
 
     stats = PROFILE["stats"]
-    suffix = "-light" if light else ""
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 740" width="1280" height="740">
   <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="{bg1}"/>
+      <stop offset="100%" stop-color="{bg2}"/>
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{panel_hi}"/>
+      <stop offset="100%" stop-color="{panel_lo}"/>
+    </linearGradient>
     <linearGradient id="nameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="{G['primary']}">
-        <animate attributeName="stop-color" values="{G['primary']};{G['light']};{G['mint']};{G['primary']}" dur="4s" repeatCount="indefinite"/>
+      <stop offset="0%" stop-color="{cyan}">
+        <animate attributeName="stop-color" values="{cyan};{violet};{pink};{cyan}" dur="5s" repeatCount="indefinite"/>
       </stop>
-      <stop offset="100%" stop-color="{G['light']}">
-        <animate attributeName="stop-color" values="{G['light']};{G['primary']};{G['light']}" dur="4s" repeatCount="indefinite"/>
+      <stop offset="100%" stop-color="{violet}">
+        <animate attributeName="stop-color" values="{violet};{pink};{cyan};{violet}" dur="5s" repeatCount="indefinite"/>
       </stop>
+    </linearGradient>
+    <linearGradient id="pillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{glass2}"/>
+      <stop offset="100%" stop-color="{glass}"/>
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="{cyan}" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="{violet}" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="{pink}" stop-opacity="0.8"/>
     </linearGradient>
     <linearGradient id="scanGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="{glow}" stop-opacity="0"/>
-      <stop offset="50%" stop-color="{glow}" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="{glow}" stop-opacity="0"/>
+      <stop offset="0%" stop-color="{cyan}" stop-opacity="0"/>
+      <stop offset="50%" stop-color="{cyan}" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="{cyan}" stop-opacity="0"/>
     </linearGradient>
-    <clipPath id="bannerClip"><rect x="680" y="60" width="560" height="620" rx="16"/></clipPath>
-    <clipPath id="charReveal"><rect x="680" y="680" width="560" height="0">
-      <animate attributeName="y" from="680" to="60" dur="1.8s" begin="0.5s" fill="freeze"/>
-      <animate attributeName="height" from="0" to="620" dur="1.8s" begin="0.5s" fill="freeze"/>
+    <filter id="drop3d" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+    <filter id="glow3d" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="roleClip"><rect x="44" y="176" width="580" height="28"/></clipPath>
+    <clipPath id="photoClip"><rect x="700" y="72" width="520" height="596" rx="14"/></clipPath>
+    <clipPath id="photoReveal"><rect x="700" y="668" width="520" height="0">
+      <animate attributeName="y" from="668" to="72" dur="1.6s" begin="0.4s" fill="freeze"/>
+      <animate attributeName="height" from="0" to="596" dur="1.6s" begin="0.4s" fill="freeze"/>
     </rect></clipPath>
-    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
 
   <!-- Background -->
-  <rect width="1280" height="740" fill="{bg}" rx="12"/>
-  <!-- Ambient orbs -->
-  <circle cx="200" cy="600" r="80" fill="{accent}" opacity="0.06">
-    <animate attributeName="r" values="80;95;80" dur="5s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="1100" cy="150" r="60" fill="{G['light']}" opacity="0.05">
-    <animate attributeName="opacity" values="0.05;0.12;0.05" dur="4s" repeatCount="indefinite"/>
-  </circle>
+  <rect width="1280" height="740" fill="url(#bgGrad)" rx="14"/>
+  <circle cx="180" cy="120" r="120" fill="{violet}" opacity="0.07"/>
+  <circle cx="1050" cy="620" r="140" fill="{cyan}" opacity="0.06"/>
+  <circle cx="640" cy="370" r="200" fill="{pink}" opacity="0.03"/>
 
-  <!-- Left panel -->
-  <rect x="20" y="20" width="640" height="700" rx="16" fill="{card}" stroke="{accent}" stroke-width="1" opacity="0.9"/>
-
-  <!-- Terminal line -->
-  <rect x="40" y="40" width="600" height="36" rx="8" fill="{term_bg}"/>
-  <text x="52" y="63" fill="{term_text}" font-family="monospace" font-size="14">
-    <tspan>user@dev:~$ cat README.md</tspan>
-    <tspan fill="{accent}" opacity="1"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>█</tspan>
-  </text>
-
-  <!-- Name -->
-  <text x="40" y="130" font-family="Georgia,serif" font-size="52" font-weight="bold">{name_letters}</text>
-  <text x="40" y="155" fill="{text_dim}" font-family="system-ui" font-size="14" opacity="0">
-    <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
-    Hi, I'm 👋
-  </text>
-
-  <!-- Cycling roles -->
-  {role_anims}
-
-  <!-- Tagline box -->
-  <g opacity="0">
-    <animate attributeName="opacity" from="0" to="1" begin="1.6s" dur="0.5s" fill="freeze"/>
-    <rect x="40" y="195" width="420" height="44" rx="8" fill="{card2}" stroke="{accent}" stroke-width="1"/>
-    <text x="52" y="223" fill="{text}" font-family="system-ui" font-size="13" font-style="italic">"{xml_escape(PROFILE['tagline'])}"</text>
+  <!-- ═══ LEFT PANEL (3D card) ═══ -->
+  <g filter="url(#drop3d)">
+    <rect x="22" y="22" width="636" height="696" rx="18" fill="{panel_lo}" opacity="0.5"/>
+    <rect x="20" y="20" width="636" height="696" rx="18" fill="url(#panelGrad)" stroke="url(#frameGrad)" stroke-width="1.5"/>
+    <rect x="24" y="22" width="628" height="4" rx="2" fill="white" opacity="0.07"/>
   </g>
 
-  <!-- About -->
-  <text x="40" y="400" fill="{accent}" font-family="system-ui" font-size="14" font-weight="bold" opacity="0">
-    <animate attributeName="opacity" from="0" to="1" begin="1.7s" dur="0.4s" fill="freeze"/>
-    About Me
+  <!-- Terminal -->
+  <rect x="36" y="36" width="604" height="34" rx="8" fill="{term_bg}" stroke="{cyan}" stroke-width="0.6" opacity="0.95"/>
+  <circle cx="50" cy="53" r="5" fill="#ff5f57"/><circle cx="66" cy="53" r="5" fill="#febc2e"/><circle cx="82" cy="53" r="5" fill="#28c840"/>
+  <text x="98" y="57" fill="{term_text}" font-family="monospace" font-size="13">
+    user@dev:~$ cat README.md<tspan fill="{gold}"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>█</tspan>
+  </text>
+
+  <!-- Greeting + Name -->
+  <text x="44" y="98" fill="{text_dim}" font-family="system-ui,sans-serif" font-size="14" opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.4s" dur="0.5s" fill="freeze"/>
+    Hi, I'm 👋
+  </text>
+  <text x="44" y="148" font-family="Georgia,'Times New Roman',serif" font-size="46" font-weight="bold">{name_letters}</text>
+
+  <!-- Role (cycling, clipped) -->
+  <rect x="36" y="168" width="604" height="36" rx="8" fill="{glass}" stroke="{violet}" stroke-width="0.6" opacity="0.85"/>
+  <g clip-path="url(#roleClip)">{role_anims}</g>
+
+  <!-- Tagline -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="1.2s" dur="0.5s" fill="freeze"/>
+    <rect x="36" y="216" width="520" height="38" rx="8" fill="{glass2}" stroke="{pink}" stroke-width="0.6"/>
+    <text x="50" y="240" fill="{text}" font-family="system-ui,sans-serif" font-size="13" font-style="italic">"{xml_escape(PROFILE['tagline'])}"</text>
+  </g>
+
+  <!-- About Me -->
+  <text x="44" y="282" fill="{gold}" font-family="system-ui,sans-serif" font-size="13" font-weight="bold" opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="1.4s" dur="0.4s" fill="freeze"/>
+    ✦ About Me
   </text>
   {about_lines}
 
   <!-- Stats bar -->
   <g opacity="0">
-    <animate attributeName="opacity" from="0" to="1" begin="2.2s" dur="0.5s" fill="freeze"/>
-    <rect x="40" y="490" width="600" height="28" rx="6" fill="{card2}"/>
-    <text x="52" y="509" fill="{text_dim}" font-family="monospace" font-size="11">⭐ {stats['stars']}  •  📝 {stats['commits']} commits  •  📦 {stats['repos']} repos  •  🔀 {stats['prs']} PRs</text>
+    <animate attributeName="opacity" from="0" to="1" begin="2.0s" dur="0.5s" fill="freeze"/>
+    <rect x="36" y="368" width="604" height="30" rx="8" fill="{glass}" stroke="{cyan}" stroke-width="0.5"/>
+    <text x="50" y="388" fill="{text_dim}" font-family="monospace" font-size="11">
+      ⭐ {stats['stars']} stars   ·   📝 {stats['commits']} commits   ·   📦 {stats['repos']} repos   ·   🔀 {stats['prs']} PRs
+    </text>
   </g>
 
-  <!-- Tech pills -->
-  <text x="40" y="505" fill="{accent}" font-family="system-ui" font-size="13" font-weight="bold" opacity="0">
-    <animate attributeName="opacity" from="0" to="1" begin="2.4s" dur="0.4s" fill="freeze"/>
+  <!-- Tech stack label + pills -->
+  <text x="44" y="398" fill="{violet}" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="2.1s" dur="0.4s" fill="freeze"/>
+    ⚡ Tech Stack
   </text>
   {skills_pills}
 
-  <!-- Code card -->
+  <!-- Code editor (3D inset) -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.8s" dur="0.5s" fill="freeze"/>
-    <rect x="40" y="600" width="300" height="100" rx="10" fill="#0d1a0d" stroke="{accent}" stroke-width="1"/>
-    <rect x="40" y="600" width="300" height="22" rx="10" fill="{G['forest']}"/>
-    <rect x="40" y="612" width="300" height="10" fill="{G['forest']}"/>
-    <circle cx="54" cy="611" r="4" fill="#ff5f57"/><circle cx="68" cy="611" r="4" fill="#febc2e"/><circle cx="82" cy="611" r="4" fill="#28c840"/>
-    <text x="100" y="615" fill="{G['mint']}" font-family="monospace" font-size="9">dreams.jsx</text>
+    <rect x="36" y="478" width="290" height="108" rx="10" fill="{code_bg}" stroke="{cyan}" stroke-width="0.8"/>
+    <rect x="36" y="478" width="290" height="24" rx="10" fill="{panel_hi}"/>
+    <rect x="36" y="494" width="290" height="8" fill="{panel_hi}"/>
+    <text x="52" y="494" fill="{text_dim}" font-family="monospace" font-size="9">dreams.jsx</text>
     {code_svg}
   </g>
 
   <!-- Neon sign -->
-  <g filter="url(#glow)" opacity="0">
-    <animate attributeName="opacity" values="0;1;0.7;1;0.8;1" begin="4s" dur="0.3s" fill="freeze"/>
-    <text x="360" y="680" fill="{glow}" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">
-      <animate attributeName="opacity" values="1;0.6;1;0.8;1" dur="2s" begin="4.3s" repeatCount="indefinite"/>
-      KEEP CODING  •  KEEP GROWING
+  <g filter="url(#glow3d)" opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="3.8s" dur="0.4s" fill="freeze"/>
+    <text x="360" y="690" fill="{cyan}" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">
+      <animate attributeName="opacity" values="1;0.55;1;0.75;1" dur="2.5s" repeatCount="indefinite"/>
+      KEEP CODING  ·  KEEP GROWING
     </text>
   </g>
 
-  <!-- Sparkles -->
-  <circle cx="120" cy="80" r="2" fill="{G['light']}" opacity="0">
-    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="580" cy="200" r="1.5" fill="{G['mint']}" opacity="0">
-    <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="300" cy="350" r="2" fill="{accent}" opacity="0">
-    <animate attributeName="opacity" values="0;1;0" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- Character panel -->
-  <rect x="680" y="60" width="560" height="620" rx="16" fill="{card2}" stroke="{accent}" stroke-width="1"/>
-  <g clip-path="url(#charReveal)">
-    <image x="680" y="60" width="560" height="620" preserveAspectRatio="xMidYMid slice"
-           href="data:image/jpeg;base64,{AVATAR_B64}" xlink:href="data:image/jpeg;base64,{AVATAR_B64}"/>
+  <!-- ═══ RIGHT PANEL — 3D photo frame ═══ -->
+  <g filter="url(#drop3d)">
+    <rect x="692" y="52" width="556" height="636" rx="18" fill="{panel_lo}" opacity="0.4"/>
+    <rect x="688" y="48" width="556" height="636" rx="18" fill="url(#panelGrad)" stroke="url(#frameGrad)" stroke-width="2"/>
+    <rect x="692" y="50" width="548" height="5" rx="2" fill="white" opacity="0.08"/>
   </g>
-  <g clip-path="url(#bannerClip)">
-    <rect x="680" y="60" width="560" height="8" fill="url(#scanGrad)" opacity="0.8">
-      <animate attributeName="y" from="60" to="672" dur="3.5s" repeatCount="indefinite"/>
+
+  <!-- Photo with reveal -->
+  <g clip-path="url(#photoReveal)">
+    <g clip-path="url(#photoClip)">
+      <image x="700" y="72" width="520" height="596" preserveAspectRatio="xMidYMid slice"
+             href="data:image/jpeg;base64,{AVATAR_B64}" xlink:href="data:image/jpeg;base64,{AVATAR_B64}"/>
+      <rect x="700" y="72" width="520" height="596" fill="url(#panelGrad)" opacity="0.15"/>
+    </g>
+  </g>
+
+  <!-- Soft scanner (subtle) -->
+  <g clip-path="url(#photoClip)">
+    <rect x="700" y="72" width="520" height="6" fill="url(#scanGrad)" opacity="0.5">
+      <animate attributeName="y" from="72" to="662" dur="4.5s" repeatCount="indefinite"/>
     </rect>
   </g>
+
+  <!-- Floating particles -->
+  <circle cx="600" cy="200" r="2" fill="{cyan}" opacity="0">
+    <animate attributeName="opacity" values="0;0.8;0" dur="2.5s" begin="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="120" cy="450" r="1.5" fill="{pink}" opacity="0">
+    <animate attributeName="opacity" values="0;0.7;0" dur="2s" begin="2s" repeatCount="indefinite"/>
+  </circle>
 </svg>'''
 
 
@@ -266,18 +323,22 @@ def lanyard_svg():
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 320 480" width="320" height="480">
   <defs>
     <linearGradient id="strapGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="{G['primary']}"/>
-      <stop offset="100%" stop-color="{G['dark']}"/>
+      <stop offset="0%" stop-color="{C['cyan']}"/>
+      <stop offset="100%" stop-color="{C['violet']}"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{C['panel_hi']}"/>
+      <stop offset="100%" stop-color="{C['panel_lo']}"/>
     </linearGradient>
     <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="white" stop-opacity="0"/>
-      <stop offset="50%" stop-color="white" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="white" stop-opacity="0.2"/>
       <stop offset="100%" stop-color="white" stop-opacity="0"/>
     </linearGradient>
+    <filter id="card3d"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity="0.5"/></filter>
     <clipPath id="avatarClip"><circle cx="160" cy="280" r="52"/></clipPath>
   </defs>
 
-  <!-- Pendulum group -->
   <g transform="rotate(0 160 0)">
     <animateTransform attributeName="transform" type="rotate"
       values="0 160 0; 8 160 0; -6 160 0; 4 160 0; -2 160 0; 0 160 0"
@@ -286,39 +347,34 @@ def lanyard_svg():
       values="0 -400; 0 0" dur="0.8s" begin="0s" fill="freeze" additive="sum"
       calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
 
-    <!-- Strap -->
     <rect x="148" y="0" width="24" height="200" fill="url(#strapGrad)" rx="4"/>
     <text x="160" y="80" fill="white" font-family="monospace" font-size="8" text-anchor="middle" transform="rotate(90 160 80)">{PROFILE['username'].upper()}</text>
-
-    <!-- Clasp -->
     <rect x="142" y="198" width="36" height="12" rx="3" fill="#888"/>
-    <circle cx="160" cy="218" r="10" fill="#aaa" stroke="#666" stroke-width="2"/>
+    <circle cx="160" cy="218" r="10" fill="#bbb" stroke="#666" stroke-width="2"/>
 
-    <!-- Card -->
-    <rect x="70" y="228" width="180" height="230" rx="14" fill="{G['bg_card']}" stroke="{G['primary']}" stroke-width="2"/>
+    <g filter="url(#card3d)">
+      <rect x="70" y="228" width="180" height="230" rx="14" fill="url(#cardGrad)" stroke="{C['cyan']}" stroke-width="2"/>
+    </g>
     <rect x="70" y="228" width="180" height="230" rx="14" fill="url(#shine)" opacity="0">
-      <animate attributeName="opacity" values="0;0.6;0" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.5;0" dur="2.5s" repeatCount="indefinite"/>
       <animateTransform attributeName="transform" type="translate" from="-180 0" to="180 0" dur="2.5s" repeatCount="indefinite"/>
     </rect>
 
-    <!-- Avatar ring -->
-    <circle cx="160" cy="280" r="56" fill="none" stroke="{G['primary']}" stroke-width="3" opacity="0.8">
-      <animate attributeName="stroke-opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+    <circle cx="160" cy="280" r="56" fill="none" stroke="{C['cyan']}" stroke-width="3" opacity="0.9">
+      <animate attributeName="stroke-opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
     </circle>
     <g clip-path="url(#avatarClip)">
       <image x="108" y="228" width="104" height="104" preserveAspectRatio="xMidYMid slice"
              href="data:image/jpeg;base64,{AVATAR_B64}" xlink:href="data:image/jpeg;base64,{AVATAR_B64}"/>
     </g>
 
-    <text x="160" y="360" fill="{G['text']}" font-family="system-ui" font-size="16" font-weight="bold" text-anchor="middle">{PROFILE['name']}</text>
-    <text x="160" y="380" fill="{G['light']}" font-family="system-ui" font-size="11" text-anchor="middle">{PROFILE['role']}</text>
-    <text x="160" y="398" fill="{G['text_dim']}" font-family="monospace" font-size="10" text-anchor="middle">@{PROFILE['username']}</text>
-
-    <!-- Barcode -->
+    <text x="160" y="360" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold" text-anchor="middle">{PROFILE['name']}</text>
+    <text x="160" y="380" fill="{C['cyan']}" font-family="system-ui" font-size="11" text-anchor="middle">{PROFILE['role']}</text>
+    <text x="160" y="398" fill="{C['text_dim']}" font-family="monospace" font-size="10" text-anchor="middle">@{PROFILE['username']}</text>
     <g transform="translate(90, 410)">
-      {"".join(f'<rect x="{i*4}" y="0" width="{2 if i%3 else 3}" height="28" fill="{G["mint"]}"/>' for i in range(22))}
+      {"".join(f'<rect x="{i*4}" y="0" width="{2 if i%3 else 3}" height="28" fill="{C["violet"]}"/>' for i in range(22))}
     </g>
-    <text x="160" y="455" fill="{G['text_dim']}" font-family="monospace" font-size="8" text-anchor="middle">DEV ID • 2026</text>
+    <text x="160" y="455" fill="{C['text_dim']}" font-family="monospace" font-size="8" text-anchor="middle">DEV ID • 2026</text>
   </g>
 </svg>'''
 
@@ -337,18 +393,25 @@ def stats_svg():
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="{0.3 + i*0.2}s" dur="0.4s" fill="freeze"/>
     <animateTransform attributeName="transform" type="translate" from="-30 0" to="0 0" begin="{0.3 + i*0.2}s" dur="0.4s" fill="freeze"/>
-    <text x="24" y="{100 + i*36}" fill="{G['text_dim']}" font-family="system-ui" font-size="13">{label}</text>
-    <text x="360" y="{100 + i*36}" fill="{G['light']}" font-family="monospace" font-size="14" font-weight="bold" text-anchor="end">{val}</text>
-    <line x1="24" y1="{108 + i*36}" x2="360" y2="{108 + i*36}" stroke="{G['border']}" stroke-width="1"/>
+    <text x="24" y="{100 + i*36}" fill="{C['text_dim']}" font-family="system-ui" font-size="13">{label}</text>
+    <text x="360" y="{100 + i*36}" fill="{C['cyan']}" font-family="monospace" font-size="14" font-weight="bold" text-anchor="end">{val}</text>
+    <line x1="24" y1="{108 + i*36}" x2="360" y2="{108 + i*36}" stroke="{C['border']}" stroke-width="1" opacity="0.4"/>
   </g>'''
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220">
-  <rect width="400" height="220" rx="12" fill="{G['bg_card']}" stroke="{G['primary']}" stroke-width="1.5"/>
-  <text x="24" y="36" fill="{G['text']}" font-family="system-ui" font-size="16" font-weight="bold">{PROFILE['name']}'s GitHub Stats</text>
-  <circle cx="360" cy="36" r="22" fill="none" stroke="{G['primary']}" stroke-width="3" stroke-dasharray="100" stroke-dashoffset="100">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{C['panel_hi']}"/>
+      <stop offset="100%" stop-color="{C['panel_lo']}"/>
+    </linearGradient>
+    <filter id="s3d"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.4"/></filter>
+  </defs>
+  <rect width="400" height="220" rx="12" fill="url(#cardGrad)" stroke="{C['cyan']}" stroke-width="1.5" filter="url(#s3d)"/>
+  <text x="24" y="36" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold">{PROFILE['name']}'s GitHub Stats</text>
+  <circle cx="360" cy="36" r="22" fill="none" stroke="{C['violet']}" stroke-width="3" stroke-dasharray="100" stroke-dashoffset="100">
     <animate attributeName="stroke-dashoffset" from="100" to="25" dur="1.5s" fill="freeze"/>
   </circle>
-  <text x="360" y="41" fill="{G['light']}" font-family="monospace" font-size="14" font-weight="bold" text-anchor="middle">{s['grade']}</text>
+  <text x="360" y="41" fill="{C['gold']}" font-family="monospace" font-size="14" font-weight="bold" text-anchor="middle">{s['grade']}</text>
   {rows_svg}
 </svg>'''
 
@@ -358,23 +421,33 @@ def langs_svg():
     for i, (lang, pct) in enumerate(PROFILE["langs"]):
         y = 50 + i * 42
         bars += f'''
-  <text x="20" y="{y}" fill="{G['text']}" font-family="system-ui" font-size="13">{lang}</text>
-  <text x="380" y="{y}" fill="{G['light']}" font-family="monospace" font-size="12" text-anchor="end">{pct}%</text>
-  <rect x="20" y="{y+6}" width="360" height="12" rx="6" fill="{G['bg_card2']}"/>
-  <rect x="20" y="{y+6}" width="0" height="12" rx="6" fill="{G['primary']}">
+  <text x="20" y="{y}" fill="{C['text']}" font-family="system-ui" font-size="13">{lang}</text>
+  <text x="380" y="{y}" fill="{C['cyan']}" font-family="monospace" font-size="12" text-anchor="end">{pct}%</text>
+  <rect x="20" y="{y+6}" width="360" height="12" rx="6" fill="{C['glass']}"/>
+  <rect x="20" y="{y+6}" width="0" height="12" rx="6" fill="url(#barGrad)">
     <animate attributeName="width" from="0" to="{pct*3.6}" dur="1.2s" begin="{0.2 + i*0.15}s" fill="freeze"/>
   </rect>'''
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220">
-  <rect width="400" height="220" rx="12" fill="{G['bg_card']}" stroke="{G['primary']}" stroke-width="1.5"/>
-  <text x="20" y="32" fill="{G['text']}" font-family="system-ui" font-size="16" font-weight="bold">Top Languages</text>
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{C['panel_hi']}"/>
+      <stop offset="100%" stop-color="{C['panel_lo']}"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="{C['cyan']}"/>
+      <stop offset="100%" stop-color="{C['violet']}"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="220" rx="12" fill="url(#cardGrad)" stroke="{C['violet']}" stroke-width="1.5"/>
+  <text x="20" y="32" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold">Top Languages</text>
   {bars}
 </svg>'''
 
 
 def trophies_svg():
     cells = ""
-    colors = [G["primary"], G["light"], G["dark"], G["mint"], G["forest"], "#65a30d"]
+    colors = [C["cyan"], C["violet"], C["pink"], C["gold"], C["border"], "#6366f1"]
     for i, (grade, label) in enumerate(PROFILE["trophies"]):
         col = i % 3
         row = i // 3
@@ -383,16 +456,26 @@ def trophies_svg():
         cells += f'''
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="{0.2 + i*0.12}s" dur="0.35s" fill="freeze"/>
-    <rect x="{x}" y="{y}" width="120" height="72" rx="10" fill="{G['bg_card2']}" stroke="{colors[i]}" stroke-width="1.5"/>
+    <rect x="{x}" y="{y}" width="120" height="72" rx="10" fill="{C['glass']}" stroke="{colors[i]}" stroke-width="1.5"/>
     <text x="{x+60}" y="{y+38}" fill="{colors[i]}" font-family="monospace" font-size="28" font-weight="bold" text-anchor="middle">{grade}</text>
-    <text x="{x+60}" y="{y+58}" fill="{G['text_dim']}" font-family="system-ui" font-size="10" text-anchor="middle">{label}</text>
+    <text x="{x+60}" y="{y+58}" fill="{C['text_dim']}" font-family="system-ui" font-size="10" text-anchor="middle">{label}</text>
   </g>'''
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220">
-  <rect width="400" height="220" rx="12" fill="{G['bg_card']}" stroke="{G['primary']}" stroke-width="1.5"/>
-  <text x="20" y="32" fill="{G['text']}" font-family="system-ui" font-size="16" font-weight="bold">GitHub Trophies</text>
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{C['panel_hi']}"/>
+      <stop offset="100%" stop-color="{C['panel_lo']}"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="white" stop-opacity="0"/>
+      <stop offset="50%" stop-color="white" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="220" rx="12" fill="url(#cardGrad)" stroke="{C['pink']}" stroke-width="1.5"/>
+  <text x="20" y="32" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold">GitHub Trophies</text>
   <rect x="0" y="0" width="400" height="220" fill="url(#shine)" opacity="0">
-    <defs><linearGradient id="shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="white" stop-opacity="0"/><stop offset="50%" stop-color="white" stop-opacity="0.08"/><stop offset="100%" stop-color="white" stop-opacity="0"/></linearGradient></defs>
     <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
     <animateTransform attributeName="transform" type="translate" from="-400 0" to="400 0" dur="3s" repeatCount="indefinite"/>
   </rect>
@@ -425,7 +508,7 @@ def readme_md():
 </td>
 <td valign="top">
 
-### 🌿 My Projects
+### ✨ My Projects
 
 | Project | Tech | Stars |
 |---------|------|-------|
@@ -455,7 +538,7 @@ def readme_md():
 <br/><br/>
 
 <!-- Activity Graph -->
-<img alt="Contribution Graph" src="https://github-readme-activity-graph.vercel.app/graph?username={u}&bg_color=0a120a&color=22c55e&line=4ade80&point=86efac&area=true&hide_border=false&custom_title=Contribution%20Graph%20🌿" width="100%"/>
+<img alt="Contribution Graph" src="https://github-readme-activity-graph.vercel.app/graph?username={u}&bg_color=070b1a&color=00e5ff&line=a855f7&point=ec4899&area=true&hide_border=false&custom_title=Contribution%20Graph%20✨" width="100%"/>
 
 <br/><br/>
 
@@ -469,19 +552,19 @@ def readme_md():
 <!-- Connect -->
 ### 🤝 Let's Connect
 
-[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-22c55e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/{u})
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-16a34a?style=for-the-badge&logo=linkedin&logoColor=white)]({soc['linkedin']})
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-15803d?style=for-the-badge&logo=google-chrome&logoColor=white)]({soc['portfolio']})
-[![Email](https://img.shields.io/badge/Email-Reach%20Out-4ade80?style=for-the-badge&logo=gmail&logoColor=white)]({soc['email']})
+[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/{u})
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)]({soc['linkedin']})
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white)]({soc['portfolio']})
+[![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)]({soc['email']})
 
 <br/>
 
 <!-- Profile views -->
-<img alt="Profile views" src="https://komarev.com/ghpvc/?username={u}&label=Profile%20Views&color=22c55e&style=for-the-badge"/>
+<img alt="Profile views" src="https://komarev.com/ghpvc/?username={u}&label=Profile%20Views&color=00e5ff&style=for-the-badge"/>
 
 <br/><br/>
 
-**Always learning, always building. 🌿**
+**Always learning, always building. ✨**
 
 </div>
 '''
@@ -510,9 +593,9 @@ jobs:
           github_user_name: {u}
           outputs: |
             dist/snake.svg
-          snake_color: "22c55e"
-          snake_color2: "4ade80"
-          snake_color3: "15803d"
+          snake_color: "00e5ff"
+          snake_color2: "a855f7"
+          snake_color3: "12103a"
 
       - name: Push snake.svg to output branch
         run: |

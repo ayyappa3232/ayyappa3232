@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Banner (dark) — GitHub renders SVG reliably via img tag -->
-<img alt="Animated profile banner" src="banner.svg?v=2" width="100%"/>
+<img alt="Animated profile banner" src="banner.svg?v=3" width="100%"/>
 
 <br/><br/>
 
@@ -9,11 +9,11 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="lanyard.svg?v=2" width="280"/>
+  <img alt="Swinging ID badge" src="lanyard.svg?v=3" width="280"/>
 </td>
 <td valign="top">
 
-### 🌿 My Projects
+### ✨ My Projects
 
 | Project | Tech | Stars |
 |---------|------|-------|
@@ -34,20 +34,20 @@
 <!-- Stats row -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="stats.svg?v=2" width="400"/></td>
-<td><img alt="Top Languages" src="langs.svg?v=2" width="400"/></td>
+<td><img alt="GitHub Stats" src="stats.svg?v=3" width="400"/></td>
+<td><img alt="Top Languages" src="langs.svg?v=3" width="400"/></td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="trophies.svg?v=2" width="820"/>
+<img alt="GitHub Trophies" src="trophies.svg?v=3" width="820"/>
 
 <br/><br/>
 
 <!-- Activity Graph -->
-<img alt="Contribution Graph" src="https://github-readme-activity-graph.vercel.app/graph?username=ayyappa3232&bg_color=0a120a&color=22c55e&line=4ade80&point=86efac&area=true&hide_border=false&custom_title=Contribution%20Graph%20🌿" width="100%"/>
+<img alt="Contribution Graph" src="https://github-readme-activity-graph.vercel.app/graph?username=ayyappa3232&bg_color=070b1a&color=00e5ff&line=a855f7&point=ec4899&area=true&hide_border=false&custom_title=Contribution%20Graph%20✨" width="100%"/>
 
 <br/><br/>
 
@@ -61,18 +61,18 @@
 <!-- Connect -->
 ### 🤝 Let's Connect
 
-[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-22c55e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayyappa3232)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-16a34a?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-profile)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-15803d?style=for-the-badge&logo=google-chrome&logoColor=white)](https://your-portfolio.com)
-[![Email](https://img.shields.io/badge/Email-Reach%20Out-4ade80?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@example.com)
+[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayyappa3232)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-profile)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white)](https://your-portfolio.com)
+[![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@example.com)
 
 <br/>
 
 <!-- Profile views -->
-<img alt="Profile views" src="https://komarev.com/ghpvc/?username=ayyappa3232&label=Profile%20Views&color=22c55e&style=for-the-badge"/>
+<img alt="Profile views" src="https://komarev.com/ghpvc/?username=ayyappa3232&label=Profile%20Views&color=00e5ff&style=for-the-badge"/>
 
 <br/><br/>
 
-**Always learning, always building. 🌿**
+**Always learning, always building. ✨**
 
 </div>
