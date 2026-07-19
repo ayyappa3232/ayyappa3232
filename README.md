@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Pinned to commit 48a138942931 — changes every push, bypasses GitHub profile cache -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/banner.svg" width="100%"/>
+<!-- Pinned to commit 5075bbc262d7 — changes every push, bypasses GitHub profile cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -9,26 +9,28 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/lanyard.svg" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/lanyard.svg" width="280"/>
 </td>
 <td valign="top" align="left">
 
 ### 👋 About Me
 
-• 7+ years building React applications
-• Exploring AI Native Engineering & Agentic AI
-• Learning LangGraph, MCP and LLM Architecture
-• Passionate about clean architecture & developer experience
-• Interested in System Design, AI Agents and Full Stack AI
-• Building practical AI applications with Cursor AI
-• Always open to learning and collaborating
+<ul align="left">
+  <li>7+ years building React applications</li>
+  <li>Exploring AI Native Engineering &amp; Agentic AI</li>
+  <li>Learning LangGraph, MCP and LLM Architecture</li>
+  <li>Passionate about clean architecture &amp; developer experience</li>
+  <li>Interested in System Design, AI Agents and Full Stack AI</li>
+  <li>Building practical AI applications with Cursor AI</li>
+  <li>Always open to learning and collaborating</li>
+</ul>
 
 <br/>
 
 ### ✨ My Projects
 
 | Project | Tech | Stars |
-|---------|------|-------|
+|:--------|:------|-----:|
 | [Ayyappa-Full-Stack-Engineer](https://github.com/ayyappa3232/Ayyappa-Full-Stack-Engineer) | TypeScript, React, Node | ⭐ 0 |
 | [RN_ASP_Server](https://github.com/ayyappa3232/RN_ASP_Server) | C#, React Native, ASP.NET | ⭐ 0 |
 | [reactnativefirebasedemo](https://github.com/ayyappa3232/reactnativefirebasedemo) | React Native, Firebase | ⭐ 0 |
@@ -70,23 +72,20 @@
 
 ### 📚 Currently Learning
 
-🧠 Agentic AI
-🧠 LangGraph
-🧠 MCP
-🧠 React 19
-🧠 AI Engineering
-🧠 System Design
+![Agentic AI](https://img.shields.io/badge/Agentic_AI-1c1c4a?style=for-the-badge&color=00e5ff) ![LangGraph](https://img.shields.io/badge/LangGraph-1c1c4a?style=for-the-badge&color=00e5ff) ![MCP](https://img.shields.io/badge/MCP-1c1c4a?style=for-the-badge&color=00e5ff) ![React 19](https://img.shields.io/badge/React_19-1c1c4a?style=for-the-badge&color=00e5ff) ![AI Engineering](https://img.shields.io/badge/AI_Engineering-1c1c4a?style=for-the-badge&color=00e5ff) ![System Design](https://img.shields.io/badge/System_Design-1c1c4a?style=for-the-badge&color=00e5ff)
 
 </td>
 <td width="50%" valign="top" align="left">
 
 ### 🚀 Current Focus
 
-✓ Building AI Agents
-✓ Mastering LangGraph
-✓ Learning MCP
-✓ Building Full Stack AI Apps
-✓ Preparing for Senior Frontend Interviews
+<ul align="left">
+  <li>✓ Building AI Agents</li>
+  <li>✓ Mastering LangGraph</li>
+  <li>✓ Learning MCP</li>
+  <li>✓ Building Full Stack AI Apps</li>
+  <li>✓ Preparing for Senior Frontend Interviews</li>
+</ul>
 
 </td>
 </tr>
@@ -96,23 +95,25 @@
 
 ### 🎯 Goals 2026
 
-□ Become AI Native Engineer
-□ Build production AI applications
-□ Master React ecosystem
-□ Master System Design
-□ Contribute to Open Source
-□ Publish AI Learning Projects
+<ul align="left">
+  <li>□ Become AI Native Engineer</li>
+  <li>□ Build production AI applications</li>
+  <li>□ Master React ecosystem</li>
+  <li>□ Master System Design</li>
+  <li>□ Contribute to Open Source</li>
+  <li>□ Publish AI Learning Projects</li>
+</ul>
 
 <br/>
 
 <!-- Stats + Journey -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/stats.svg" width="400"/></td>
-<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/learning.svg" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/stats.svg" width="400"/></td>
+<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/learning.svg" width="400"/></td>
 </tr>
 <tr>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/langs.svg" width="400"/></td>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/langs.svg" width="400"/></td>
 <td align="center" valign="middle">
 
 **📈 Highlights**
@@ -131,7 +132,7 @@
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/trophies.svg" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@5075bbc262d783d45942c3e0348dfd5b5edbfae4/trophies.svg" width="820"/>
 
 <br/><br/>
 
@@ -153,7 +154,7 @@
 <tr>
 <td align="center" bgcolor="#12103a">
 
-<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=17" width="820"/>
+<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=18" width="820"/>
 
 </td>
 </tr>
