@@ -42,7 +42,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "14",
+    "cache_v": "15",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -727,7 +727,7 @@ def readme_md(sha: Optional[str] = None):
     pin = sha or get_git_sha()
     # Pin to exact commit — new SHA = entirely new URL (beats GitHub profile cache)
     cdn = f"https://cdn.jsdelivr.net/gh/{u}/{u}@{pin}"
-    snake = f"https://raw.githubusercontent.com/{u}/{u}/output/snake.svg"
+    snake = f"https://raw.githubusercontent.com/{u}/{u}/output/snake.gif"
 
     proj_rows = "\n".join(
         f"| [{name}](https://github.com/{u}/{name}) | {tech} | ⭐ {stars} |"
@@ -783,10 +783,16 @@ def readme_md(sha: Optional[str] = None):
 
 <br/><br/>
 
-<!-- Snake (Actions → Generate Snake → Run workflow once) -->
-<img alt="Snake eating contributions" src="{snake}" width="100%"/>
+<!-- Contribution Snake — GIF animates on GitHub (SVG animations are stripped) -->
+<div align="center">
 
-<p align="center"><i>🐍 Watch the snake eat my contributions!</i></p>
+### 🐍 Contribution Snake
+
+<img alt="Snake eating my GitHub contributions" src="{snake}" width="100%"/>
+
+<sub>✨ Cyan snake · cosmic grid · updates daily via GitHub Actions</sub>
+
+</div>
 
 <br/>
 
@@ -827,18 +833,18 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     permissions:
       contents: write
     steps:
-      - name: Generate snake.svg
-        uses: Platane/snk/svg-only@v3
+      - name: Generate snake.gif
+        uses: Platane/snk@v3
         with:
           github_user_name: {u}
           outputs: |
-            dist/snake.svg?color_snake=00e5ff&color_dots=070b1a,12103a,0891b2,00e5ff,a855f7
+            dist/snake.gif?color_snake=00e5ff&color_dots=#30363d,#0e7490,#0891b2,#00e5ff,#a855f7&color_background=070b1a
 
-      - name: Push snake.svg to output branch
+      - name: Push snake.gif to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
