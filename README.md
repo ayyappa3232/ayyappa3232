@@ -1,17 +1,29 @@
 <div align="center">
 
-<!-- Pinned to commit fc7309bbc119 — changes every push, bypasses GitHub image cache -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@fc7309bbc1199d9e7be696dab9b4e52f18046ca9/banner.svg" width="100%"/>
+<!-- Pinned to commit 48a138942931 — changes every push, bypasses GitHub profile cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/banner.svg" width="100%"/>
 
 <br/><br/>
 
-<!-- ID Badge + Projects -->
+<!-- ID Badge + About -->
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@fc7309bbc1199d9e7be696dab9b4e52f18046ca9/lanyard.svg" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/lanyard.svg" width="280"/>
 </td>
-<td valign="top">
+<td valign="top" align="left">
+
+### 👋 About Me
+
+• 7+ years building React applications
+• Exploring AI Native Engineering & Agentic AI
+• Learning LangGraph, MCP and LLM Architecture
+• Passionate about clean architecture & developer experience
+• Interested in System Design, AI Agents and Full Stack AI
+• Building practical AI applications with Cursor AI
+• Always open to learning and collaborating
+
+<br/>
 
 ### ✨ My Projects
 
@@ -23,7 +35,7 @@
 | [LeaveManagementSystem](https://github.com/ayyappa3232/LeaveManagementSystem) | JavaScript, React Native | ⭐ 0 |
 | [LMS](https://github.com/ayyappa3232/LMS) | JavaScript, Node.js | ⭐ 0 |
 
-*"I don't just write code — I craft experiences."*
+*"Building AI that works, not just demos. 🚀"*
 
 </td>
 </tr>
@@ -31,18 +43,95 @@
 
 <br/>
 
-<!-- Stats row -->
+<!-- Tech Stack -->
+### 🛠 Tech Stack
+
+**🎨 Frontend**  
+![React](https://img.shields.io/badge/React-12103a?style=flat-square&color=00e5ff) ![React Native](https://img.shields.io/badge/React_Native-12103a?style=flat-square&color=00e5ff) ![TypeScript](https://img.shields.io/badge/TypeScript-12103a?style=flat-square&color=00e5ff) ![JavaScript](https://img.shields.io/badge/JavaScript-12103a?style=flat-square&color=00e5ff) ![Redux](https://img.shields.io/badge/Redux-12103a?style=flat-square&color=00e5ff) ![Next.js](https://img.shields.io/badge/Next.js-12103a?style=flat-square&color=00e5ff) ![HTML5](https://img.shields.io/badge/HTML5-12103a?style=flat-square&color=00e5ff) ![CSS3](https://img.shields.io/badge/CSS3-12103a?style=flat-square&color=00e5ff) ![Tailwind](https://img.shields.io/badge/Tailwind-12103a?style=flat-square&color=00e5ff)
+
+**⚙️ Backend**  
+![Node.js](https://img.shields.io/badge/Node.js-12103a?style=flat-square&color=00e5ff) ![Express](https://img.shields.io/badge/Express-12103a?style=flat-square&color=00e5ff) ![REST APIs](https://img.shields.io/badge/REST_APIs-12103a?style=flat-square&color=00e5ff) ![SQL](https://img.shields.io/badge/SQL-12103a?style=flat-square&color=00e5ff)
+
+**🤖 AI**  
+![OpenAI](https://img.shields.io/badge/OpenAI-12103a?style=flat-square&color=00e5ff) ![LLMs](https://img.shields.io/badge/LLMs-12103a?style=flat-square&color=00e5ff) ![LangChain](https://img.shields.io/badge/LangChain-12103a?style=flat-square&color=00e5ff) ![LangGraph](https://img.shields.io/badge/LangGraph-12103a?style=flat-square&color=00e5ff) ![MCP](https://img.shields.io/badge/MCP-12103a?style=flat-square&color=00e5ff) ![Prompt Engineering](https://img.shields.io/badge/Prompt_Engineering-12103a?style=flat-square&color=00e5ff) ![Vector Databases](https://img.shields.io/badge/Vector_Databases-12103a?style=flat-square&color=00e5ff) ![RAG](https://img.shields.io/badge/RAG-12103a?style=flat-square&color=00e5ff)
+
+**🛠 Tools**  
+![Cursor](https://img.shields.io/badge/Cursor-12103a?style=flat-square&color=00e5ff) ![GitHub](https://img.shields.io/badge/GitHub-12103a?style=flat-square&color=00e5ff) ![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-12103a?style=flat-square&color=00e5ff) ![VS Code](https://img.shields.io/badge/VS_Code-12103a?style=flat-square&color=00e5ff) ![Docker](https://img.shields.io/badge/Docker-12103a?style=flat-square&color=00e5ff) ![Postman](https://img.shields.io/badge/Postman-12103a?style=flat-square&color=00e5ff) ![Git](https://img.shields.io/badge/Git-12103a?style=flat-square&color=00e5ff)
+
+**☁️ Cloud**  
+![AWS](https://img.shields.io/badge/AWS-12103a?style=flat-square&color=00e5ff) ![Azure](https://img.shields.io/badge/Azure-12103a?style=flat-square&color=00e5ff)
+
+<br/>
+
+<!-- Learning + Focus -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@fc7309bbc1199d9e7be696dab9b4e52f18046ca9/stats.svg" width="400"/></td>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@fc7309bbc1199d9e7be696dab9b4e52f18046ca9/langs.svg" width="400"/></td>
+<td width="50%" valign="top" align="left">
+
+### 📚 Currently Learning
+
+🧠 Agentic AI
+🧠 LangGraph
+🧠 MCP
+🧠 React 19
+🧠 AI Engineering
+🧠 System Design
+
+</td>
+<td width="50%" valign="top" align="left">
+
+### 🚀 Current Focus
+
+✓ Building AI Agents
+✓ Mastering LangGraph
+✓ Learning MCP
+✓ Building Full Stack AI Apps
+✓ Preparing for Senior Frontend Interviews
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+### 🎯 Goals 2026
+
+□ Become AI Native Engineer
+□ Build production AI applications
+□ Master React ecosystem
+□ Master System Design
+□ Contribute to Open Source
+□ Publish AI Learning Projects
+
+<br/>
+
+<!-- Stats + Journey -->
+<table>
+<tr>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/stats.svg" width="400"/></td>
+<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/learning.svg" width="400"/></td>
+</tr>
+<tr>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/langs.svg" width="400"/></td>
+<td align="center" valign="middle">
+
+**📈 Highlights**
+
+🏆 AI Projects · **3+**  
+📦 Open Source · **6**  
+🔥 Streak · see below  
+💻 Contributions · **25**  
+📚 Repos · **6**  
+👥 Followers · **0**
+
+</td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@fc7309bbc1199d9e7be696dab9b4e52f18046ca9/trophies.svg" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@48a138942931221bcce7751ab39820fb4930aa03/trophies.svg" width="820"/>
 
 <br/><br/>
 
@@ -64,7 +153,7 @@
 <tr>
 <td align="center" bgcolor="#12103a">
 
-<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=16" width="820"/>
+<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=17" width="820"/>
 
 </td>
 </tr>
@@ -76,13 +165,36 @@
 
 <br/>
 
-<!-- Connect -->
-### 🤝 Let's Connect
+<!-- Interests + Fun Fact -->
+<table>
+<tr>
+<td width="50%" valign="top" align="left">
 
-[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayyappa3232)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-profile)
+### 🏅 Interests
+
+`React` · `AI` · `Agentic AI` · `LLMs` · `LangGraph` · `System Design` · `Prompt Engineering` · `Developer Productivity` · `Open Source`
+
+</td>
+<td width="50%" valign="top" align="left">
+
+### 🧠 Fun Fact
+
+I enjoy turning complex AI concepts into simple explanations. Currently obsessed with AI Agents 🤖
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+<!-- Connect -->
+### 🌐 Let's Connect
+
 [![Portfolio](https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white)](https://your-portfolio.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-profile)
+[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayyappa3232)
 [![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@example.com)
+[![Medium](https://img.shields.io/badge/Medium-Blog-fbbf24?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@your-profile)
 
 <br/>
 
@@ -91,6 +203,6 @@
 
 <br/><br/>
 
-**Always learning, always building. ✨**
+**BUILD • LEARN • SHIP • REPEAT 🚀**
 
 </div>
