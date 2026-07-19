@@ -38,7 +38,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "9",
+    "cache_v": "10",
 }
 
 def xml_escape(text: str) -> str:
@@ -146,7 +146,7 @@ def banner_svg(light=False):
       </g>'''
 
     # ── Code card — absolute coords only (GitHub SVG sanitizer strips transform) ──
-    code_y = 478
+    code_y = 502  # below 2nd row of pills (424 + 34 + 24 = 482) + 20px gap
     code_lines = [
         "const buildDreams = () => {",
         "  return ['React','AI','Node']",
@@ -328,9 +328,10 @@ def lanyard_svg():
     card_x, card_y, card_w, card_h = 70, 242, 180, 238
     avatar_cy = 302
     avatar_r = 48
-    img_size = 96
-    img_x = 160 - img_size // 2
-    img_y = avatar_cy - img_size // 2
+    img_w = 100
+    img_h = 130
+    img_x = 160 - img_w // 2
+    img_y = avatar_cy - 52  # anchor crop to face (top of full-body art)
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 320 480" width="320" height="480">
   <defs>
@@ -376,7 +377,7 @@ def lanyard_svg():
       <animate attributeName="stroke-opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
     </circle>
     <g clip-path="url(#avatarClip)">
-      <image x="{img_x}" y="{img_y}" width="{img_size}" height="{img_size}" preserveAspectRatio="xMidYMid slice"
+      <image x="{img_x}" y="{img_y}" width="{img_w}" height="{img_h}" preserveAspectRatio="xMidYMin slice"
              href="data:image/png;base64,{AVATAR_B64}" xlink:href="data:image/png;base64,{AVATAR_B64}"/>
     </g>
 
