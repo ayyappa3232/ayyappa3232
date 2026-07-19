@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Pinned to commit 2940f543e77e — changes every push, bypasses GitHub image cache -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@2940f543e77e8145d5e5ef627691eb90d3bfea37/banner.svg" width="100%"/>
+<!-- Pinned to commit 07ff2d3613fb — changes every push, bypasses GitHub image cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@07ff2d3613fb2e64d17a7b1598f921ec656797a4/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -9,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@2940f543e77e8145d5e5ef627691eb90d3bfea37/lanyard.svg" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@07ff2d3613fb2e64d17a7b1598f921ec656797a4/lanyard.svg" width="280"/>
 </td>
 <td valign="top">
 
@@ -34,15 +34,15 @@
 <!-- Stats row -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@2940f543e77e8145d5e5ef627691eb90d3bfea37/stats.svg" width="400"/></td>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@2940f543e77e8145d5e5ef627691eb90d3bfea37/langs.svg" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@07ff2d3613fb2e64d17a7b1598f921ec656797a4/stats.svg" width="400"/></td>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@07ff2d3613fb2e64d17a7b1598f921ec656797a4/langs.svg" width="400"/></td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@2940f543e77e8145d5e5ef627691eb90d3bfea37/trophies.svg" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@07ff2d3613fb2e64d17a7b1598f921ec656797a4/trophies.svg" width="820"/>
 
 <br/><br/>
 
