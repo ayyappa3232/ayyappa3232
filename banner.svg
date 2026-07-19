@@ -23,8 +23,6 @@
 
   <!-- Background -->
   <rect width="1280" height="740" fill="#0a120a" rx="12"/>
-  <rect width="1280" height="740" fill="url(#bgGrid)" opacity="0.03" rx="12"/>
-
   <!-- Ambient orbs -->
   <circle cx="200" cy="600" r="80" fill="#22c55e" opacity="0.06">
     <animate attributeName="r" values="80;95;80" dur="5s" repeatCount="indefinite"/>
@@ -115,11 +113,11 @@
   
     <text x="40" y="430" fill="#94a894" font-family="system-ui,sans-serif" font-size="13" opacity="0">
       <animate attributeName="opacity" from="0" to="1" begin="1.8s" dur="0.4s" fill="freeze"/>
-      ▸ Building intelligent apps with AI & modern web tech
+      ▸ Building intelligent apps with AI &amp; modern web tech
     </text>
     <text x="40" y="452" fill="#94a894" font-family="system-ui,sans-serif" font-size="13" opacity="0">
       <animate attributeName="opacity" from="0" to="1" begin="2.1s" dur="0.4s" fill="freeze"/>
-      ▸ Passionate about clean code & great UX
+      ▸ Passionate about clean code &amp; great UX
     </text>
     <text x="40" y="474" fill="#94a894" font-family="system-ui,sans-serif" font-size="13" opacity="0">
       <animate attributeName="opacity" from="0" to="1" begin="2.4s" dur="0.4s" fill="freeze"/>

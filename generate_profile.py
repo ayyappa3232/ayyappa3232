@@ -38,8 +38,16 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "1",
+    "cache_v": "2",
 }
+
+def xml_escape(text: str) -> str:
+    return (
+        text.replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
 
 # Grass green palette
 G = {
@@ -82,7 +90,7 @@ def banner_svg(light=False):
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="{2.5 + i * 0.15}s" dur="0.5s" fill="freeze"/>
     <rect x="{x}" y="{y}" width="{len(sk)*9+24}" height="26" rx="13" fill="{card2}" stroke="{accent}" stroke-width="1"/>
-    <text x="{x+12}" y="{y+17}" fill="{accent2}" font-family="monospace" font-size="12">{sk}</text>
+    <text x="{x+12}" y="{y+17}" fill="{accent2}" font-family="monospace" font-size="12">{xml_escape(sk)}</text>
   </g>'''
 
     about_lines = ""
@@ -90,7 +98,7 @@ def banner_svg(light=False):
         about_lines += f'''
     <text x="40" y="{430 + i*22}" fill="{text_dim}" font-family="system-ui,sans-serif" font-size="13" opacity="0">
       <animate attributeName="opacity" from="0" to="1" begin="{1.8 + i*0.3}s" dur="0.4s" fill="freeze"/>
-      ▸ {line}
+      ▸ {xml_escape(line)}
     </text>'''
 
     name = PROFILE["name"]
@@ -109,7 +117,7 @@ def banner_svg(light=False):
         role_anims += f'''
     <text x="40" y="175" fill="{accent2}" font-family="monospace" font-size="16" opacity="0">
       <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.9;1" begin="{begin}s" dur="{role_dur}s" repeatCount="indefinite"/>
-      &gt; {role}<tspan fill="{accent}" opacity="1"><animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>_</tspan>
+      &gt; {xml_escape(role)}<tspan fill="{accent}" opacity="1"><animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>_</tspan>
     </text>'''
 
     code_lines = [
@@ -154,8 +162,6 @@ def banner_svg(light=False):
 
   <!-- Background -->
   <rect width="1280" height="740" fill="{bg}" rx="12"/>
-  <rect width="1280" height="740" fill="url(#bgGrid)" opacity="0.03" rx="12"/>
-
   <!-- Ambient orbs -->
   <circle cx="200" cy="600" r="80" fill="{accent}" opacity="0.06">
     <animate attributeName="r" values="80;95;80" dur="5s" repeatCount="indefinite"/>
@@ -188,7 +194,7 @@ def banner_svg(light=False):
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="1.6s" dur="0.5s" fill="freeze"/>
     <rect x="40" y="195" width="420" height="44" rx="8" fill="{card2}" stroke="{accent}" stroke-width="1"/>
-    <text x="52" y="223" fill="{text}" font-family="system-ui" font-size="13" font-style="italic">"{PROFILE['tagline']}"</text>
+    <text x="52" y="223" fill="{text}" font-family="system-ui" font-size="13" font-style="italic">"{xml_escape(PROFILE['tagline'])}"</text>
   </g>
 
   <!-- About -->
@@ -406,12 +412,8 @@ def readme_md():
 
     return f'''<div align="center">
 
-<!-- Banner — auto dark/light -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="banner.svg?v={v}">
-  <source media="(prefers-color-scheme: light)" srcset="banner-light.svg?v={v}">
-  <img alt="Animated profile banner" src="banner.svg?v={v}" width="100%"/>
-</picture>
+<!-- Banner (dark) — GitHub renders SVG reliably via img tag -->
+<img alt="Animated profile banner" src="banner.svg?v={v}" width="100%"/>
 
 <br/><br/>
 

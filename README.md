@@ -1,11 +1,7 @@
 <div align="center">
 
-<!-- Banner — auto dark/light -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="banner.svg?v=1">
-  <source media="(prefers-color-scheme: light)" srcset="banner-light.svg?v=1">
-  <img alt="Animated profile banner" src="banner.svg?v=1" width="100%"/>
-</picture>
+<!-- Banner (dark) — GitHub renders SVG reliably via img tag -->
+<img alt="Animated profile banner" src="banner.svg?v=2" width="100%"/>
 
 <br/><br/>
 
@@ -13,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="lanyard.svg?v=1" width="280"/>
+  <img alt="Swinging ID badge" src="lanyard.svg?v=2" width="280"/>
 </td>
 <td valign="top">
 
@@ -38,15 +34,15 @@
 <!-- Stats row -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="stats.svg?v=1" width="400"/></td>
-<td><img alt="Top Languages" src="langs.svg?v=1" width="400"/></td>
+<td><img alt="GitHub Stats" src="stats.svg?v=2" width="400"/></td>
+<td><img alt="Top Languages" src="langs.svg?v=2" width="400"/></td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="trophies.svg?v=1" width="820"/>
+<img alt="GitHub Trophies" src="trophies.svg?v=2" width="820"/>
 
 <br/><br/>
 
