@@ -2,7 +2,9 @@
 """Generate animated GitHub profile assets — Cosmic 3D theme."""
 
 import base64
+import json
 import subprocess
+import urllib.parse
 from pathlib import Path
 from typing import Optional
 
@@ -25,9 +27,9 @@ PROFILE = {
         "Open to collaborate on exciting projects",
     ],
     "skills": ["React", "TypeScript", "Node.js", "Python", "AI/LLMs", "React Native", "SQL", "Three.js"],
-    "stats": {"stars": "12+", "commits": "500+", "repos": "5+", "prs": "8+", "grade": "B+"},
-    "langs": [("TypeScript", 35), ("JavaScript", 30), ("Python", 20), ("HTML/CSS", 15)],
-    "trophies": [("S", "Commits"), ("A", "Stars"), ("B+", "Repos"), ("A", "PRs"), ("B", "Issues"), ("C", "Followers")],
+    "stats": {"stars": "0", "commits": "25", "repos": "6", "prs": "0", "grade": "C"},
+    "langs": [("JavaScript", 80), ("CSS", 6), ("C#", 5), ("TypeScript", 5)],
+    "trophies": [("B+", "Commits"), ("?", "Stars"), ("C", "Repos"), ("?", "PRs"), ("?", "Issues"), ("?", "Followers")],
     "projects": [
         ("Ayyappa-Full-Stack-Engineer", "TypeScript, React, Node", "0"),
         ("RN_ASP_Server", "C#, React Native, ASP.NET", "0"),
@@ -40,8 +42,163 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "12",
+    "cache_v": "13",
 }
+
+# github-profile-trophy thresholds (ryo-ma) — highest tier first
+TROPHY_THRESHOLDS = {
+    "Commits": [(4000, "S"), (1000, "S"), (500, "A"), (200, "A"), (100, "A"), (10, "B+"), (1, "C")],
+    "Stars": [(2000, "S"), (200, "S"), (100, "A"), (50, "A"), (30, "A"), (10, "B+"), (1, "C")],
+    "Repos": [(50, "S"), (40, "S"), (35, "A"), (30, "A"), (20, "A"), (10, "B+"), (1, "C")],
+    "PRs": [(1000, "S"), (200, "S"), (100, "A"), (50, "A"), (20, "A"), (10, "B+"), (1, "C")],
+    "Issues": [(1000, "S"), (200, "S"), (100, "A"), (50, "A"), (20, "A"), (10, "B+"), (1, "C")],
+    "Followers": [(1000, "S"), (200, "S"), (100, "A"), (50, "A"), (20, "A"), (10, "B+"), (1, "C")],
+}
+
+TROPHY_STYLE = {
+    "Commits": ("📝", "cyan", True),
+    "Stars": ("⭐", "violet", True),
+    "Repos": ("📦", "pink", False),
+    "PRs": ("🔀", "gold", True),
+    "Issues": ("🐛", "a5b4fc", False),
+    "Followers": ("👥", "5eead4", False),
+}
+
+GRADE_POINTS = {"S": 5, "A": 4, "B+": 3, "B": 3, "C": 2, "?": 0}
+
+
+def _curl_json(url: str) -> object:
+    raw = subprocess.check_output(["curl", "-sf", url], text=True)
+    return json.loads(raw)
+
+
+def trophy_grade(metric: str, score: int) -> str:
+    if score <= 0:
+        return "?"
+    for threshold, grade in TROPHY_THRESHOLDS[metric]:
+        if score >= threshold:
+            return grade
+    return "?"
+
+
+def overall_grade(grades: list[str]) -> str:
+    scored = [GRADE_POINTS[g] for g in grades if g != "?"]
+    if not scored:
+        return "?"
+    avg = sum(scored) / len(scored)
+    if avg >= 4.5:
+        return "S"
+    if avg >= 3.5:
+        return "A"
+    if avg >= 2.5:
+        return "B+"
+    if avg >= 1.5:
+        return "C"
+    return "?"
+
+
+def fetch_github_stats(username: str) -> dict:
+    user = _curl_json(f"https://api.github.com/users/{username}")
+    repos = []
+    page = 1
+    while True:
+        batch = _curl_json(
+            f"https://api.github.com/users/{username}/repos?per_page=100&page={page}&sort=updated"
+        )
+        if not batch:
+            break
+        repos.extend(batch)
+        if len(batch) < 100:
+            break
+        page += 1
+
+    total_stars = sum(r.get("stargazers_count", 0) for r in repos)
+    total_commits = 0
+    lang_bytes: dict[str, int] = {}
+
+    for repo in repos:
+        name = repo["name"]
+        try:
+            contribs = _curl_json(
+                f"https://api.github.com/repos/{username}/{name}/contributors?per_page=100"
+            )
+            if isinstance(contribs, list):
+                for c in contribs:
+                    if c.get("login", "").lower() == username.lower():
+                        total_commits += c.get("contributions", 0)
+                        break
+        except subprocess.CalledProcessError:
+            pass
+        try:
+            langs = _curl_json(
+                f"https://api.github.com/repos/{username}/{name}/languages"
+            )
+            if isinstance(langs, dict):
+                for lang, size in langs.items():
+                    lang_bytes[lang] = lang_bytes.get(lang, 0) + size
+        except subprocess.CalledProcessError:
+            pass
+
+    prs = _curl_json(
+        "https://api.github.com/search/issues?"
+        + urllib.parse.urlencode({"q": f"author:{username} type:pr", "per_page": 1})
+    )["total_count"]
+    issues = _curl_json(
+        "https://api.github.com/search/issues?"
+        + urllib.parse.urlencode({"q": f"author:{username} type:issue -type:pr", "per_page": 1})
+    )["total_count"]
+
+    total_lang = sum(lang_bytes.values()) or 1
+    top_langs = [
+        (lang, round(100 * size / total_lang))
+        for lang, size in sorted(lang_bytes.items(), key=lambda x: -x[1])[:4]
+    ]
+
+    metrics = {
+        "Commits": total_commits,
+        "Stars": total_stars,
+        "Repos": user.get("public_repos", len(repos)),
+        "PRs": prs,
+        "Issues": issues,
+        "Followers": user.get("followers", 0),
+    }
+    grades = {label: trophy_grade(label, score) for label, score in metrics.items()}
+
+    return {
+        "stats": {
+            "stars": str(total_stars),
+            "commits": str(total_commits),
+            "repos": str(metrics["Repos"]),
+            "prs": str(prs),
+            "grade": overall_grade(list(grades.values())),
+        },
+        "trophies": [(grades[label], label) for label in metrics],
+        "langs": top_langs or PROFILE["langs"],
+        "projects": [
+            (r["name"], ", ".join(list(r.get("topics") or [])[:3]) or "—", str(r.get("stargazers_count", 0)))
+            for r in sorted(repos, key=lambda x: x.get("stargazers_count", 0), reverse=True)[:5]
+        ],
+    }
+
+
+def apply_github_stats(username: Optional[str] = None) -> None:
+    username = username or PROFILE["username"]
+    try:
+        live = fetch_github_stats(username)
+    except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError) as exc:
+        print(f"Warning: could not fetch GitHub stats ({exc}); using PROFILE defaults")
+        return
+    PROFILE["stats"] = live["stats"]
+    PROFILE["trophies"] = live["trophies"]
+    PROFILE["langs"] = live["langs"]
+    if live["projects"]:
+        PROFILE["projects"] = live["projects"]
+    print(
+        f"Live stats for @{username}: "
+        f"{live['stats']['commits']} commits, {live['stats']['repos']} repos, "
+        f"{live['stats']['stars']} stars"
+    )
+
 
 def xml_escape(text: str) -> str:
     return (
@@ -478,14 +635,12 @@ def trophies_svg():
     cell_w, cell_h, gap = 248, 82, 14
     ox, row1, row2 = 24, 52, 146
 
-    trophy_meta = [
-        ("S", "Commits", "📝", C["cyan"], True),
-        ("A", "Stars", "⭐", C["violet"], True),
-        ("B+", "Repos", "📦", C["pink"], False),
-        ("A", "PRs", "🔀", C["gold"], True),
-        ("B", "Issues", "🐛", "#a5b4fc", False),
-        ("C", "Followers", "👥", "#5eead4", False),
-    ]
+    trophy_meta = []
+    for grade, label in PROFILE["trophies"]:
+        icon, color_key, glow_default = TROPHY_STYLE[label]
+        color = C[color_key] if color_key in C else f"#{color_key}"
+        glow = glow_default and grade in ("S", "A")
+        trophy_meta.append((grade, label, icon, color, glow))
 
     cells = ""
     for i, (grade, label, icon, color, glow) in enumerate(trophy_meta):
@@ -504,6 +659,7 @@ def trophies_svg():
     </circle>'''
 
         glow_filter = ' filter="url(#gradeGlow)"' if glow else ""
+        grade_color = C["text_dim"] if grade == "?" else color
 
         cells += f'''
   <clipPath id="{cid}"><rect x="{x}" y="{y}" width="{cell_w}" height="{cell_h}" rx="12"/></clipPath>
@@ -513,7 +669,7 @@ def trophies_svg():
     <rect x="{x}" y="{y}" width="{cell_w}" height="{cell_h}" rx="12" fill="{C['glass']}" stroke="{color}" stroke-width="1.5"/>
     {ring}
     <text x="{x + cell_w // 2}" y="{y + 22}" font-size="14" text-anchor="middle">{icon}</text>
-    <text x="{x + cell_w // 2}" y="{y + 50}" fill="{color}" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle"{glow_filter}>{grade}</text>
+    <text x="{x + cell_w // 2}" y="{y + 50}" fill="{grade_color}" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle"{glow_filter}>{grade}</text>
     <text x="{x + cell_w // 2}" y="{y + 68}" fill="{C['text_dim']}" font-family="system-ui" font-size="11" text-anchor="middle">{label}</text>
     <g clip-path="url(#{cid})">
       <rect x="{x}" y="{y}" width="{cell_w}" height="{cell_h}" fill="url(#cellShine)" opacity="0">
@@ -820,6 +976,7 @@ Say **"update my profile"** and I will regenerate everything with your real data
 
 
 def main():
+    apply_github_stats()
     (ROOT / "banner.svg").write_text(banner_svg(light=False))
     (ROOT / "banner-light.svg").write_text(banner_svg(light=True))
     (ROOT / "lanyard.svg").write_text(lanyard_svg())
