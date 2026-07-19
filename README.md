@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Pinned to commit d2beadc46f01 — changes every push, bypasses GitHub image cache -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d2beadc46f01789e884d9b89d44af682c22b6590/banner.svg" width="100%"/>
+<!-- Pinned to commit 60cc56984194 — changes every push, bypasses GitHub image cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@60cc569841946fdfcf9166d5efe3c4cec05b3a83/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -9,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d2beadc46f01789e884d9b89d44af682c22b6590/lanyard.svg" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@60cc569841946fdfcf9166d5efe3c4cec05b3a83/lanyard.svg" width="280"/>
 </td>
 <td valign="top">
 
@@ -34,15 +34,15 @@
 <!-- Stats row -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d2beadc46f01789e884d9b89d44af682c22b6590/stats.svg" width="400"/></td>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d2beadc46f01789e884d9b89d44af682c22b6590/langs.svg" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@60cc569841946fdfcf9166d5efe3c4cec05b3a83/stats.svg" width="400"/></td>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@60cc569841946fdfcf9166d5efe3c4cec05b3a83/langs.svg" width="400"/></td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@d2beadc46f01789e884d9b89d44af682c22b6590/trophies.svg" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@60cc569841946fdfcf9166d5efe3c4cec05b3a83/trophies.svg" width="820"/>
 
 <br/><br/>
 
@@ -51,10 +51,16 @@
 
 <br/><br/>
 
-<!-- Snake (Actions → Generate Snake → Run workflow once) -->
-<img alt="Snake eating contributions" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/output/snake.svg" width="100%"/>
+<!-- Contribution Snake — GIF animates on GitHub (SVG animations are stripped) -->
+<div align="center">
 
-<p align="center"><i>🐍 Watch the snake eat my contributions!</i></p>
+### 🐍 Contribution Snake
+
+<img alt="Snake eating my GitHub contributions" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/output/snake.gif" width="100%"/>
+
+<sub>✨ Cyan snake · cosmic grid · updates daily via GitHub Actions</sub>
+
+</div>
 
 <br/>
 
