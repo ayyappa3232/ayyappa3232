@@ -4,31 +4,29 @@ on:
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/github-snake.yml
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: Platane/snk@v3
-        id: snake
+      - name: Generate snake.svg
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ayyappa3232
           outputs: |
-            dist/snake.svg
-          snake_color: "00e5ff"
-          snake_color2: "a855f7"
-          snake_color3: "12103a"
+            dist/snake.svg?color_snake=00e5ff&color_dots=070b1a,12103a,0891b2,00e5ff,a855f7
 
       - name: Push snake.svg to output branch
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -B output
-          mv dist/snake.svg snake.svg
-          git add snake.svg
-          git diff --staged --quiet || git commit -m "Update snake contribution graph"
-          git push origin output --force
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

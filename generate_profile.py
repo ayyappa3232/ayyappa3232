@@ -29,7 +29,7 @@ PROFILE = {
     "skills": ["React", "TypeScript", "Node.js", "Python", "AI/LLMs", "React Native", "SQL", "Three.js"],
     "stats": {"stars": "0", "commits": "25", "repos": "6", "prs": "0", "grade": "C"},
     "langs": [("JavaScript", 80), ("CSS", 6), ("C#", 5), ("TypeScript", 5)],
-    "trophies": [("B+", "Commits"), ("?", "Stars"), ("C", "Repos"), ("?", "PRs"), ("?", "Issues"), ("?", "Followers")],
+    "trophies": [("B+", "Commits"), ("D", "Stars"), ("C", "Repos"), ("D", "PRs"), ("D", "Issues"), ("D", "Followers")],
     "projects": [
         ("Ayyappa-Full-Stack-Engineer", "TypeScript, React, Node", "0"),
         ("RN_ASP_Server", "C#, React Native, ASP.NET", "0"),
@@ -42,7 +42,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "13",
+    "cache_v": "14",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -64,7 +64,7 @@ TROPHY_STYLE = {
     "Followers": ("👥", "5eead4", False),
 }
 
-GRADE_POINTS = {"S": 5, "A": 4, "B+": 3, "B": 3, "C": 2, "?": 0}
+GRADE_POINTS = {"S": 5, "A": 4, "B+": 3, "B": 3, "C": 2, "D": 1}
 
 
 def _curl_json(url: str) -> object:
@@ -74,18 +74,17 @@ def _curl_json(url: str) -> object:
 
 def trophy_grade(metric: str, score: int) -> str:
     if score <= 0:
-        return "?"
+        return "D"
     for threshold, grade in TROPHY_THRESHOLDS[metric]:
         if score >= threshold:
             return grade
-    return "?"
+    return "D"
 
 
 def overall_grade(grades: list[str]) -> str:
-    scored = [GRADE_POINTS[g] for g in grades if g != "?"]
-    if not scored:
-        return "?"
-    avg = sum(scored) / len(scored)
+    if not grades:
+        return "D"
+    avg = sum(GRADE_POINTS.get(g, 1) for g in grades) / len(grades)
     if avg >= 4.5:
         return "S"
     if avg >= 3.5:
@@ -94,7 +93,7 @@ def overall_grade(grades: list[str]) -> str:
         return "B+"
     if avg >= 1.5:
         return "C"
-    return "?"
+    return "D"
 
 
 def fetch_github_stats(username: str) -> dict:
@@ -659,7 +658,7 @@ def trophies_svg():
     </circle>'''
 
         glow_filter = ' filter="url(#gradeGlow)"' if glow else ""
-        grade_color = C["text_dim"] if grade == "?" else color
+        grade_color = C["text_dim"] if grade == "D" else color
 
         cells += f'''
   <clipPath id="{cid}"><rect x="{x}" y="{y}" width="{cell_w}" height="{cell_h}" rx="12"/></clipPath>
@@ -728,7 +727,7 @@ def readme_md(sha: Optional[str] = None):
     pin = sha or get_git_sha()
     # Pin to exact commit — new SHA = entirely new URL (beats GitHub profile cache)
     cdn = f"https://cdn.jsdelivr.net/gh/{u}/{u}@{pin}"
-    raw = f"https://raw.githubusercontent.com/{u}/{u}/main"
+    snake = f"https://raw.githubusercontent.com/{u}/{u}/output/snake.svg"
 
     proj_rows = "\n".join(
         f"| [{name}](https://github.com/{u}/{name}) | {tech} | ⭐ {stars} |"
@@ -784,8 +783,8 @@ def readme_md(sha: Optional[str] = None):
 
 <br/><br/>
 
-<!-- Snake (run Actions workflow first) -->
-<img alt="Snake eating contributions" src="{raw}/output/snake.svg" width="100%"/>
+<!-- Snake (Actions → Generate Snake → Run workflow once) -->
+<img alt="Snake eating contributions" src="{snake}" width="100%"/>
 
 <p align="center"><i>🐍 Watch the snake eat my contributions!</i></p>
 
@@ -820,34 +819,32 @@ on:
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/github-snake.yml
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: Platane/snk@v3
-        id: snake
+      - name: Generate snake.svg
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: {u}
           outputs: |
-            dist/snake.svg
-          snake_color: "00e5ff"
-          snake_color2: "a855f7"
-          snake_color3: "12103a"
+            dist/snake.svg?color_snake=00e5ff&color_dots=070b1a,12103a,0891b2,00e5ff,a855f7
 
       - name: Push snake.svg to output branch
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -B output
-          mv dist/snake.svg snake.svg
-          git add snake.svg
-          git diff --staged --quiet || git commit -m "Update snake contribution graph"
-          git push origin output --force
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{{{ secrets.GITHUB_TOKEN }}}}
 '''
 
 

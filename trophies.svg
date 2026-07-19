@@ -49,7 +49,7 @@
     <rect x="286" y="52" width="248" height="82" rx="12" fill="#141432" stroke="#a855f7" stroke-width="1.5"/>
     
     <text x="410" y="74" font-size="14" text-anchor="middle">⭐</text>
-    <text x="410" y="102" fill="#94a3b8" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle">?</text>
+    <text x="410" y="102" fill="#94a3b8" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle">D</text>
     <text x="410" y="120" fill="#94a3b8" font-family="system-ui" font-size="11" text-anchor="middle">Stars</text>
     <g clip-path="url(#cell1)">
       <rect x="286" y="52" width="248" height="82" fill="url(#cellShine)" opacity="0">
@@ -81,7 +81,7 @@
     <rect x="24" y="146" width="248" height="82" rx="12" fill="#141432" stroke="#fbbf24" stroke-width="1.5"/>
     
     <text x="148" y="168" font-size="14" text-anchor="middle">🔀</text>
-    <text x="148" y="196" fill="#94a3b8" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle">?</text>
+    <text x="148" y="196" fill="#94a3b8" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle">D</text>
     <text x="148" y="214" fill="#94a3b8" font-family="system-ui" font-size="11" text-anchor="middle">PRs</text>
     <g clip-path="url(#cell3)">
       <rect x="24" y="146" width="248" height="82" fill="url(#cellShine)" opacity="0">
@@ -97,7 +97,7 @@
     <rect x="286" y="146" width="248" height="82" rx="12" fill="#141432" stroke="#a5b4fc" stroke-width="1.5"/>
     
     <text x="410" y="168" font-size="14" text-anchor="middle">🐛</text>
-    <text x="410" y="196" fill="#94a3b8" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle">?</text>
+    <text x="410" y="196" fill="#94a3b8" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle">D</text>
     <text x="410" y="214" fill="#94a3b8" font-family="system-ui" font-size="11" text-anchor="middle">Issues</text>
     <g clip-path="url(#cell4)">
       <rect x="286" y="146" width="248" height="82" fill="url(#cellShine)" opacity="0">
@@ -113,7 +113,7 @@
     <rect x="548" y="146" width="248" height="82" rx="12" fill="#141432" stroke="#5eead4" stroke-width="1.5"/>
     
     <text x="672" y="168" font-size="14" text-anchor="middle">👥</text>
-    <text x="672" y="196" fill="#94a3b8" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle">?</text>
+    <text x="672" y="196" fill="#94a3b8" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle">D</text>
     <text x="672" y="214" fill="#94a3b8" font-family="system-ui" font-size="11" text-anchor="middle">Followers</text>
     <g clip-path="url(#cell5)">
       <rect x="548" y="146" width="248" height="82" fill="url(#cellShine)" opacity="0">
