@@ -124,7 +124,7 @@ PROFILE = {
         "email": "mailto:ayyappakumar.penneti@gmail.com",
         "medium": None,
     },
-    "cache_v": "23",
+    "cache_v": "24",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
