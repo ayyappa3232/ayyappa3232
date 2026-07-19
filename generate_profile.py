@@ -120,11 +120,11 @@ PROFILE = {
     "auto_projects": False,
     "social": {
         "linkedin": "https://www.linkedin.com/in/ayyappa-kumar-penneti-2604b2155",
-        "portfolio": "https://ayyappa-portfolio-mddx6r8wr.vercel.app",
+        "portfolio": "https://ayyappa-penneti-portfolio.vercel.app",
         "email": "mailto:ayyappakumar.penneti@gmail.com",
         "medium": None,
     },
-    "cache_v": "26",
+    "cache_v": "27",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
