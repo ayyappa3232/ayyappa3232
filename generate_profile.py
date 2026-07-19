@@ -120,11 +120,11 @@ PROFILE = {
     "auto_projects": False,
     "social": {
         "linkedin": "https://www.linkedin.com/in/ayyappa-kumar-penneti-2604b2155",
-        "portfolio": None,
+        "portfolio": "https://ayyappa-portfolio.vercel.app",
         "email": "mailto:ayyappakumar.penneti@gmail.com",
         "medium": None,
     },
-    "cache_v": "24",
+    "cache_v": "25",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -1379,8 +1379,53 @@ Say **"update my profile"** and I will regenerate everything with your real data
 '''
 
 
+def profile_to_json_dict() -> dict:
+    """Serialize PROFILE for portfolio site / shared data."""
+    p = PROFILE.copy()
+    p["learning_journey"] = [list(x) for x in PROFILE["learning_journey"]]
+    p["langs"] = [list(x) for x in PROFILE.get("langs", [])]
+    p["projects"] = [
+        {
+            "repo": slug,
+            "title": title,
+            "tech": tech,
+            "stars": stars,
+            "description": desc,
+            "public": slug == "twc_ai_playgrounds",
+            **({"demo_url": PROFILE["featured_repo"]["demo_url"]} if slug == "twc_ai_playgrounds" else {}),
+        }
+        for slug, title, tech, stars, desc in PROFILE["projects"]
+    ]
+    p["social"] = {
+        **PROFILE["social"],
+        "github": f"https://github.com/{PROFILE['username']}",
+        "github_profile": f"https://github.com/{PROFILE['username']}",
+    }
+    p["links"] = {
+        "github_profile_repo": f"https://github.com/{PROFILE['username']}/{PROFILE['username']}",
+        "ai_playgrounds_demo": PROFILE["featured_repo"]["demo_url"],
+    }
+    for key in ("skills_banner", "code_card", "stats", "highlights", "trophies", "auto_projects", "cache_v"):
+        p.pop(key, None)
+    return p
+
+
+def export_profile_json() -> None:
+    data = profile_to_json_dict()
+    targets = [
+        ROOT / "profile.json",
+        ROOT.parent / "portfolio" / "src" / "data" / "profile.json",
+    ]
+    payload = json.dumps(data, indent=2, ensure_ascii=False) + "\n"
+    for path in targets:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(payload, encoding="utf-8")
+    print("Exported profile.json →", ", ".join(str(t) for t in targets))
+
+
 def main():
     apply_github_stats()
+    export_profile_json()
     (ROOT / "banner.svg").write_text(banner_svg(light=False))
     (ROOT / "banner-light.svg").write_text(banner_svg(light=True))
     (ROOT / "lanyard.svg").write_text(lanyard_svg())
