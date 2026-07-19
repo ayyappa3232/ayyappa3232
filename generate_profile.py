@@ -2,7 +2,9 @@
 """Generate animated GitHub profile assets — Cosmic 3D theme."""
 
 import base64
+import subprocess
 from pathlib import Path
+from typing import Optional
 
 ROOT = Path(__file__).parent
 AVATAR_B64 = (ROOT / "avatar.b64.txt").read_text().strip()
@@ -38,7 +40,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "10",
+    "cache_v": "11",
 }
 
 def xml_escape(text: str) -> str:
@@ -509,12 +511,24 @@ def trophies_svg():
 </svg>'''
 
 
-def readme_md():
+def get_git_sha() -> str:
+    """Return current git commit SHA (used to pin CDN URLs and bust cache)."""
+    import subprocess
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, stderr=subprocess.DEVNULL
+        ).strip()
+    except Exception:
+        return PROFILE["cache_v"]
+
+
+def readme_md(sha: Optional[str] = None):
     v = PROFILE["cache_v"]
     u = PROFILE["username"]
     soc = PROFILE["social"]
-    # jsDelivr CDN refreshes faster than raw.githubusercontent.com on profile pages
-    cdn = f"https://cdn.jsdelivr.net/gh/{u}/{u}@main"
+    pin = sha or get_git_sha()
+    # Pin to exact commit — new SHA = entirely new URL (beats GitHub profile cache)
+    cdn = f"https://cdn.jsdelivr.net/gh/{u}/{u}@{pin}"
     raw = f"https://raw.githubusercontent.com/{u}/{u}/main"
 
     proj_rows = "\n".join(
@@ -524,8 +538,8 @@ def readme_md():
 
     return f'''<div align="center">
 
-<!-- jsDelivr CDN + ?v= busts GitHub profile image cache (can lag 5–30 min on raw URLs) -->
-<img alt="Animated profile banner" src="{cdn}/banner.svg?v={v}" width="100%"/>
+<!-- Pinned to commit {pin[:12]} — changes every push, bypasses GitHub image cache -->
+<img alt="Animated profile banner" src="{cdn}/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -533,7 +547,7 @@ def readme_md():
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="{cdn}/lanyard.svg?v={v}" width="280"/>
+  <img alt="Swinging ID badge" src="{cdn}/lanyard.svg" width="280"/>
 </td>
 <td valign="top">
 
@@ -554,15 +568,15 @@ def readme_md():
 <!-- Stats row -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="{cdn}/stats.svg?v={v}" width="400"/></td>
-<td><img alt="Top Languages" src="{cdn}/langs.svg?v={v}" width="400"/></td>
+<td><img alt="GitHub Stats" src="{cdn}/stats.svg" width="400"/></td>
+<td><img alt="Top Languages" src="{cdn}/langs.svg" width="400"/></td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="{cdn}/trophies.svg?v={v}" width="820"/>
+<img alt="GitHub Trophies" src="{cdn}/trophies.svg" width="820"/>
 
 <br/><br/>
 
@@ -572,7 +586,7 @@ def readme_md():
 <br/><br/>
 
 <!-- Snake (run Actions workflow first) -->
-<img alt="Snake eating contributions" src="{raw}/output/snake.svg?v={v}" width="100%"/>
+<img alt="Snake eating contributions" src="{raw}/output/snake.svg" width="100%"/>
 
 <p align="center"><i>🐍 Watch the snake eat my contributions!</i></p>
 

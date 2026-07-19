@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- jsDelivr CDN + ?v= busts GitHub profile image cache (can lag 5–30 min on raw URLs) -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@main/banner.svg?v=10" width="100%"/>
+<!-- Pinned to commit b2f93818a716 — changes every push, bypasses GitHub image cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b2f93818a7165777e2b2d0c3362fd2de03b42315/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -9,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@main/lanyard.svg?v=10" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b2f93818a7165777e2b2d0c3362fd2de03b42315/lanyard.svg" width="280"/>
 </td>
 <td valign="top">
 
@@ -34,15 +34,15 @@
 <!-- Stats row -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@main/stats.svg?v=10" width="400"/></td>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@main/langs.svg?v=10" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b2f93818a7165777e2b2d0c3362fd2de03b42315/stats.svg" width="400"/></td>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b2f93818a7165777e2b2d0c3362fd2de03b42315/langs.svg" width="400"/></td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@main/trophies.svg?v=10" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b2f93818a7165777e2b2d0c3362fd2de03b42315/trophies.svg" width="820"/>
 
 <br/><br/>
 
@@ -52,7 +52,7 @@
 <br/><br/>
 
 <!-- Snake (run Actions workflow first) -->
-<img alt="Snake eating contributions" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/output/snake.svg?v=10" width="100%"/>
+<img alt="Snake eating contributions" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/output/snake.svg" width="100%"/>
 
 <p align="center"><i>🐍 Watch the snake eat my contributions!</i></p>
 
