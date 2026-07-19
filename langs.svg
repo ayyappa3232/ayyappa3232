@@ -12,28 +12,28 @@
   <rect width="400" height="220" rx="12" fill="url(#cardGrad)" stroke="#a855f7" stroke-width="1.5"/>
   <text x="20" y="32" fill="#e2e8f0" font-family="system-ui" font-size="16" font-weight="bold">Top Languages</text>
   
-  <text x="20" y="50" fill="#e2e8f0" font-family="system-ui" font-size="13">JavaScript</text>
-  <text x="380" y="50" fill="#00e5ff" font-family="monospace" font-size="12" text-anchor="end">78%</text>
+  <text x="20" y="50" fill="#e2e8f0" font-family="system-ui" font-size="13">Python</text>
+  <text x="380" y="50" fill="#00e5ff" font-family="monospace" font-size="12" text-anchor="end">51%</text>
   <rect x="20" y="56" width="360" height="12" rx="6" fill="#141432"/>
   <rect x="20" y="56" width="0" height="12" rx="6" fill="url(#barGrad)">
-    <animate attributeName="width" from="0" to="280.8" dur="1.2s" begin="0.2s" fill="freeze"/>
+    <animate attributeName="width" from="0" to="183.6" dur="1.2s" begin="0.2s" fill="freeze"/>
   </rect>
-  <text x="20" y="92" fill="#e2e8f0" font-family="system-ui" font-size="13">CSS</text>
-  <text x="380" y="92" fill="#00e5ff" font-family="monospace" font-size="12" text-anchor="end">6%</text>
+  <text x="20" y="92" fill="#e2e8f0" font-family="system-ui" font-size="13">TypeScript</text>
+  <text x="380" y="92" fill="#00e5ff" font-family="monospace" font-size="12" text-anchor="end">44%</text>
   <rect x="20" y="98" width="360" height="12" rx="6" fill="#141432"/>
   <rect x="20" y="98" width="0" height="12" rx="6" fill="url(#barGrad)">
-    <animate attributeName="width" from="0" to="21.6" dur="1.2s" begin="0.35s" fill="freeze"/>
+    <animate attributeName="width" from="0" to="158.4" dur="1.2s" begin="0.35s" fill="freeze"/>
   </rect>
-  <text x="20" y="134" fill="#e2e8f0" font-family="system-ui" font-size="13">Python</text>
-  <text x="380" y="134" fill="#00e5ff" font-family="monospace" font-size="12" text-anchor="end">6%</text>
+  <text x="20" y="134" fill="#e2e8f0" font-family="system-ui" font-size="13">CSS</text>
+  <text x="380" y="134" fill="#00e5ff" font-family="monospace" font-size="12" text-anchor="end">4%</text>
   <rect x="20" y="140" width="360" height="12" rx="6" fill="#141432"/>
   <rect x="20" y="140" width="0" height="12" rx="6" fill="url(#barGrad)">
-    <animate attributeName="width" from="0" to="21.6" dur="1.2s" begin="0.5s" fill="freeze"/>
+    <animate attributeName="width" from="0" to="14.4" dur="1.2s" begin="0.5s" fill="freeze"/>
   </rect>
-  <text x="20" y="176" fill="#e2e8f0" font-family="system-ui" font-size="13">C#</text>
-  <text x="380" y="176" fill="#00e5ff" font-family="monospace" font-size="12" text-anchor="end">5%</text>
+  <text x="20" y="176" fill="#e2e8f0" font-family="system-ui" font-size="13">Makefile</text>
+  <text x="380" y="176" fill="#00e5ff" font-family="monospace" font-size="12" text-anchor="end">0%</text>
   <rect x="20" y="182" width="360" height="12" rx="6" fill="#141432"/>
   <rect x="20" y="182" width="0" height="12" rx="6" fill="url(#barGrad)">
-    <animate attributeName="width" from="0" to="18.0" dur="1.2s" begin="0.6499999999999999s" fill="freeze"/>
+    <animate attributeName="width" from="0" to="0.0" dur="1.2s" begin="0.6499999999999999s" fill="freeze"/>
   </rect>
 </svg>

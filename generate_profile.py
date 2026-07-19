@@ -96,11 +96,17 @@ PROFILE = {
     "highlights": {"ai_projects": "3", "open_source": "3"},
     "langs": [("JavaScript", 80), ("CSS", 6), ("C#", 5), ("TypeScript", 5)],
     "trophies": [("B+", "Commits"), ("D", "Stars"), ("C", "Repos"), ("D", "PRs"), ("D", "Issues"), ("D", "Followers")],
-    # (repo_slug, display_title, tech, stars)
+    # (repo_slug, display_title, tech, stars, description optional)
     "projects": [
-        ("twc_familysync", "FamilySync", "React Native, TypeScript, Firebase", "—"),
-        ("twc_ai_playgrounds", "AI Playgrounds", "React, LangGraph, OpenAI, MCP", "—"),
-        ("twc_pro_recorder", "Pro Recorder", "React Native, TypeScript", "—"),
+        (
+            "twc_ai_playgrounds",
+            "AI Playgrounds",
+            "Python, TypeScript, Docker, LangGraph",
+            "0",
+            "Full-stack AI playground — LangGraph, LLM & MCP experiments",
+        ),
+        ("twc_familysync", "FamilySync", "React Native, TypeScript, Firebase", "—", "Private · family coordination app"),
+        ("twc_pro_recorder", "Pro Recorder", "React Native, TypeScript", "—", "Private · professional recording app"),
     ],
     "auto_projects": False,
     "social": {
@@ -109,7 +115,7 @@ PROFILE = {
         "email": "mailto:ayyappakumar.penneti@gmail.com",
         "medium": None,
     },
-    "cache_v": "19",
+    "cache_v": "20",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -248,18 +254,49 @@ def fetch_github_stats(username: str) -> dict:
     }
 
 
+def refresh_featured_projects(username: str) -> None:
+    refreshed = []
+    public_count = 0
+    for row in PROFILE["projects"]:
+        repo, title, tech, stars = row[:4]
+        desc = row[4] if len(row) > 4 else ""
+        try:
+            data = _curl_json(f"https://api.github.com/repos/{username}/{repo}")
+            if isinstance(data, dict) and data.get("name"):
+                public_count += 1
+                stars = str(data.get("stargazers_count", 0))
+                if data.get("description"):
+                    desc = data["description"]
+                langs = _curl_json(
+                    f"https://api.github.com/repos/{username}/{repo}/languages"
+                )
+                if isinstance(langs, dict) and langs:
+                    tech = ", ".join(
+                        k for k, _ in sorted(langs.items(), key=lambda x: -x[1])[:4]
+                    )
+        except subprocess.CalledProcessError:
+            pass
+        entry = (repo, title, tech, stars, desc) if desc else (repo, title, tech, stars)
+        refreshed.append(entry)
+    PROFILE["projects"] = refreshed
+    if public_count:
+        PROFILE["highlights"]["open_source"] = str(public_count)
+
+
 def apply_github_stats(username: Optional[str] = None) -> None:
     username = username or PROFILE["username"]
     try:
         live = fetch_github_stats(username)
     except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError) as exc:
         print(f"Warning: could not fetch GitHub stats ({exc}); using PROFILE defaults")
+        refresh_featured_projects(username)
         return
     PROFILE["stats"] = live["stats"]
     PROFILE["trophies"] = live["trophies"]
     PROFILE["langs"] = live["langs"]
     if PROFILE.get("auto_projects") and live["projects"]:
         PROFILE["projects"] = live["projects"]
+    refresh_featured_projects(username)
     print(
         f"Live stats for @{username}: "
         f"{live['stats']['commits']} commits, {live['stats']['repos']} repos, "
@@ -867,6 +904,18 @@ def _readme_list(items: list[str], prefix: str) -> str:
     return "\n".join(f"{prefix} {item}" for item in items)
 
 
+def _project_row(username: str, row: tuple) -> str:
+    repo, title, tech, stars = row[:4]
+    desc = row[4] if len(row) > 4 else ""
+    label = f"{title} 🌐" if repo == "twc_ai_playgrounds" else title
+    if desc:
+        return (
+            f"| [{label}](https://github.com/{username}/{repo}) "
+            f"| {desc} | {tech} | ⭐ {stars} |"
+        )
+    return f"| [{label}](https://github.com/{username}/{repo}) | {tech} | ⭐ {stars} |"
+
+
 def _readme_connect_badges(soc: dict, username: str) -> str:
     badges = [
         f"[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)]({soc['linkedin']})",
@@ -905,8 +954,7 @@ def readme_md(sha: Optional[str] = None):
     )
 
     proj_rows = "\n".join(
-        f"| [{title}](https://github.com/{u}/{repo}) | {tech} | ⭐ {stars} |"
-        for repo, title, tech, stars in PROFILE["projects"]
+        _project_row(u, row) for row in PROFILE["projects"]
     )
 
     about_md = _readme_html_list(PROFILE["about"])
@@ -942,8 +990,8 @@ def readme_md(sha: Optional[str] = None):
 
 ### ✨ My Projects
 
-| Project | Tech | Stars |
-|:--------|:------|-----:|
+| Project | About | Tech | Stars |
+|:--------|:--------|:------|-----:|
 {proj_rows}
 
 *"Building AI that works, not just demos. 🚀"*
