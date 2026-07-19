@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Use full raw URLs + ?v= cache bust — GitHub profile caches relative paths aggressively -->
-<img alt="Animated profile banner" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/banner.svg?v=7" width="100%"/>
+<img alt="Animated profile banner" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/banner.svg?v=8" width="100%"/>
 
 <br/><br/>
 
@@ -9,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/lanyard.svg?v=7" width="280"/>
+  <img alt="Swinging ID badge" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/lanyard.svg?v=8" width="280"/>
 </td>
 <td valign="top">
 
@@ -34,15 +34,15 @@
 <!-- Stats row -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/stats.svg?v=7" width="400"/></td>
-<td><img alt="Top Languages" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/langs.svg?v=7" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/stats.svg?v=8" width="400"/></td>
+<td><img alt="Top Languages" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/langs.svg?v=8" width="400"/></td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/trophies.svg?v=7" width="820"/>
+<img alt="GitHub Trophies" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/main/trophies.svg?v=8" width="820"/>
 
 <br/><br/>
 
@@ -52,7 +52,7 @@
 <br/><br/>
 
 <!-- Snake (run Actions workflow first) -->
-<img alt="Snake eating contributions" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/output/snake.svg?v=7" width="100%"/>
+<img alt="Snake eating contributions" src="https://raw.githubusercontent.com/ayyappa3232/ayyappa3232/output/snake.svg?v=8" width="100%"/>
 
 <p align="center"><i>🐍 Watch the snake eat my contributions!</i></p>
 

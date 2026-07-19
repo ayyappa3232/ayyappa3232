@@ -38,7 +38,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "7",
+    "cache_v": "8",
 }
 
 def xml_escape(text: str) -> str:
@@ -127,13 +127,16 @@ def banner_svg(light=False):
       </text>'''
 
     # ── Tech pills (2 rows, fixed grid) ──
+    stats_y = 362
+    tech_label_y = 412
+    tech_pill_start = 424
     skills_pills = ""
     pill_w = [88, 98, 88, 88]
     for i, sk in enumerate(PROFILE["skills"][:8]):
         col = i % 4
         row = i // 4
         x = 44 + col * 148
-        y = 410 + row * 34
+        y = tech_pill_start + row * 34
         w = max(len(sk) * 8 + 22, 72)
         skills_pills += f'''
       <g opacity="0">
@@ -255,14 +258,14 @@ def banner_svg(light=False):
   <!-- Stats bar -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.0s" dur="0.5s" fill="freeze"/>
-    <rect x="36" y="368" width="604" height="30" rx="8" fill="{glass}" stroke="{cyan}" stroke-width="0.5"/>
-    <text x="50" y="388" fill="{text_dim}" font-family="monospace" font-size="11">
+    <rect x="36" y="{stats_y}" width="604" height="32" rx="8" fill="{glass}" stroke="{cyan}" stroke-width="0.5"/>
+    <text x="50" y="{stats_y + 21}" fill="{text_dim}" font-family="monospace" font-size="11">
       ⭐ {stats['stars']} stars   ·   📝 {stats['commits']} commits   ·   📦 {stats['repos']} repos   ·   🔀 {stats['prs']} PRs
     </text>
   </g>
 
   <!-- Tech stack label + pills -->
-  <text x="44" y="398" fill="{violet}" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" opacity="0">
+  <text x="44" y="{tech_label_y}" fill="{violet}" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.1s" dur="0.4s" fill="freeze"/>
     ⚡ Tech Stack
   </text>
@@ -322,6 +325,13 @@ def banner_svg(light=False):
 
 
 def lanyard_svg():
+    card_x, card_y, card_w, card_h = 70, 242, 180, 238
+    avatar_cy = 302
+    avatar_r = 48
+    img_size = 96
+    img_x = 160 - img_size // 2
+    img_y = avatar_cy - img_size // 2
+
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 320 480" width="320" height="480">
   <defs>
     <linearGradient id="strapGrad" x1="0" y1="0" x2="0" y2="1">
@@ -334,11 +344,12 @@ def lanyard_svg():
     </linearGradient>
     <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="white" stop-opacity="0"/>
-      <stop offset="50%" stop-color="white" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="white" stop-opacity="0.15"/>
       <stop offset="100%" stop-color="white" stop-opacity="0"/>
     </linearGradient>
     <filter id="card3d"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity="0.5"/></filter>
-    <clipPath id="avatarClip"><circle cx="160" cy="280" r="52"/></clipPath>
+    <clipPath id="avatarClip"><circle cx="160" cy="{avatar_cy}" r="{avatar_r}"/></clipPath>
+    <clipPath id="cardClip"><rect x="{card_x}" y="{card_y}" width="{card_w}" height="{card_h}" rx="14"/></clipPath>
   </defs>
 
   <g transform="rotate(0 160 0)">
@@ -349,34 +360,46 @@ def lanyard_svg():
       values="0 -400; 0 0" dur="0.8s" begin="0s" fill="freeze" additive="sum"
       calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
 
+    <!-- Lanyard strap + hardware (drawn before card) -->
     <rect x="148" y="0" width="24" height="200" fill="url(#strapGrad)" rx="4"/>
     <text x="160" y="80" fill="white" font-family="monospace" font-size="8" text-anchor="middle" transform="rotate(90 160 80)">{PROFILE['username'].upper()}</text>
     <rect x="142" y="198" width="36" height="12" rx="3" fill="#888"/>
     <circle cx="160" cy="218" r="10" fill="#bbb" stroke="#666" stroke-width="2"/>
 
+    <!-- ID card body -->
     <g filter="url(#card3d)">
-      <rect x="70" y="228" width="180" height="230" rx="14" fill="url(#cardGrad)" stroke="{C['cyan']}" stroke-width="2"/>
+      <rect x="{card_x}" y="{card_y}" width="{card_w}" height="{card_h}" rx="14" fill="url(#cardGrad)" stroke="{C['cyan']}" stroke-width="2"/>
     </g>
-    <rect x="70" y="228" width="180" height="230" rx="14" fill="url(#shine)" opacity="0">
-      <animate attributeName="opacity" values="0;0.5;0" dur="2.5s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" from="-180 0" to="180 0" dur="2.5s" repeatCount="indefinite"/>
-    </rect>
 
-    <circle cx="160" cy="280" r="56" fill="none" stroke="{C['cyan']}" stroke-width="3" opacity="0.9">
+    <!-- Avatar -->
+    <circle cx="160" cy="{avatar_cy}" r="{avatar_r + 4}" fill="none" stroke="{C['cyan']}" stroke-width="2.5" opacity="0.9">
       <animate attributeName="stroke-opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
     </circle>
     <g clip-path="url(#avatarClip)">
-      <image x="108" y="228" width="104" height="104" preserveAspectRatio="xMidYMid slice"
+      <image x="{img_x}" y="{img_y}" width="{img_size}" height="{img_size}" preserveAspectRatio="xMidYMid slice"
              href="data:image/png;base64,{AVATAR_B64}" xlink:href="data:image/png;base64,{AVATAR_B64}"/>
     </g>
 
-    <text x="160" y="360" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold" text-anchor="middle">{PROFILE['name']}</text>
-    <text x="160" y="380" fill="{C['cyan']}" font-family="system-ui" font-size="11" text-anchor="middle">{PROFILE['role']}</text>
-    <text x="160" y="398" fill="{C['text_dim']}" font-family="monospace" font-size="10" text-anchor="middle">@{PROFILE['username']}</text>
-    <g transform="translate(90, 410)">
-      {"".join(f'<rect x="{i*4}" y="0" width="{2 if i%3 else 3}" height="28" fill="{C["violet"]}"/>' for i in range(22))}
+    <!-- Text + barcode -->
+    <text x="160" y="378" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold" text-anchor="middle">{PROFILE['name']}</text>
+    <text x="160" y="396" fill="{C['cyan']}" font-family="system-ui" font-size="11" text-anchor="middle">{PROFILE['role']}</text>
+    <text x="160" y="412" fill="{C['text_dim']}" font-family="monospace" font-size="10" text-anchor="middle">@{PROFILE['username']}</text>
+    <g transform="translate(90, 424)">
+      {"".join(f'<rect x="{i*4}" y="0" width="{2 if i%3 else 3}" height="24" fill="{C["violet"]}"/>' for i in range(22))}
     </g>
-    <text x="160" y="455" fill="{C['text_dim']}" font-family="monospace" font-size="8" text-anchor="middle">DEV ID • 2026</text>
+    <text x="160" y="468" fill="{C['text_dim']}" font-family="monospace" font-size="8" text-anchor="middle">DEV ID • 2026</text>
+
+    <!-- Holographic shine — clipped to card only -->
+    <g clip-path="url(#cardClip)">
+      <rect x="{card_x}" y="{card_y}" width="{card_w}" height="{card_h}" fill="url(#shine)" opacity="0">
+        <animate attributeName="opacity" values="0;0.45;0" dur="2.5s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" from="-{card_w} 0" to="{card_w} 0" dur="2.5s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+
+    <!-- Hardware on top of card border -->
+    <rect x="142" y="198" width="36" height="12" rx="3" fill="#888"/>
+    <circle cx="160" cy="218" r="10" fill="#bbb" stroke="#666" stroke-width="2"/>
   </g>
 </svg>'''
 
