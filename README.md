@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Pinned to commit b436cb6ff64c — changes every push, bypasses GitHub profile cache -->
-<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b436cb6ff64c284c10defb12bea9360789b7c308/banner.svg" width="100%"/>
+<!-- Pinned to commit 887b6bd81c32 — changes every push, bypasses GitHub profile cache -->
+<img alt="Animated profile banner" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@887b6bd81c3256a518f4a13caa46dfd7c78b7e60/banner.svg" width="100%"/>
 
 <br/><br/>
 
@@ -9,7 +9,7 @@
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b436cb6ff64c284c10defb12bea9360789b7c308/lanyard.svg" width="280"/>
+  <img alt="Swinging ID badge" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@887b6bd81c3256a518f4a13caa46dfd7c78b7e60/lanyard.svg" width="280"/>
 </td>
 <td valign="top" align="left">
 
@@ -45,21 +45,19 @@
 
 ### 🚀 Featured Open Source
 
-<a href="https://github.com/ayyappa3232/twc_ai_playgrounds">
-  <img src="https://img.shields.io/badge/AI_Playgrounds-9_playgrounds_·_131_labs-00e5ff?style=for-the-badge&logo=github&logoColor=white" alt="AI Playgrounds"/>
-</a>
+<a href="https://github.com/ayyappa3232/twc_ai_playgrounds" target="_blank" rel="noopener noreferrer"><img alt="AI Playgrounds" src="https://img.shields.io/badge/AI_Playgrounds-9_playgrounds_·_131_labs-00e5ff?style=for-the-badge&logo=github&logoColor=white"/></a>
 
 <br/><br/>
 
 
-<a href="https://twc-playgrounds.vercel.app/">
-  <img alt="AI Playgrounds live demo — LangGraph learning hub" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b436cb6ff64c284c10defb12bea9360789b7c308/ai-playgrounds-demo.png" width="1024"/>
+<a href="https://twc-playgrounds.vercel.app/" target="_blank" rel="noopener noreferrer">
+  <img alt="AI Playgrounds live demo — LangGraph learning hub" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@887b6bd81c3256a518f4a13caa46dfd7c78b7e60/ai-playgrounds-demo.png" width="1024"/>
 </a>
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-tw--playgrounds.vercel.app-ec4899?style=for-the-badge&logo=vercel&logoColor=white)](https://twc-playgrounds.vercel.app/)
-[![Source Code](https://img.shields.io/badge/Source_Code-GitHub-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayyappa3232/twc_ai_playgrounds)
+<a href="https://twc-playgrounds.vercel.app/" target="_blank" rel="noopener noreferrer"><img alt="Live Demo" src="https://img.shields.io/badge/Live_Demo-tw--playgrounds.vercel.app-ec4899?style=for-the-badge&logo=vercel&logoColor=white"/></a>
+<a href="https://github.com/ayyappa3232/twc_ai_playgrounds" target="_blank" rel="noopener noreferrer"><img alt="Source Code" src="https://img.shields.io/badge/Source_Code-GitHub-00e5ff?style=for-the-badge&logo=github&logoColor=white"/></a>
 
 <br/><br/>
 
@@ -151,11 +149,11 @@ Prompts · LangChain · LangGraph · RAG · MCP · Multi-Agent · LangSmith · E
 <!-- Stats + Journey -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b436cb6ff64c284c10defb12bea9360789b7c308/stats.svg" width="400"/></td>
-<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b436cb6ff64c284c10defb12bea9360789b7c308/learning.svg" width="400"/></td>
+<td><img alt="GitHub Stats" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@887b6bd81c3256a518f4a13caa46dfd7c78b7e60/stats.svg" width="400"/></td>
+<td><img alt="Learning Journey" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@887b6bd81c3256a518f4a13caa46dfd7c78b7e60/learning.svg" width="400"/></td>
 </tr>
 <tr>
-<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b436cb6ff64c284c10defb12bea9360789b7c308/langs.svg" width="400"/></td>
+<td><img alt="Top Languages" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@887b6bd81c3256a518f4a13caa46dfd7c78b7e60/langs.svg" width="400"/></td>
 <td align="center" valign="middle">
 
 **📈 Highlights**
@@ -174,7 +172,7 @@ Prompts · LangChain · LangGraph · RAG · MCP · Multi-Agent · LangSmith · E
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@b436cb6ff64c284c10defb12bea9360789b7c308/trophies.svg" width="820"/>
+<img alt="GitHub Trophies" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@887b6bd81c3256a518f4a13caa46dfd7c78b7e60/trophies.svg" width="820"/>
 
 <br/><br/>
 
@@ -196,7 +194,7 @@ Prompts · LangChain · LangGraph · RAG · MCP · Multi-Agent · LangSmith · E
 <tr>
 <td align="center" bgcolor="#12103a">
 
-<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=27" width="820"/>
+<img alt="Snake eating my GitHub contributions" src="https://cdn.jsdelivr.net/gh/ayyappa3232/ayyappa3232@output/snake.gif?v=28" width="820"/>
 
 </td>
 </tr>
@@ -233,15 +231,15 @@ I enjoy turning complex AI concepts into simple explanations. Currently obsessed
 <!-- Connect -->
 ### 🌐 Let's Connect
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white)](https://ayyappa-penneti-portfolio.vercel.app)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ayyappa-kumar-penneti-2604b2155)
-[![GitHub](https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayyappa3232)
-[![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ayyappakumar.penneti@gmail.com)
+<a href="https://ayyappa-penneti-portfolio.vercel.app" target="_blank" rel="noopener noreferrer"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white"/></a>
+<a href="https://www.linkedin.com/in/ayyappa-kumar-penneti-2604b2155" target="_blank" rel="noopener noreferrer"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+<a href="https://github.com/ayyappa3232" target="_blank" rel="noopener noreferrer"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-ayyappa3232-00e5ff?style=for-the-badge&logo=github&logoColor=white"/></a>
+<a href="mailto:ayyappakumar.penneti@gmail.com" target="_blank" rel="noopener noreferrer"><img alt="Email" src="https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white"/></a>
 
 <br/>
 
 <!-- Profile views -->
-<a href="https://github.com/ayyappa3232">
+<a href="https://github.com/ayyappa3232" target="_blank" rel="noopener noreferrer">
 <img alt="Profile views" src="https://komarev.com/ghpvc/?username=ayyappa3232&label=Profile%20Views&color=00e5ff&style=for-the-badge"/>
 </a>
 
