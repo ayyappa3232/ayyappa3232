@@ -38,7 +38,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "6",
+    "cache_v": "7",
 }
 
 def xml_escape(text: str) -> str:
@@ -299,7 +299,7 @@ def banner_svg(light=False):
   <g clip-path="url(#photoReveal)">
     <g clip-path="url(#photoClip)">
       <image x="700" y="72" width="520" height="596" preserveAspectRatio="xMidYMid slice"
-             href="data:image/jpeg;base64,{AVATAR_B64}" xlink:href="data:image/jpeg;base64,{AVATAR_B64}"/>
+             href="data:image/png;base64,{AVATAR_B64}" xlink:href="data:image/png;base64,{AVATAR_B64}"/>
       <rect x="700" y="72" width="520" height="596" fill="url(#panelGrad)" opacity="0.15"/>
     </g>
   </g>
@@ -367,7 +367,7 @@ def lanyard_svg():
     </circle>
     <g clip-path="url(#avatarClip)">
       <image x="108" y="228" width="104" height="104" preserveAspectRatio="xMidYMid slice"
-             href="data:image/jpeg;base64,{AVATAR_B64}" xlink:href="data:image/jpeg;base64,{AVATAR_B64}"/>
+             href="data:image/png;base64,{AVATAR_B64}" xlink:href="data:image/png;base64,{AVATAR_B64}"/>
     </g>
 
     <text x="160" y="360" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold" text-anchor="middle">{PROFILE['name']}</text>
