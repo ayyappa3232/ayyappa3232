@@ -36,7 +36,7 @@ PROFILE = {
         "Learning LangGraph, MCP and LLM Architecture",
         "Passionate about clean architecture & developer experience",
         "Interested in System Design, AI Agents and Full Stack AI",
-        "Building practical AI applications with Cursor AI",
+        "Building AI Playgrounds — 131 labs across LangGraph, RAG & MCP",
         "Always open to learning and collaborating",
     ],
     "skills_banner": [
@@ -93,7 +93,7 @@ PROFILE = {
         ],
     },
     "stats": {"stars": "0", "commits": "25", "repos": "6", "prs": "0", "followers": "0", "grade": "C"},
-    "highlights": {"ai_projects": "3", "open_source": "3"},
+    "highlights": {"ai_projects": "131 labs", "open_source": "1"},
     "langs": [("JavaScript", 80), ("CSS", 6), ("C#", 5), ("TypeScript", 5)],
     "trophies": [("B+", "Commits"), ("D", "Stars"), ("C", "Repos"), ("D", "PRs"), ("D", "Issues"), ("D", "Followers")],
     # (repo_slug, display_title, tech, stars, description optional)
@@ -101,13 +101,20 @@ PROFILE = {
         (
             "twc_ai_playgrounds",
             "AI Playgrounds",
-            "Python, TypeScript, Docker, LangGraph",
+            "Python, TypeScript, Next.js, LangGraph",
             "0",
-            "Full-stack AI playground — LangGraph, LLM & MCP experiments",
+            "9 playgrounds · 131 labs — LangChain, LangGraph, RAG, MCP & multi-agent",
         ),
         ("twc_familysync", "FamilySync", "React Native, TypeScript, Firebase", "—", "Private · family coordination app"),
         ("twc_pro_recorder", "Pro Recorder", "React Native, TypeScript", "—", "Private · professional recording app"),
     ],
+    "featured_repo": {
+        "slug": "twc_ai_playgrounds",
+        "headline": "Master the full AI stack",
+        "stats": "9 playgrounds · 131 hands-on labs",
+        "tracks": "Prompts · LangChain · LangGraph · RAG · MCP · Multi-Agent · LangSmith · Evals",
+        "deploy": "Free Vercel demo ($0) · `make dev` for live Python + WebSocket streaming",
+    },
     "auto_projects": False,
     "social": {
         "linkedin": "https://www.linkedin.com/in/ayyappa-kumar-penneti-2604b2155",
@@ -115,7 +122,7 @@ PROFILE = {
         "email": "mailto:ayyappakumar.penneti@gmail.com",
         "medium": None,
     },
-    "cache_v": "20",
+    "cache_v": "21",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -267,6 +274,8 @@ def refresh_featured_projects(username: str) -> None:
                 stars = str(data.get("stargazers_count", 0))
                 if data.get("description"):
                     desc = data["description"]
+                elif len(row) > 4 and row[4]:
+                    desc = row[4]
                 langs = _curl_json(
                     f"https://api.github.com/repos/{username}/{repo}/languages"
                 )
@@ -916,6 +925,45 @@ def _project_row(username: str, row: tuple) -> str:
     return f"| [{label}](https://github.com/{username}/{repo}) | {tech} | ⭐ {stars} |"
 
 
+def _readme_featured_repo(username: str) -> str:
+    feat = PROFILE.get("featured_repo")
+    if not feat:
+        return ""
+    slug = feat["slug"]
+    url = f"https://github.com/{username}/{slug}"
+    return f'''
+<br/>
+
+### 🚀 Featured Open Source
+
+<a href="{url}">
+  <img src="https://img.shields.io/badge/AI_Playgrounds-9_playgrounds_·_131_labs-00e5ff?style=for-the-badge&logo=github&logoColor=white" alt="AI Playgrounds"/>
+</a>
+
+<br/><br/>
+
+<table>
+<tr>
+<td align="left" valign="top">
+
+**{feat["headline"]}** — {feat["stats"]}
+
+{feat["tracks"]}
+
+<br/>
+
+🌐 {feat["deploy"]}
+
+<br/><br/>
+
+👉 **[Explore the repo]({url})**
+
+</td>
+</tr>
+</table>
+'''
+
+
 def _readme_connect_badges(soc: dict, username: str) -> str:
     badges = [
         f"[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)]({soc['linkedin']})",
@@ -966,6 +1014,7 @@ def readme_md(sha: Optional[str] = None):
     st = PROFILE["stats"]
     hl = PROFILE["highlights"]
     connect_md = _readme_connect_badges(soc, u)
+    featured_md = _readme_featured_repo(u)
 
     return f'''<div align="center">
 
@@ -999,6 +1048,7 @@ def readme_md(sha: Optional[str] = None):
 </td>
 </tr>
 </table>
+{featured_md}
 
 <br/>
 
@@ -1050,7 +1100,7 @@ def readme_md(sha: Optional[str] = None):
 **📈 Highlights**
 
 🏆 AI Projects · **{hl.get('ai_projects', '—')}**  
-📦 Open Source · **{hl.get('open_source', '—')}**  
+📦 Open Source · **{hl.get('open_source', '—')} public**  
 🔥 Streak · see below  
 💻 Contributions · **{st.get('commits', '0')}**  
 📚 Repos · **{st.get('repos', '0')}**  
