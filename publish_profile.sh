@@ -9,7 +9,7 @@ echo "==> Generating SVG assets..."
 python3 generate_profile.py
 
 echo "==> Commit 1: SVG files..."
-git add banner.svg banner-light.svg lanyard.svg stats.svg langs.svg learning.svg trophies.svg generate_profile.py publish_profile.sh .github/workflows/github-snake.yml
+git add banner.svg banner-light.svg lanyard.svg stats.svg langs.svg learning.svg trophies.svg ai-playgrounds-demo.png generate_profile.py publish_profile.sh .github/workflows/github-snake.yml
 git diff --staged --quiet && echo "No SVG changes to commit." || git commit -m "Update profile SVG assets"
 
 echo "==> Pushing SVG commit..."

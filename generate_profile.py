@@ -110,10 +110,12 @@ PROFILE = {
     ],
     "featured_repo": {
         "slug": "twc_ai_playgrounds",
+        "demo_url": "https://twc-playgrounds.vercel.app/",
+        "demo_image": "ai-playgrounds-demo.png",
         "headline": "Master the full AI stack",
         "stats": "9 playgrounds · 131 hands-on labs",
         "tracks": "Prompts · LangChain · LangGraph · RAG · MCP · Multi-Agent · LangSmith · Evals",
-        "deploy": "Free Vercel demo ($0) · `make dev` for live Python + WebSocket streaming",
+        "deploy": "Free in browser · no signup · `make dev` for live Python validation",
     },
     "auto_projects": False,
     "social": {
@@ -122,7 +124,7 @@ PROFILE = {
         "email": "mailto:ayyappakumar.penneti@gmail.com",
         "medium": None,
     },
-    "cache_v": "21",
+    "cache_v": "22",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -925,22 +927,46 @@ def _project_row(username: str, row: tuple) -> str:
     return f"| [{label}](https://github.com/{username}/{repo}) | {tech} | ⭐ {stars} |"
 
 
-def _readme_featured_repo(username: str) -> str:
+def _readme_featured_repo(username: str, cdn: str) -> str:
     feat = PROFILE.get("featured_repo")
     if not feat:
         return ""
     slug = feat["slug"]
-    url = f"https://github.com/{username}/{slug}"
+    repo_url = f"https://github.com/{username}/{slug}"
+    demo_url = feat.get("demo_url", "")
+    demo_img = feat.get("demo_image")
+    demo_block = ""
+    if demo_url and demo_img:
+        demo_block = f'''
+<a href="{demo_url}">
+  <img alt="AI Playgrounds live demo — LangGraph learning hub" src="{cdn}/{demo_img}" width="100%"/>
+</a>
+
+<br/>
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-tw--playgrounds.vercel.app-ec4899?style=for-the-badge&logo=vercel&logoColor=white)]({demo_url})
+[![Source Code](https://img.shields.io/badge/Source_Code-GitHub-00e5ff?style=for-the-badge&logo=github&logoColor=white)]({repo_url})
+
+<br/><br/>
+'''
+    elif demo_url:
+        demo_block = f'''
+[![Live Demo](https://img.shields.io/badge/Live_Demo-tw--playgrounds.vercel.app-ec4899?style=for-the-badge&logo=vercel&logoColor=white)]({demo_url})
+
+<br/><br/>
+'''
     return f'''
 <br/>
 
 ### 🚀 Featured Open Source
 
-<a href="{url}">
+<a href="{repo_url}">
   <img src="https://img.shields.io/badge/AI_Playgrounds-9_playgrounds_·_131_labs-00e5ff?style=for-the-badge&logo=github&logoColor=white" alt="AI Playgrounds"/>
 </a>
 
 <br/><br/>
+
+{demo_block}
 
 <table>
 <tr>
@@ -956,7 +982,7 @@ def _readme_featured_repo(username: str) -> str:
 
 <br/><br/>
 
-👉 **[Explore the repo]({url})**
+👉 **[Try the live demo]({demo_url})** · **[Explore the repo]({repo_url})**
 
 </td>
 </tr>
@@ -1014,7 +1040,7 @@ def readme_md(sha: Optional[str] = None):
     st = PROFILE["stats"]
     hl = PROFILE["highlights"]
     connect_md = _readme_connect_badges(soc, u)
-    featured_md = _readme_featured_repo(u)
+    featured_md = _readme_featured_repo(u, cdn)
 
     return f'''<div align="center">
 
