@@ -124,7 +124,7 @@ PROFILE = {
         "email": "mailto:ayyappakumar.penneti@gmail.com",
         "medium": None,
     },
-    "cache_v": "22",
+    "cache_v": "23",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -434,22 +434,28 @@ def banner_svg(light=False):
         <text x="{x + 11}" y="{y + 16}" fill="{text}" font-family="system-ui,sans-serif" font-size="11">{xml_escape(sk)}</text>
       </g>'''
 
-    # ── Code card — full panel width, clipped ──
+    # ── Code card — full panel width ──
     code_y = 488
     code_w = 604
-    code_h = 88
+    code_h = 112
+    line_count = len(PROFILE["code_card"]["lines"])
+    footer_y = code_y + code_h + 18
+    panel_h = footer_y + 28
+    banner_h = panel_h + 44
+    photo_y = 48
+    photo_h = panel_h - 28
     code_card = PROFILE["code_card"]
     code_svg = ""
     for i, line in enumerate(code_card["lines"]):
         code_svg += f'''
-    <text x="48" y="{code_y + 46 + i * 14}" fill="{code_text}" font-family="monospace" font-size="9" opacity="0">
+    <text x="48" y="{code_y + 44 + i * 14}" fill="{code_text}" font-family="monospace" font-size="9.5" opacity="0">
       <animate attributeName="opacity" from="0" to="1" begin="{3.0 + i * 0.22}s" dur="0.3s" fill="freeze"/>
       {xml_escape(line)}
     </text>'''
 
     stats = PROFILE["stats"]
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 740" width="1280" height="740">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 {banner_h}" width="1280" height="{banner_h}">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="{bg1}"/>
@@ -489,24 +495,23 @@ def banner_svg(light=False):
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <clipPath id="roleClip"><rect x="44" y="190" width="580" height="28"/></clipPath>
-    <clipPath id="codeClip"><rect x="36" y="{code_y + 24}" width="{code_w}" height="{code_h - 24}" rx="4"/></clipPath>
-    <clipPath id="photoClip"><rect x="700" y="72" width="520" height="596" rx="14"/></clipPath>
-    <clipPath id="photoReveal"><rect x="700" y="668" width="520" height="0">
-      <animate attributeName="y" from="668" to="72" dur="1.6s" begin="0.4s" fill="freeze"/>
-      <animate attributeName="height" from="0" to="596" dur="1.6s" begin="0.4s" fill="freeze"/>
+    <clipPath id="photoClip"><rect x="700" y="{photo_y + 24}" width="520" height="{photo_h - 24}" rx="14"/></clipPath>
+    <clipPath id="photoReveal"><rect x="700" y="{photo_y + photo_h - 24}" width="520" height="0">
+      <animate attributeName="y" from="{photo_y + photo_h - 24}" to="{photo_y + 24}" dur="1.6s" begin="0.4s" fill="freeze"/>
+      <animate attributeName="height" from="0" to="{photo_h - 24}" dur="1.6s" begin="0.4s" fill="freeze"/>
     </rect></clipPath>
   </defs>
 
   <!-- Background -->
-  <rect width="1280" height="740" fill="url(#bgGrad)" rx="14"/>
+  <rect width="1280" height="{banner_h}" fill="url(#bgGrad)" rx="14"/>
   <circle cx="180" cy="120" r="120" fill="{violet}" opacity="0.07"/>
   <circle cx="1050" cy="620" r="140" fill="{cyan}" opacity="0.06"/>
   <circle cx="640" cy="370" r="200" fill="{pink}" opacity="0.03"/>
 
   <!-- ═══ LEFT PANEL (3D card) ═══ -->
   <g filter="url(#drop3d)">
-    <rect x="22" y="22" width="636" height="696" rx="18" fill="{panel_lo}" opacity="0.5"/>
-    <rect x="20" y="20" width="636" height="696" rx="18" fill="url(#panelGrad)" stroke="url(#frameGrad)" stroke-width="1.5"/>
+    <rect x="22" y="22" width="636" height="{panel_h}" rx="18" fill="{panel_lo}" opacity="0.5"/>
+    <rect x="20" y="20" width="636" height="{panel_h}" rx="18" fill="url(#panelGrad)" stroke="url(#frameGrad)" stroke-width="1.5"/>
     <rect x="24" y="22" width="628" height="4" rx="2" fill="white" opacity="0.07"/>
   </g>
 
@@ -559,7 +564,7 @@ def banner_svg(light=False):
   </text>
   {skills_pills}
 
-  <!-- Code editor — full width, clipped -->
+  <!-- Code editor — full width -->
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="2.8s" dur="0.5s" fill="freeze"/>
     <rect x="36" y="{code_y}" width="{code_w}" height="{code_h}" rx="10" fill="{code_bg}" stroke="{cyan}" stroke-width="0.8"/>
@@ -567,13 +572,13 @@ def banner_svg(light=False):
     <rect x="36" y="{code_y + 14}" width="{code_w}" height="8" fill="{panel_hi}"/>
     <circle cx="50" cy="{code_y + 11}" r="4" fill="#ff5f57"/><circle cx="64" cy="{code_y + 11}" r="4" fill="#febc2e"/><circle cx="78" cy="{code_y + 11}" r="4" fill="#28c840"/>
     <text x="92" y="{code_y + 15}" fill="{text_dim}" font-family="monospace" font-size="9">{xml_escape(code_card['filename'])}</text>
-    <g clip-path="url(#codeClip)">{code_svg}</g>
+    {code_svg}
   </g>
 
   <!-- Neon sign -->
   <g filter="url(#glow3d)" opacity="0">
     <animate attributeName="opacity" from="0" to="1" begin="3.8s" dur="0.4s" fill="freeze"/>
-    <text x="338" y="598" fill="{cyan}" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">
+    <text x="338" y="{footer_y}" fill="{cyan}" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">
       <animate attributeName="opacity" values="1;0.55;1;0.75;1" dur="2.5s" repeatCount="indefinite"/>
       {xml_escape(PROFILE['footer'])}
     </text>
@@ -581,24 +586,24 @@ def banner_svg(light=False):
 
   <!-- ═══ RIGHT PANEL — 3D photo frame ═══ -->
   <g filter="url(#drop3d)">
-    <rect x="692" y="52" width="556" height="636" rx="18" fill="{panel_lo}" opacity="0.4"/>
-    <rect x="688" y="48" width="556" height="636" rx="18" fill="url(#panelGrad)" stroke="url(#frameGrad)" stroke-width="2"/>
-    <rect x="692" y="50" width="548" height="5" rx="2" fill="white" opacity="0.08"/>
+    <rect x="692" y="{photo_y + 4}" width="556" height="{photo_h}" rx="18" fill="{panel_lo}" opacity="0.4"/>
+    <rect x="688" y="{photo_y}" width="556" height="{photo_h}" rx="18" fill="url(#panelGrad)" stroke="url(#frameGrad)" stroke-width="2"/>
+    <rect x="692" y="{photo_y + 2}" width="548" height="5" rx="2" fill="white" opacity="0.08"/>
   </g>
 
   <!-- Photo with reveal -->
   <g clip-path="url(#photoReveal)">
     <g clip-path="url(#photoClip)">
-      <image x="700" y="72" width="520" height="596" preserveAspectRatio="xMidYMid slice"
+      <image x="700" y="{photo_y + 24}" width="520" height="{photo_h - 24}" preserveAspectRatio="xMidYMid slice"
              href="data:image/png;base64,{AVATAR_B64}" xlink:href="data:image/png;base64,{AVATAR_B64}"/>
-      <rect x="700" y="72" width="520" height="596" fill="url(#panelGrad)" opacity="0.15"/>
+      <rect x="700" y="{photo_y + 24}" width="520" height="{photo_h - 24}" fill="url(#panelGrad)" opacity="0.15"/>
     </g>
   </g>
 
   <!-- Soft scanner (subtle) -->
   <g clip-path="url(#photoClip)">
-    <rect x="700" y="72" width="520" height="6" fill="url(#scanGrad)" opacity="0.5">
-      <animate attributeName="y" from="72" to="662" dur="4.5s" repeatCount="indefinite"/>
+    <rect x="700" y="{photo_y + 24}" width="520" height="6" fill="url(#scanGrad)" opacity="0.5">
+      <animate attributeName="y" from="{photo_y + 24}" to="{photo_y + photo_h - 30}" dur="4.5s" repeatCount="indefinite"/>
     </rect>
   </g>
 
@@ -939,7 +944,7 @@ def _readme_featured_repo(username: str, cdn: str) -> str:
     if demo_url and demo_img:
         demo_block = f'''
 <a href="{demo_url}">
-  <img alt="AI Playgrounds live demo — LangGraph learning hub" src="{cdn}/{demo_img}" width="100%"/>
+  <img alt="AI Playgrounds live demo — LangGraph learning hub" src="{cdn}/{demo_img}" width="1024"/>
 </a>
 
 <br/>
