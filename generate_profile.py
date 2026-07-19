@@ -38,7 +38,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "8",
+    "cache_v": "9",
 }
 
 def xml_escape(text: str) -> str:
@@ -512,6 +512,8 @@ def readme_md():
     v = PROFILE["cache_v"]
     u = PROFILE["username"]
     soc = PROFILE["social"]
+    # jsDelivr CDN refreshes faster than raw.githubusercontent.com on profile pages
+    cdn = f"https://cdn.jsdelivr.net/gh/{u}/{u}@main"
     raw = f"https://raw.githubusercontent.com/{u}/{u}/main"
 
     proj_rows = "\n".join(
@@ -521,8 +523,8 @@ def readme_md():
 
     return f'''<div align="center">
 
-<!-- Use full raw URLs + ?v= cache bust — GitHub profile caches relative paths aggressively -->
-<img alt="Animated profile banner" src="{raw}/banner.svg?v={v}" width="100%"/>
+<!-- jsDelivr CDN + ?v= busts GitHub profile image cache (can lag 5–30 min on raw URLs) -->
+<img alt="Animated profile banner" src="{cdn}/banner.svg?v={v}" width="100%"/>
 
 <br/><br/>
 
@@ -530,7 +532,7 @@ def readme_md():
 <table>
 <tr>
 <td width="320" valign="top" align="center">
-  <img alt="Swinging ID badge" src="{raw}/lanyard.svg?v={v}" width="280"/>
+  <img alt="Swinging ID badge" src="{cdn}/lanyard.svg?v={v}" width="280"/>
 </td>
 <td valign="top">
 
@@ -551,15 +553,15 @@ def readme_md():
 <!-- Stats row -->
 <table>
 <tr>
-<td><img alt="GitHub Stats" src="{raw}/stats.svg?v={v}" width="400"/></td>
-<td><img alt="Top Languages" src="{raw}/langs.svg?v={v}" width="400"/></td>
+<td><img alt="GitHub Stats" src="{cdn}/stats.svg?v={v}" width="400"/></td>
+<td><img alt="Top Languages" src="{cdn}/langs.svg?v={v}" width="400"/></td>
 </tr>
 </table>
 
 <br/>
 
 <!-- Trophies -->
-<img alt="GitHub Trophies" src="{raw}/trophies.svg?v={v}" width="820"/>
+<img alt="GitHub Trophies" src="{cdn}/trophies.svg?v={v}" width="820"/>
 
 <br/><br/>
 
@@ -569,7 +571,7 @@ def readme_md():
 <br/><br/>
 
 <!-- Snake (run Actions workflow first) -->
-<img alt="Snake eating contributions" src="https://raw.githubusercontent.com/{u}/{u}/output/snake.svg?v={v}" width="100%"/>
+<img alt="Snake eating contributions" src="{raw}/output/snake.svg?v={v}" width="100%"/>
 
 <p align="center"><i>🐍 Watch the snake eat my contributions!</i></p>
 
