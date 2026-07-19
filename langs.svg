@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220">
+  <rect width="400" height="220" rx="12" fill="#111a11" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="20" y="32" fill="#e6f5e6" font-family="system-ui" font-size="16" font-weight="bold">Top Languages</text>
+  
+  <text x="20" y="50" fill="#e6f5e6" font-family="system-ui" font-size="13">TypeScript</text>
+  <text x="380" y="50" fill="#4ade80" font-family="monospace" font-size="12" text-anchor="end">35%</text>
+  <rect x="20" y="56" width="360" height="12" rx="6" fill="#161f16"/>
+  <rect x="20" y="56" width="0" height="12" rx="6" fill="#22c55e">
+    <animate attributeName="width" from="0" to="126.0" dur="1.2s" begin="0.2s" fill="freeze"/>
+  </rect>
+  <text x="20" y="92" fill="#e6f5e6" font-family="system-ui" font-size="13">JavaScript</text>
+  <text x="380" y="92" fill="#4ade80" font-family="monospace" font-size="12" text-anchor="end">30%</text>
+  <rect x="20" y="98" width="360" height="12" rx="6" fill="#161f16"/>
+  <rect x="20" y="98" width="0" height="12" rx="6" fill="#22c55e">
+    <animate attributeName="width" from="0" to="108.0" dur="1.2s" begin="0.35s" fill="freeze"/>
+  </rect>
+  <text x="20" y="134" fill="#e6f5e6" font-family="system-ui" font-size="13">Python</text>
+  <text x="380" y="134" fill="#4ade80" font-family="monospace" font-size="12" text-anchor="end">20%</text>
+  <rect x="20" y="140" width="360" height="12" rx="6" fill="#161f16"/>
+  <rect x="20" y="140" width="0" height="12" rx="6" fill="#22c55e">
+    <animate attributeName="width" from="0" to="72.0" dur="1.2s" begin="0.5s" fill="freeze"/>
+  </rect>
+  <text x="20" y="176" fill="#e6f5e6" font-family="system-ui" font-size="13">HTML/CSS</text>
+  <text x="380" y="176" fill="#4ade80" font-family="monospace" font-size="12" text-anchor="end">15%</text>
+  <rect x="20" y="182" width="360" height="12" rx="6" fill="#161f16"/>
+  <rect x="20" y="182" width="0" height="12" rx="6" fill="#22c55e">
+    <animate attributeName="width" from="0" to="54.0" dur="1.2s" begin="0.6499999999999999s" fill="freeze"/>
+  </rect>
+</svg>
