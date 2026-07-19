@@ -124,7 +124,7 @@ PROFILE = {
         "email": "mailto:ayyappakumar.penneti@gmail.com",
         "medium": None,
     },
-    "cache_v": "27",
+    "cache_v": "28",
 }
 
 # github-profile-trophy thresholds (ryo-ma) — highest tier first
@@ -916,6 +916,14 @@ def _readme_tech_stack() -> str:
     return "\n\n".join(blocks)
 
 
+def _readme_external_link(href: str, inner: str) -> str:
+    return f'<a href="{href}" target="_blank" rel="noopener noreferrer">{inner}</a>'
+
+
+def _readme_badge_link(href: str, badge_src: str, alt: str) -> str:
+    return _readme_external_link(href, f'<img alt="{alt}" src="{badge_src}"/>')
+
+
 def _readme_list(items: list[str], prefix: str) -> str:
     return "\n".join(f"{prefix} {item}" for item in items)
 
@@ -943,20 +951,20 @@ def _readme_featured_repo(username: str, cdn: str) -> str:
     demo_block = ""
     if demo_url and demo_img:
         demo_block = f'''
-<a href="{demo_url}">
+<a href="{demo_url}" target="_blank" rel="noopener noreferrer">
   <img alt="AI Playgrounds live demo — LangGraph learning hub" src="{cdn}/{demo_img}" width="1024"/>
 </a>
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-tw--playgrounds.vercel.app-ec4899?style=for-the-badge&logo=vercel&logoColor=white)]({demo_url})
-[![Source Code](https://img.shields.io/badge/Source_Code-GitHub-00e5ff?style=for-the-badge&logo=github&logoColor=white)]({repo_url})
+{_readme_badge_link(demo_url, "https://img.shields.io/badge/Live_Demo-tw--playgrounds.vercel.app-ec4899?style=for-the-badge&logo=vercel&logoColor=white", "Live Demo")}
+{_readme_badge_link(repo_url, "https://img.shields.io/badge/Source_Code-GitHub-00e5ff?style=for-the-badge&logo=github&logoColor=white", "Source Code")}
 
 <br/><br/>
 '''
     elif demo_url:
         demo_block = f'''
-[![Live Demo](https://img.shields.io/badge/Live_Demo-tw--playgrounds.vercel.app-ec4899?style=for-the-badge&logo=vercel&logoColor=white)]({demo_url})
+{_readme_badge_link(demo_url, "https://img.shields.io/badge/Live_Demo-tw--playgrounds.vercel.app-ec4899?style=for-the-badge&logo=vercel&logoColor=white", "Live Demo")}
 
 <br/><br/>
 '''
@@ -965,9 +973,7 @@ def _readme_featured_repo(username: str, cdn: str) -> str:
 
 ### 🚀 Featured Open Source
 
-<a href="{repo_url}">
-  <img src="https://img.shields.io/badge/AI_Playgrounds-9_playgrounds_·_131_labs-00e5ff?style=for-the-badge&logo=github&logoColor=white" alt="AI Playgrounds"/>
-</a>
+{_readme_badge_link(repo_url, "https://img.shields.io/badge/AI_Playgrounds-9_playgrounds_·_131_labs-00e5ff?style=for-the-badge&logo=github&logoColor=white", "AI Playgrounds")}
 
 <br/><br/>
 
@@ -996,15 +1002,32 @@ def _readme_featured_repo(username: str, cdn: str) -> str:
 
 
 def _readme_connect_badges(soc: dict, username: str) -> str:
+    gh = f"https://github.com/{username}"
     badges = [
-        f"[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white)]({soc['linkedin']})",
-        f"[![GitHub](https://img.shields.io/badge/GitHub-{username}-00e5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/{username})",
-        f"[![Email](https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white)]({soc['email']})",
+        _readme_badge_link(
+            soc["linkedin"],
+            "https://img.shields.io/badge/LinkedIn-Connect-a855f7?style=for-the-badge&logo=linkedin&logoColor=white",
+            "LinkedIn",
+        ),
+        _readme_badge_link(
+            gh,
+            f"https://img.shields.io/badge/GitHub-{username}-00e5ff?style=for-the-badge&logo=github&logoColor=white",
+            "GitHub",
+        ),
+        _readme_badge_link(
+            soc["email"],
+            "https://img.shields.io/badge/Email-Reach%20Out-6366f1?style=for-the-badge&logo=gmail&logoColor=white",
+            "Email",
+        ),
     ]
     if soc.get("portfolio"):
         badges.insert(
             0,
-            f"[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white)]({soc['portfolio']})",
+            _readme_badge_link(
+                soc["portfolio"],
+                "https://img.shields.io/badge/Portfolio-Visit-ec4899?style=for-the-badge&logo=google-chrome&logoColor=white",
+                "Portfolio",
+            ),
         )
     else:
         badges.append(
@@ -1012,7 +1035,11 @@ def _readme_connect_badges(soc: dict, username: str) -> str:
         )
     if soc.get("medium"):
         badges.append(
-            f"[![Medium](https://img.shields.io/badge/Medium-Blog-fbbf24?style=for-the-badge&logo=medium&logoColor=white)]({soc['medium']})"
+            _readme_badge_link(
+                soc["medium"],
+                "https://img.shields.io/badge/Medium-Blog-fbbf24?style=for-the-badge&logo=medium&logoColor=white",
+                "Medium",
+            )
         )
     return "\n".join(badges)
 
@@ -1208,7 +1235,7 @@ def readme_md(sha: Optional[str] = None):
 <br/>
 
 <!-- Profile views -->
-<a href="https://github.com/{u}">
+<a href="https://github.com/{u}" target="_blank" rel="noopener noreferrer">
 <img alt="Profile views" src="https://komarev.com/ghpvc/?username={u}&label=Profile%20Views&color=00e5ff&style=for-the-badge"/>
 </a>
 
