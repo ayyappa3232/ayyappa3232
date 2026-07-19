@@ -40,7 +40,7 @@ PROFILE = {
         "portfolio": "https://your-portfolio.com",
         "email": "mailto:your.email@example.com",
     },
-    "cache_v": "11",
+    "cache_v": "12",
 }
 
 def xml_escape(text: str) -> str:
@@ -474,39 +474,82 @@ def langs_svg():
 
 
 def trophies_svg():
+    w, h = 820, 240
+    cell_w, cell_h, gap = 248, 82, 14
+    ox, row1, row2 = 24, 52, 146
+
+    trophy_meta = [
+        ("S", "Commits", "📝", C["cyan"], True),
+        ("A", "Stars", "⭐", C["violet"], True),
+        ("B+", "Repos", "📦", C["pink"], False),
+        ("A", "PRs", "🔀", C["gold"], True),
+        ("B", "Issues", "🐛", "#a5b4fc", False),
+        ("C", "Followers", "👥", "#5eead4", False),
+    ]
+
     cells = ""
-    colors = [C["cyan"], C["violet"], C["pink"], C["gold"], C["border"], "#6366f1"]
-    for i, (grade, label) in enumerate(PROFILE["trophies"]):
+    for i, (grade, label, icon, color, glow) in enumerate(trophy_meta):
         col = i % 3
         row = i // 3
-        x = 20 + col * 130
-        y = 50 + row * 85
+        x = ox + col * (cell_w + gap)
+        y = row1 if row == 0 else row2
+        cid = f"cell{i}"
+
+        ring = ""
+        if grade == "S":
+            ring = f'''
+    <circle cx="{x + cell_w // 2}" cy="{y + 38}" r="34" fill="none" stroke="{color}" stroke-width="2" opacity="0.5">
+      <animate attributeName="stroke-opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="32;36;32" dur="2s" repeatCount="indefinite"/>
+    </circle>'''
+
+        glow_filter = ' filter="url(#gradeGlow)"' if glow else ""
+
         cells += f'''
+  <clipPath id="{cid}"><rect x="{x}" y="{y}" width="{cell_w}" height="{cell_h}" rx="12"/></clipPath>
   <g opacity="0">
-    <animate attributeName="opacity" from="0" to="1" begin="{0.2 + i*0.12}s" dur="0.35s" fill="freeze"/>
-    <rect x="{x}" y="{y}" width="120" height="72" rx="10" fill="{C['glass']}" stroke="{colors[i]}" stroke-width="1.5"/>
-    <text x="{x+60}" y="{y+38}" fill="{colors[i]}" font-family="monospace" font-size="28" font-weight="bold" text-anchor="middle">{grade}</text>
-    <text x="{x+60}" y="{y+58}" fill="{C['text_dim']}" font-family="system-ui" font-size="10" text-anchor="middle">{label}</text>
+    <animate attributeName="opacity" from="0" to="1" begin="{0.15 + i * 0.1}s" dur="0.4s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" from="0 12" to="0 0" begin="{0.15 + i * 0.1}s" dur="0.4s" fill="freeze"/>
+    <rect x="{x}" y="{y}" width="{cell_w}" height="{cell_h}" rx="12" fill="{C['glass']}" stroke="{color}" stroke-width="1.5"/>
+    {ring}
+    <text x="{x + cell_w // 2}" y="{y + 22}" font-size="14" text-anchor="middle">{icon}</text>
+    <text x="{x + cell_w // 2}" y="{y + 50}" fill="{color}" font-family="monospace" font-size="26" font-weight="bold" text-anchor="middle"{glow_filter}>{grade}</text>
+    <text x="{x + cell_w // 2}" y="{y + 68}" fill="{C['text_dim']}" font-family="system-ui" font-size="11" text-anchor="middle">{label}</text>
+    <g clip-path="url(#{cid})">
+      <rect x="{x}" y="{y}" width="{cell_w}" height="{cell_h}" fill="url(#cellShine)" opacity="0">
+        <animate attributeName="opacity" values="0;0.5;0" dur="2.8s" begin="{i * 0.4}s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" from="-{cell_w} 0" to="{cell_w} 0" dur="2.8s" begin="{i * 0.4}s" repeatCount="indefinite"/>
+      </rect>
+    </g>
   </g>'''
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">
   <defs>
     <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="{C['panel_hi']}"/>
       <stop offset="100%" stop-color="{C['panel_lo']}"/>
     </linearGradient>
-    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="{C['pink']}"/>
+      <stop offset="50%" stop-color="{C['violet']}"/>
+      <stop offset="100%" stop-color="{C['cyan']}"/>
+    </linearGradient>
+    <linearGradient id="cellShine" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="white" stop-opacity="0"/>
-      <stop offset="50%" stop-color="white" stop-opacity="0.08"/>
+      <stop offset="50%" stop-color="white" stop-opacity="0.12"/>
       <stop offset="100%" stop-color="white" stop-opacity="0"/>
     </linearGradient>
+    <filter id="gradeGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.35"/>
+    </filter>
   </defs>
-  <rect width="400" height="220" rx="12" fill="url(#cardGrad)" stroke="{C['pink']}" stroke-width="1.5"/>
-  <text x="20" y="32" fill="{C['text']}" font-family="system-ui" font-size="16" font-weight="bold">GitHub Trophies</text>
-  <rect x="0" y="0" width="400" height="220" fill="url(#shine)" opacity="0">
-    <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
-    <animateTransform attributeName="transform" type="translate" from="-400 0" to="400 0" dur="3s" repeatCount="indefinite"/>
-  </rect>
+  <rect width="{w}" height="{h}" rx="14" fill="url(#cardGrad)" stroke="url(#frameGrad)" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <text x="28" y="36" fill="{C['text']}" font-family="system-ui" font-size="17" font-weight="bold">🏆 GitHub Trophies</text>
+  <text x="{w - 28}" y="36" fill="{C['text_dim']}" font-family="monospace" font-size="10" text-anchor="end">rank snapshot</text>
   {cells}
 </svg>'''
 
